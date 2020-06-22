@@ -52,8 +52,8 @@ kotlin {
         implementation(Deps.multiplatformSettings)
         implementation(Deps.koinCore)
         implementation(Deps.Ktor.commonSerialization)
+        implementation("org.reduxkotlin:redux-kotlin-threadsafe:0.5.1")
         api(Deps.kermit)
-
     }
 
     sourceSets["commonTest"].dependencies {
