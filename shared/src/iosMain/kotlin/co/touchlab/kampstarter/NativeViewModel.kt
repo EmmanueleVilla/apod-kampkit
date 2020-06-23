@@ -1,7 +1,7 @@
 package co.touchlab.kampstarter
 
-import co.touchlab.kampstarter.db.Breed
-import co.touchlab.kampstarter.models.BreedModel
+import co.touchlab.kampstarter.db.Apods
+import co.touchlab.kampstarter.models.ApodModel
 import co.touchlab.kampstarter.models.ItemDataSummary
 import co.touchlab.stately.ensureNeverFrozen
 import kotlinx.coroutines.*
@@ -18,18 +18,18 @@ class NativeViewModel(
 
     private val log: Kermit by inject { parametersOf("BreedModel") }
     private val scope = MainScope(Dispatchers.Main, log)
-    private val breedModel:BreedModel
+    private val apodModel: ApodModel
 
     init {
         ensureNeverFrozen()
-        breedModel = BreedModel()
+        apodModel = ApodModel()
         observeBreeds()
     }
 
     private fun observeBreeds() {
         scope.launch {
             log.v { "Observe Breeds" }
-            breedModel.selectAllBreeds()
+            apodModel.selectAllApods(1,0)
                 .collect { summary ->
                     log.v { "Collecting Things" }
                     viewUpdate(summary)
@@ -39,14 +39,14 @@ class NativeViewModel(
 
     fun getBreedsFromNetwork() {
         scope.launch {
-            breedModel.getBreedsFromNetwork()?.let{ errorString ->
+            apodModel.getApodsFromNetwork()?.let{ errorString ->
                 errorUpdate(errorString)
             }
         }
     }
-    fun updateBreedFavorite(breed: Breed){
+    fun updateBreedFavorite(apod: Apods){
         scope.launch {
-            breedModel.updateBreedFavorite(breed)
+            apodModel.updateApodsFavorite(apod)
         }
     }
 
