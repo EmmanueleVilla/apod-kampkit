@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import co.touchlab.kampstarter.android.R
-import co.touchlab.kampstarter.db.Breed
+import co.touchlab.kampstarter.db.Apods
 
-class MainAdapter(private val breedClickListener: (Breed) -> Unit) :
-    ListAdapter<Breed, MainViewHolder>(breedCallback) {
+class MainAdapter(private val breedClickListener: (Apods) -> Unit) :
+    ListAdapter<Apods, MainViewHolder>(breedCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_breed, parent, false)
@@ -22,13 +22,13 @@ class MainAdapter(private val breedClickListener: (Breed) -> Unit) :
     }
 
     companion object {
-        private val breedCallback = object : DiffUtil.ItemCallback<Breed>() {
-            override fun areContentsTheSame(oldItem: Breed, newItem: Breed): Boolean =
-                (oldItem.id == newItem.id) &&
+        private val breedCallback = object : DiffUtil.ItemCallback<Apods>() {
+            override fun areContentsTheSame(oldItem: Apods, newItem: Apods): Boolean =
+                (oldItem.date == newItem.date) &&
                         (oldItem.favorite == newItem.favorite)
 
-            override fun areItemsTheSame(oldItem: Breed, newItem: Breed): Boolean =
-                oldItem.id == newItem.id
+            override fun areItemsTheSame(oldItem: Apods, newItem: Apods): Boolean =
+                oldItem.date == newItem.date
         }
     }
 }

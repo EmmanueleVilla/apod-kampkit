@@ -1,6 +1,6 @@
 package co.touchlab.kampstarter.ktor
 
-import co.touchlab.kampstarter.response.BreedResult
+import co.touchlab.kampstarter.response.ApodResult
 import co.touchlab.kermit.Kermit
 import co.touchlab.stately.ensureNeverFrozen
 import io.ktor.client.HttpClient
@@ -33,19 +33,19 @@ class DogApiImpl(private val log: Kermit) : KtorApi {
         ensureNeverFrozen()
     }
 
-    override suspend fun getJsonFromApi(): BreedResult = network {
-        log.d { "Fetching Breeds from network" }
-        client.get<BreedResult> {
-            dogs("api/breeds/list/all")
+    override suspend fun getJsonFromApi(): ApodResult = network {
+        log.d { "Fetching Apods from network" }
+        client.get<ApodResult> {
+            dogs("planetary/apod?api_key=OFxlCY0NrHskLzRpbnSjUh2xpgkVPLg3Pfq98jfQ")
         }
     }
 
     private fun HttpRequestBuilder.dogs(path: String) {
         url {
-            takeFrom("https://dog.ceo/")
+            takeFrom("https://api.nasa.gov/")
             encodedPath = path
         }
     }
 }
 
-internal expect suspend fun <R> network(block: suspend () -> R): R
+expect suspend fun <R> network(block: suspend () -> R): R

@@ -2,7 +2,7 @@ package co.touchlab.kampstarter.models
 
 import co.touchlab.kampstarter.DatabaseHelper
 import co.touchlab.kampstarter.currentTimeMillis
-import co.touchlab.kampstarter.db.Breed
+import co.touchlab.kampstarter.db.Apods
 import co.touchlab.kampstarter.ktor.KtorApi
 import co.touchlab.kermit.Kermit
 import co.touchlab.stately.ensureNeverFrozen
@@ -12,11 +12,11 @@ import org.koin.core.KoinComponent
 import org.koin.core.parameter.parametersOf
 import org.koin.core.inject
 
-class BreedModel() : KoinComponent {
+class ApodModel() : KoinComponent {
     private val dbHelper: DatabaseHelper by inject()
     private val settings: Settings by inject()
     private val ktorApi: KtorApi by inject()
-    private val log: Kermit by inject { parametersOf("BreedModel") }
+    private val log: Kermit by inject { parametersOf("ApodModel") }
 
     companion object {
         internal const val DB_TIMESTAMP_KEY = "DbTimestampKey"
@@ -26,42 +26,40 @@ class BreedModel() : KoinComponent {
         ensureNeverFrozen()
     }
 
-    fun selectAllBreeds() =
-        dbHelper.selectAllItems()
+    fun selectAllApods(limit: Long, offset: Long) =
+        dbHelper.selectAllItems(limit, offset)
             .map { itemList ->
                 log.v { "Select all query dirtied" }
-                ItemDataSummary(itemList.maxBy { it.name.length }, itemList)
+                ItemDataSummary(itemList.maxBy { it.date.length }, itemList)
             }
 
-    suspend fun getBreedsFromNetwork() : String? {
-        fun isBreedListStale(currentTimeMS: Long): Boolean {
+    suspend fun getApodsFromNetwork() : String? {
+        fun isApodListStale(currentTimeMS: Long): Boolean {
             val lastDownloadTimeMS = settings.getLong(DB_TIMESTAMP_KEY, 0)
             val oneHourMS = 60 * 60 * 1000
             return (lastDownloadTimeMS + oneHourMS < currentTimeMS)
         }
 
         val currentTimeMS = currentTimeMillis()
-        if (isBreedListStale(currentTimeMS)) {
+        if (isApodListStale(currentTimeMS)) {
             try {
-                val breedResult = ktorApi.getJsonFromApi()
-                log.v { "Breed network result: ${breedResult.status}" }
-                val breedList = breedResult.message.keys.toList()
-                log.v { "Fetched ${breedList.size} breeds from network" }
-                dbHelper.insertBreeds(breedList)
+                val apodResult = ktorApi.getJsonFromApi()
+                log.v { "Fetched ${apodResult.date} apod from network" }
+                dbHelper.insertApods(listOf(apodResult))
                 settings.putLong(DB_TIMESTAMP_KEY, currentTimeMS)
 
             } catch (e: Exception) {
-                return "Unable to download breed list"
+                return "Unable to download apod list"
             }
         } else {
-            log.i { "Breeds not fetched from network. Recently updated" }
+            log.i { "Apods not fetched from network. Recently updated" }
         }
         return null
     }
 
-    suspend fun updateBreedFavorite(breed: Breed) {
-        dbHelper.updateFavorite(breed.id, breed.favorite != 1L)
+    suspend fun updateApodsFavorite(apod: Apods) {
+        dbHelper.updateFavorite(apod.date, apod.favorite != 1L)
     }
 }
 
-data class ItemDataSummary(val longestItem: Breed?, val allItems: List<Breed>)
+data class ItemDataSummary(val longestItem: Apods?, val allItems: List<Apods>)

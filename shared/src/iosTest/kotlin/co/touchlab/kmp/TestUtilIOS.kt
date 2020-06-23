@@ -1,13 +1,13 @@
 package co.touchlab.kampstarter
 
-import co.touchlab.kampstarter.db.KampstarterDb
+import co.touchlab.kampstarter.db.ApodDb
 import co.touchlab.sqliter.DatabaseConfiguration
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 import com.squareup.sqldelight.drivers.native.wrapConnection
 
 internal actual fun testDbConnection(): SqlDriver {
-    val schema = KampstarterDb.Schema
+    val schema = ApodDb.Schema
     return NativeSqliteDriver(
         DatabaseConfiguration(
             name = "kampstarterdb",

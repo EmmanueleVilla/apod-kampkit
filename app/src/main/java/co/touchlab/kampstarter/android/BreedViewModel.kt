@@ -2,17 +2,20 @@ package co.touchlab.kampstarter.android
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import co.touchlab.kampstarter.db.Breed
-import co.touchlab.kampstarter.models.BreedModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kampstarter.db.Apods
+import co.touchlab.kampstarter.models.ApodModel
 import co.touchlab.kampstarter.models.ItemDataSummary
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
+@InternalCoroutinesApi
 class BreedViewModel : ViewModel() {
 
-    private var breedModel: BreedModel = BreedModel()
-    val breedLiveData = MutableLiveData<ItemDataSummary>()
+    private var apodModel: ApodModel = ApodModel()
+    val apodLiveData = MutableLiveData<ItemDataSummary>()
     val errorLiveData = MutableLiveData<String>()
 
     init {
@@ -20,24 +23,27 @@ class BreedViewModel : ViewModel() {
     }
 
 
+    @InternalCoroutinesApi
     private fun observeBreeds() {
         viewModelScope.launch {
-            breedModel.selectAllBreeds().collect {
-                breedLiveData.postValue(it)
-            }
+            apodModel.selectAllApods(1,0).collect(object : FlowCollector<ItemDataSummary> {
+                override suspend fun emit(value: ItemDataSummary) {
+                    apodLiveData.postValue(value)
+                }
+            })
         }
     }
 
     fun getBreedsFromNetwork() {
         viewModelScope.launch {
-            breedModel.getBreedsFromNetwork()?.let { errorString ->
+            apodModel.getApodsFromNetwork()?.let { errorString ->
                 errorLiveData.postValue(errorString)
             }
         }
     }
-    fun updateBreedFavorite(breed: Breed){
+    fun updateBreedFavorite(apod: Apods){
         viewModelScope.launch {
-            breedModel.updateBreedFavorite(breed)
+            apodModel.updateApodsFavorite(apod)
         }
     }
 }

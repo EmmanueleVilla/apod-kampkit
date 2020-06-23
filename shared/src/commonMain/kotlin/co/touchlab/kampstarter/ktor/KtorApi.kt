@@ -1,7 +1,7 @@
 package co.touchlab.kampstarter.ktor
 
-import co.touchlab.kampstarter.response.BreedResult
+import co.touchlab.kampstarter.response.ApodResult
 
 interface KtorApi {
-    suspend fun getJsonFromApi(): BreedResult
+    suspend fun getJsonFromApi(): ApodResult
 }

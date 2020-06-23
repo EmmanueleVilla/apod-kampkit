@@ -1,42 +1,43 @@
 package co.touchlab.kampstarter
 
-import co.touchlab.kampstarter.db.Breed
-import co.touchlab.kampstarter.db.KampstarterDb
+import co.touchlab.kampstarter.db.ApodDb
+import co.touchlab.kampstarter.db.Apods
+import co.touchlab.kampstarter.models.ApodModel
 import co.touchlab.kampstarter.sqldelight.asFlow
 import co.touchlab.kampstarter.sqldelight.mapToList
 import co.touchlab.kampstarter.sqldelight.transactionWithContext
 import co.touchlab.kermit.Kermit
-import com.squareup.sqldelight.Query
 import com.squareup.sqldelight.db.SqlDriver
+import io.ktor.util.date.GMTDate
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
 
 class DatabaseHelper(sqlDriver: SqlDriver,
                      private val log: Kermit,
                      private val backgroundDispatcher: CoroutineDispatcher) {
-    private val dbRef: KampstarterDb = KampstarterDb(sqlDriver)
+    private val dbRef: ApodDb = ApodDb(sqlDriver)
 
 
-    fun selectAllItems(): Flow<List<Breed>> =
+    fun selectAllItems(limit: Long, offset: Long): Flow<List<Apods>> =
         dbRef.tableQueries
-            .selectAll()
+            .selectWithPaging(limit, offset)
             .asFlow()
             .mapToList()
             .flowOn(backgroundDispatcher)
 
-    suspend fun insertBreeds(breedNames: List<String>) {
-        log.d { "Inserting ${breedNames.size} breeds into database" }
+    suspend fun insertApods(apod: List<Apods>) {
+        log.d { "Inserting ${apod.size} apods into database" }
         dbRef.transactionWithContext(backgroundDispatcher) {
-            breedNames.forEach { name ->
-                dbRef.tableQueries.insertBreed(null, name, 0)
+            apod.forEach { dbRef.tableQueries.insertApod(it.date, it.copyright, it.explanation, it.hdurl, it.media_type, it.service_version, it.title, it.url)
             }
         }
     }
 
-    suspend fun selectById(id: Long): Flow<List<Breed>> =
+    suspend fun selectByDate(date: GMTDate): Flow<List<Apods>> =
         dbRef.tableQueries
-            .selectById(id)
+            .selectByDate( "${date.year} - ${date.month} - ${date.dayOfMonth}")
             .asFlow()
             .mapToList()
             .flowOn(backgroundDispatcher)
@@ -48,13 +49,13 @@ class DatabaseHelper(sqlDriver: SqlDriver,
         }
     }
 
-    suspend fun updateFavorite(breedId: Long, favorite: Boolean) {
-        log.i { "Breed $breedId: Favorited $favorite" }
+    suspend fun updateFavorite(date: String, favorite: Boolean) {
+        log.i { "Apods $date: Favorited $favorite" }
         dbRef.transactionWithContext(backgroundDispatcher) {
-            dbRef.tableQueries.updateFavorite(favorite.toLong(), breedId)
+            dbRef.tableQueries.updateFavorite(favorite.toLong(), date)
         }
     }
 }
 
-fun Breed.isFavorited(): Boolean = this.favorite != 0L
+fun Apods.isFavorited(): Boolean = this.favorite != 0L
 internal fun Boolean.toLong(): Long = if (this) 1L else 0L

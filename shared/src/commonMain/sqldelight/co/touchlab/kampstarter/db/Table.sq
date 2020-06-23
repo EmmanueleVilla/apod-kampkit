@@ -1,24 +1,27 @@
-CREATE TABLE Breed (
-id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-name TEXT NOT NULL,
+CREATE TABLE Apods (
+date TEXT NOT NULL PRIMARY KEY,
+copyright TEXT NOT NULL,
+explanation TEXT NOT NULL,
+hdurl TEXT NOT NULL,
+media_type TEXT NOT NULL,
+service_version TEXT NOT NULL,
+title TEXT NOT NULL,
+url TEXT NOT NULL,
 favorite INTEGER NOT NULL DEFAULT 0
 );
 
-selectAll:
-SELECT * FROM Breed;
+selectWithPaging:
+SELECT * FROM Apods ORDER BY date DESC LIMIT ? OFFSET ?;
 
-selectById:
-SELECT * FROM Breed WHERE id = ?;
+selectByDate:
+SELECT * FROM Apods WHERE date = ?;
 
-selectByName:
-SELECT * FROM Breed WHERE name = ?;
-
-insertBreed:
-INSERT OR REPLACE INTO Breed(id, name, favorite)
-VALUES (?,?,?);
+insertApod:
+INSERT OR REPLACE INTO Apods(date, copyright, explanation, hdurl, media_type, service_version, title, url)
+VALUES (?,?,?,?,?,?,?,?);
 
 deleteAll:
-DELETE FROM Breed;
+DELETE FROM Apods;
 
 updateFavorite:
-UPDATE Breed SET favorite = ? WHERE id = ?;
+UPDATE Apods SET favorite = ? WHERE date = ?;

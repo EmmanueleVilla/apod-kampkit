@@ -5,7 +5,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import co.touchlab.kampstarter.android.R
-import co.touchlab.kampstarter.db.Breed
+import co.touchlab.kampstarter.db.Apods
 
 class MainViewHolder(itemView: View, breedClickListener: (Int) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
@@ -16,8 +16,8 @@ class MainViewHolder(itemView: View, breedClickListener: (Int) -> Unit) : Recycl
         favoriteButton.setOnClickListener { breedClickListener(adapterPosition) }
     }
 
-    fun bindTo(breed: Breed) {
-        nameTextView.text = breed.name
+    fun bindTo(breed: Apods) {
+        nameTextView.text = breed.date
         if (breed.favorite == 0L) {
             favoriteButton.setBackgroundResource(R.drawable.ic_favorite_border_24px)
         } else {

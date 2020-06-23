@@ -1,6 +1,6 @@
 package co.touchlab.kampstarter
 
-import co.touchlab.kampstarter.db.KampstarterDb
+import co.touchlab.kampstarter.db.ApodDb
 import co.touchlab.kermit.Kermit
 import co.touchlab.kermit.NSLogLogger
 import com.russhwolf.settings.AppleSettings
@@ -16,12 +16,11 @@ import platform.Foundation.NSUserDefaults
 
 actual val platformModule = module {
     single<Settings> {
-        val userDefaults = NSUserDefaults(suiteName = "KAMPSTARTER_SETTINGS")
+        val userDefaults = NSUserDefaults(suiteName = "APOD_SETTINGS")
         AppleSettings(userDefaults)
     }
-    single<SqlDriver> { NativeSqliteDriver(KampstarterDb.Schema, "kampstarterdb") }
-
-    val baseKermit = Kermit(NSLogLogger()).withTag("KampKit")
+    single<SqlDriver> { NativeSqliteDriver(ApodDb.Schema, "apoddb") }
+    val baseKermit = Kermit(NSLogLogger()).withTag("APOD")
     factory { (tag: String?) -> if (tag != null) baseKermit.withTag(tag) else baseKermit }
 }
 

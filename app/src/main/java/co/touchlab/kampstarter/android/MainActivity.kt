@@ -9,10 +9,12 @@ import co.touchlab.kampstarter.android.adapter.MainAdapter
 import co.touchlab.kermit.Kermit
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 
+@InternalCoroutinesApi
 class MainActivity : AppCompatActivity(), KoinComponent {
     companion object {
         val TAG = MainActivity::class.java.simpleName
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
         viewModel = ViewModelProviders.of(this).get(BreedViewModel::class.java)
 
-        viewModel.breedLiveData.observe(this, Observer { itemData ->
+        viewModel.apodLiveData.observe(this, Observer { itemData ->
             log.v { "List submitted to adapter" }
             adapter.submitList(itemData.allItems)
         })
