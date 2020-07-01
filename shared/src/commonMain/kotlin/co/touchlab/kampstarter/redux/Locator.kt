@@ -1,9 +1,9 @@
 package co.touchlab.kampstarter.redux
 
 object SL {
-    private val factoriesMap: HashMap<String, () -> Unit> = HashMap()
+    private val factoriesMap: HashMap<String, () -> Any> = HashMap()
     private val singletonsBuiltMap: HashMap<String, Any> = HashMap()
-    private val singletonsMap: HashMap<String, () -> Unit> = HashMap()
+    private val singletonsMap: HashMap<String, () -> Any> = HashMap()
 
     operator fun <T : Any> get(type: T): T {
         return get(type, "")
@@ -24,16 +24,16 @@ object SL {
         )
     }
     
-    fun <T : Any> register(type: T, factory: () -> Unit) {
+    fun <T : Any> register(type: T, factory: () -> Any) {
         register(type, "", factory)
     }
 
-    fun <T : Any> register(type: T, name: String, factory: () -> Unit) {
+    fun <T : Any> register(type: T, name: String, factory: () -> Any) {
         unregister(type, name)
         factoriesMap[buildName(type, name)] = factory
     }
 
-    fun <T : Any> registerSingleton(type: T, factory: () -> Unit) {
+    fun <T : Any> registerSingleton(type: T, factory: () -> Any) {
         unregister(type, "")
         singletonsMap[buildName(type, "")] = factory
     }
@@ -62,8 +62,8 @@ object SL {
         get() = factoriesMap.size + singletonsMap.size
 
     private fun <T : Any> baseGet(type: T, name: String): T {
-        val factory: () -> Unit =
-            factoriesMap[buildName(type, name)] as () -> Unit
+        val factory: () -> Any =
+            factoriesMap[buildName(type, name)] as () -> Any
         return factory.invoke() as T
     }
 
@@ -74,7 +74,7 @@ object SL {
     private fun <T : Any> singletonGet(type: T, name: String): T {
         val key = buildName(type, name)
         if (!singletonsBuiltMap.containsKey(key)) {
-            val factory: () -> Unit = singletonsMap[key] as () -> Unit
+            val factory: () -> Any = singletonsMap[key] as () -> Any
             val built: Any = factory.invoke()
             singletonsBuiltMap[key] = built
         }

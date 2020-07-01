@@ -9,7 +9,7 @@ val loggingMiddleware = middleware<AppState> { store, next, action ->
 
 val store : Store<AppState>
     get() = createThreadSafeStore(
-    combineReducers(appStateReducer()),
+    combineReducers(appStateReducer),
     AppState(),
     applyMiddleware(loggingMiddleware)
 )
