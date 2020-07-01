@@ -2,7 +2,6 @@ package co.touchlab.kampstarter
 
 import co.touchlab.kampstarter.db.ApodDb
 import co.touchlab.kampstarter.db.Apods
-import co.touchlab.kampstarter.models.ApodModel
 import co.touchlab.kampstarter.sqldelight.asFlow
 import co.touchlab.kampstarter.sqldelight.mapToList
 import co.touchlab.kampstarter.sqldelight.transactionWithContext
@@ -11,7 +10,6 @@ import com.squareup.sqldelight.db.SqlDriver
 import io.ktor.util.date.GMTDate
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
 
 class DatabaseHelper(sqlDriver: SqlDriver,

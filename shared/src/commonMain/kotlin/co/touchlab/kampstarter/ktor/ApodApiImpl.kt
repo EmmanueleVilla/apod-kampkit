@@ -13,7 +13,7 @@ import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.http.takeFrom
 
-class DogApiImpl(private val log: Kermit) : KtorApi {
+class ApodApiImpl(private val log: Kermit) : KtorApi {
     private val client = HttpClient {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
@@ -33,7 +33,7 @@ class DogApiImpl(private val log: Kermit) : KtorApi {
         ensureNeverFrozen()
     }
 
-    override suspend fun getJsonFromApi(): ApodResult = network {
+    override suspend fun get(): ApodResult = network {
         log.d { "Fetching Apods from network" }
         client.get<ApodResult> {
             dogs("planetary/apod?api_key=OFxlCY0NrHskLzRpbnSjUh2xpgkVPLg3Pfq98jfQ")

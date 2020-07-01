@@ -28,6 +28,7 @@ kotlin {
     }else{
         iosX64("ios")
     }
+
     targets.getByName<KotlinNativeTarget>("ios").compilations["main"].kotlinOptions.freeCompilerArgs +=
         listOf("-Xobjc-generics", "-Xg0")
 
@@ -50,7 +51,6 @@ kotlin {
         implementation(Deps.Coroutines.common)
         implementation(Deps.stately)
         implementation(Deps.multiplatformSettings)
-        implementation(Deps.koinCore)
         implementation(Deps.Ktor.commonSerialization)
         implementation("org.reduxkotlin:redux-kotlin-threadsafe:0.5.1")
         api(Deps.kermit)
@@ -60,7 +60,6 @@ kotlin {
         implementation(Deps.multiplatformSettingsTest)
         implementation(Deps.KotlinTest.common)
         implementation(Deps.KotlinTest.annotations)
-        implementation(Deps.koinTest)
         //Karmok is an experimental library which helps with mocking interfaces
         implementation(Deps.karmok)
     }
@@ -100,8 +99,6 @@ kotlin {
             }
         }
         implementation(Deps.Ktor.iosSerialization)
-        implementation(Deps.koinCore)
-
     }
 
     cocoapodsext {

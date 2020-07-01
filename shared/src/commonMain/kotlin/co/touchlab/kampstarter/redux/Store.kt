@@ -1,18 +1,16 @@
 package co.touchlab.kampstarter.redux
 
-import co.touchlab.kampstarter.splash.SplashState
-import org.reduxkotlin.applyMiddleware
-import org.reduxkotlin.combineReducers
-import org.reduxkotlin.createThreadSafeStore
-import org.reduxkotlin.middleware
+import org.reduxkotlin.*
 
 val loggingMiddleware = middleware<AppState> { store, next, action ->
     //log here
     next(action)
 }
 
-val store = createThreadSafeStore(
+val store : Store<AppState>
+    get() = createThreadSafeStore(
     combineReducers(appStateReducer()),
-    AppState(SplashState()),
+    AppState(),
     applyMiddleware(loggingMiddleware)
 )
+
