@@ -1,7 +1,10 @@
 package co.touchlab.kampstarter.redux
 
+import co.touchlab.kampstarter.DatabaseHelper
 import co.touchlab.kermit.Kermit
 import co.touchlab.kermit.Severity
+import com.russhwolf.settings.Settings
+import com.squareup.sqldelight.db.SqlDriver
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
@@ -11,8 +14,7 @@ import io.ktor.client.features.logging.Logging
 import org.reduxkotlin.*
 
 val loggingMiddleware = middleware<AppState> { store, next, action ->
-    val logger : Kermit = SL[InjectionTypes.LOGGER]
-    logger.log(Severity.Assert, throwable = null, message = { "dispatching action " + action::class.qualifiedName })
+    dep.log.log(Severity.Assert, throwable = null, message = { "dispatching action " + action::class.qualifiedName })
     next(action)
 }
 
@@ -25,7 +27,7 @@ private var _store : Store<AppState>? = null
 val store : Store<AppState>
     get() {
         if(_store == null) {
-            initSL();
+            enhanceDependencies(dep)
             _store = createThreadSafeStore(
                 combineReducers(appStateReducer),
                 AppState(),
@@ -34,19 +36,34 @@ val store : Store<AppState>
         return _store!!
     }
 
-private fun initSL() {
-    SL.setSingle<HttpClient>(InjectionTypes.HTTP_CLIENT) { HttpClient {
+class Dependencies {
+    lateinit var settings: Settings
+    lateinit var log: Kermit
+    lateinit var sqlDriver: SqlDriver
+    lateinit var databaseHelper: DatabaseHelper
+    var httpClient: HttpClient = HttpClient {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
         install(Logging) {
             logger = object : Logger {
                 override fun log(message: String) {
-                    val logger : Kermit = SL[InjectionTypes.LOGGER]
+                    val logger: Kermit = dep.log
                     logger.v("Network") { message }
                 }
             }
             level = LogLevel.INFO
         }
-    } }
+    }
 }
+
+private var _dep : Dependencies? = null
+private val dep : Dependencies
+    get() {
+        if(_dep == null) {
+            _dep = Dependencies()
+        }
+        return _dep!!
+    }
+
+expect fun enhanceDependencies(dep: Dependencies)

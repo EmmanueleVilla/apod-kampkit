@@ -6,4 +6,6 @@ install! 'cocoapods', :deterministic_uuids => false
 
 target 'KaMPStarteriOS' do
     pod 'shared', :path => '../shared/'
+    pod 'SDWebImage', '~> 5.0'
 end
+

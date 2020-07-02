@@ -11,3 +11,4 @@
 .cxx
 *.xcuserstate
 *.xcbkptlist
+ios/Pods

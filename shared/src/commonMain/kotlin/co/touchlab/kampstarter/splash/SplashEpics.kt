@@ -1,11 +1,14 @@
 package co.touchlab.kampstarter.splash
 import co.touchlab.kampstarter.currentTimeMillis
+import co.touchlab.kampstarter.db.Apods
 import co.touchlab.kampstarter.redux.AppState
 import co.touchlab.kampstarter.redux.Epic
 import co.touchlab.kampstarter.response.ApodResult
 import io.ktor.client.request.get
 import io.ktor.http.takeFrom
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 internal val splashEpics: Epic <AppState> = { store, state, action, dep ->
@@ -16,6 +19,14 @@ internal val splashEpics: Epic <AppState> = { store, state, action, dep ->
 
         is SplashActions.ApodFetch.FetchFromWeb -> {
             handleFetchFromWeb(store, state, action, dep)
+        }
+
+        is SplashActions.ApodFetch.DownloadCompleted -> {
+            handleDownloadCompleted(store, state, action, dep)
+        }
+
+        is SplashActions.ApodFetch.LoadFromCache -> {
+            handleLoadFromCache(store, state, action, dep)
         }
     }
 }
@@ -34,7 +45,7 @@ private val handleApodRequest: Epic <AppState> = { store, state, action, dep ->
 private val handleFetchFromWeb: Epic <AppState> = { store, state, action, dep ->
     GlobalScope.launch {
         try {
-            dep.logger.d { "Fetching Apods from network" }
+            dep.log.d { "Fetching Apods from network" }
 
             val apodResult = dep.httpClient.get<ApodResult> {
                 url {
@@ -42,14 +53,39 @@ private val handleFetchFromWeb: Epic <AppState> = { store, state, action, dep ->
                     encodedPath = "planetary/apod?api_key=OFxlCY0NrHskLzRpbnSjUh2xpgkVPLg3Pfq98jfQ"
                 }
             }
-
-            dep.logger.v { "Fetched ${apodResult.date} apod from network" }
-            dep.databaseHelper.insertApods(listOf(apodResult))
-            dep.settings.putLong("DB_TIMESTAMP_KEY", currentTimeMillis())
-            store.dispatch(SplashActions.ApodFetch.Completed(apodResult))
+            store.dispatch(SplashActions.ApodFetch.DownloadCompleted(apodResult))
         } catch (e: Exception) {
-            dep.logger.v { e.toString() }
+            dep.log.v { e.toString() }
             store.dispatch(SplashActions.ApodFetch.LoadFromCache)
+        }
+    }
+}
+
+private val handleDownloadCompleted: Epic <AppState> = { store, state, action, dep ->
+    GlobalScope.launch {
+        try {
+            dep.databaseHelper.insertApods(listOf((action as SplashActions.ApodFetch.DownloadCompleted).payload))
+            dep.settings.putLong("DB_TIMESTAMP_KEY", currentTimeMillis())
+
+        } catch (e: Exception) {
+            dep.log.v { e.toString() }
+        } finally {
+            store.dispatch(SplashActions.ApodFetch.LoadFromCache)
+        }
+    }
+}
+
+private val handleLoadFromCache: Epic <AppState> = { store, state, action, dep ->
+    GlobalScope.launch {
+        try {
+            dep.databaseHelper.selectAllItems(1, 0).collect { value ->
+                if (value.isNotEmpty()) {
+                    store.dispatch(SplashActions.ApodFetch.Completed(value.first()))
+                }
+            }
+        } catch (e: Exception) {
+            dep.log.v { e.toString() }
+            store.dispatch(SplashActions.ApodFetch.Error(e.toString()))
         }
     }
 }

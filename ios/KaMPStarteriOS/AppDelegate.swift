@@ -13,10 +13,12 @@ import shared
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    let log = KoinIOS().get(objCClass: Kermit.self, parameter: "AppDelegate") as! Kermit
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        log.v(withMessage: {"App Started"})
+        let navigationController = UINavigationController();
+        window = UIWindow(frame: UIScreen.main.bounds);
+        window!.rootViewController = navigationController
+        window!.makeKeyAndVisible();
+        navigationController.setViewControllers([SplashViewController()], animated: false)
         return true
     }
 }
