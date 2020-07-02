@@ -8,7 +8,7 @@ sealed class SplashActions : Action() {
         object Request : ApodFetch()
         object LoadFromCache : ApodFetch()
         object FetchFromWeb : ApodFetch()
-        data class Completed(val model: Apods) : ApodFetch()
+        data class Completed(val payload: Apods) : ApodFetch()
         data class Error(val message: String) : ApodFetch()
     }
 }

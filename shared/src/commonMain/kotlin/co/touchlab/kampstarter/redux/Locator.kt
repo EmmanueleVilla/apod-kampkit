@@ -1,103 +1,59 @@
 package co.touchlab.kampstarter.redux
 
 object SL {
-    private val factoriesMap: HashMap<String, () -> Any> = HashMap()
-    private val singletonsBuiltMap: HashMap<String, Any> = HashMap()
-    private val singletonsMap: HashMap<String, () -> Any> = HashMap()
+    private val factoriesMap: HashMap<InjectionTypes, () -> Any> = HashMap()
+    private val singletonsBuiltMap: HashMap<InjectionTypes, Any> = HashMap()
+    private val singletonsMap: HashMap<InjectionTypes, () -> Any> = HashMap()
 
-    operator fun <T : Any> get(type: T): T {
-        return get(type, "")
-    }
-
-    operator fun <T : Any> get(type: T, name: String): T {
-        if (isBaseRegistered(type, name)) {
-            return baseGet(type, name)
+    operator fun <T> get(name: InjectionTypes): T {
+        if (isBaseRegistered(name)) {
+            return baseGet(name) as T
         }
-        if (isSingletonRegistered(type, name)) {
-            return singletonGet(type, name)
+        if (isSingletonRegistered(name)) {
+            return singletonGet(name) as T
         }
         throw IllegalArgumentException(
-            "Don't know how to create an instance of " + buildName(
-                type,
-                name
-            )
+            "Don't know how to create an instance of " + name
         )
     }
     
-    fun <T : Any> register(type: T, factory: () -> Any) {
-        register(type, "", factory)
+    fun <T : Any> set(name: InjectionTypes, factory: () -> Any) {
+        unset<T>(name)
+        factoriesMap[name] = factory
     }
 
-    fun <T : Any> register(type: T, name: String, factory: () -> Any) {
-        unregister(type, name)
-        factoriesMap[buildName(type, name)] = factory
+    fun <T : Any> setSingle(name: InjectionTypes, factory: () -> Any) {
+        unset<T>(name)
+        singletonsMap[name] = factory
     }
 
-    fun <T : Any> registerSingleton(type: T, factory: () -> Any) {
-        unregister(type, "")
-        singletonsMap[buildName(type, "")] = factory
-    }
-
-    fun <T : Any> unregister(type: T) {
-        unregister(type, "")
-    }
-
-    private fun <T : Any> unregister(type: T, name: String) {
-        val key = buildName(type, name)
+    private fun <T : Any> unset(name: InjectionTypes) {
+        val key = name
         factoriesMap.remove(key)
         singletonsMap.remove(key)
         singletonsBuiltMap.remove(key)
     }
 
-    fun <T : Any> isRegistered(type: T): Boolean {
-        return isBaseRegistered(type) || isSingletonRegistered(type)
-    }
-
-    fun clear() {
-        factoriesMap.clear()
-        singletonsMap.clear()
-    }
-
-    val registrationCount: Int
-        get() = factoriesMap.size + singletonsMap.size
-
-    private fun <T : Any> baseGet(type: T, name: String): T {
+    private fun baseGet(name: InjectionTypes): Any {
         val factory: () -> Any =
-            factoriesMap[buildName(type, name)] as () -> Any
-        return factory.invoke() as T
+            factoriesMap[name] as () -> Any
+        return factory.invoke()
     }
 
-    private fun <T : Any> singletonGet(type: T): T {
-        return singletonGet(type, "")
-    }
-
-    private fun <T : Any> singletonGet(type: T, name: String): T {
-        val key = buildName(type, name)
-        if (!singletonsBuiltMap.containsKey(key)) {
-            val factory: () -> Any = singletonsMap[key] as () -> Any
+    private fun singletonGet(name: InjectionTypes): Any {
+        if (!singletonsBuiltMap.containsKey(name)) {
+            val factory: () -> Any = singletonsMap[name] as () -> Any
             val built: Any = factory.invoke()
-            singletonsBuiltMap[key] = built
+            singletonsBuiltMap[name] = built
         }
-        return singletonsBuiltMap[key] as T
+        return singletonsBuiltMap[name]!!
     }
 
-    private fun <T : Any> isBaseRegistered(type: T): Boolean {
-        return isBaseRegistered(type, "")
+    private fun isBaseRegistered(name: InjectionTypes): Boolean {
+        return factoriesMap.containsKey(name)
     }
 
-    private fun <T : Any> isBaseRegistered(type: T, name: String): Boolean {
-        return factoriesMap.containsKey(buildName(type, name))
-    }
-
-    private fun <T : Any> isSingletonRegistered(type: T): Boolean {
-        return isSingletonRegistered(type, "")
-    }
-
-    private fun <T : Any> isSingletonRegistered(type: T, name: String): Boolean {
-        return singletonsMap.containsKey(buildName(type, name))
-    }
-
-    private fun <T : Any> buildName(type: T, name: String): String {
-        return type::class.simpleName  + "_" + name
+    private fun isSingletonRegistered(name: InjectionTypes): Boolean {
+        return singletonsMap.containsKey(name)
     }
 }

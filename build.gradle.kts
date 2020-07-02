@@ -5,6 +5,7 @@ buildscript {
         google()
         mavenCentral()
         jcenter()
+        google()
     }
     dependencies {
         classpath(Deps.android_gradle_plugin)
