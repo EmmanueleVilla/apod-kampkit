@@ -8,17 +8,18 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import co.touchlab.kampstarter.redux.store
+import co.touchlab.kampstarter.db.Apods
 import co.touchlab.kampstarter.splash.SplashInteractor
 import com.bumptech.glide.Glide
 import org.koin.core.KoinComponent
+import kotlin.with as with
 
 class MainActivity : AppCompatActivity(), KoinComponent {
-    lateinit var container : ConstraintLayout
-    lateinit var image : ImageView
-    lateinit var description : TextView
+    private lateinit var container : ConstraintLayout
+    private lateinit var image : ImageView
+    private lateinit var description : TextView
 
-    val splashInteractor : SplashInteractor = SplashInteractor()
+    private val splashInteractor : SplashInteractor = SplashInteractor()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +53,9 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
         splashInteractor.subscribe {
             runOnUiThread {
-                if(it.splashState.apod != null) {
-                    description.text = it.splashState.apod!!.explanation
-                    Glide.with(this).load(it.splashState.apod!!.url).into(image)
-                }
+                val apod = it.splashState.apod
+                description.text = apod.explanation
+                Glide.with(this).load(apod.url).into(image)
             }
         }
 
