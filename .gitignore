@@ -12,3 +12,4 @@
 *.xcuserstate
 *.xcbkptlist
 ios/Pods
+web/node_modules
