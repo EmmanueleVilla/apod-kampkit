@@ -21,7 +21,10 @@ android {
 
 kotlin {
     android()
-    js()
+    js {
+        browser {
+        }
+    }
     //Revert to just ios() when gradle plugin can properly resolve it
     val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos")?:false
     if(onPhone){
@@ -113,6 +116,11 @@ kotlin {
         implementation(Deps.Ktor.jsSerialization)
         implementation(Deps.Coroutines.js)
         implementation(Deps.koinCoreJS)
+        api(npm("text-encoding"))
+        api(npm("bufferutil"))
+        api(npm("utf-8-validate"))
+        api(npm("abort-controller"))
+        api(npm("fs"))
     }
 
     cocoapodsext {
