@@ -2,7 +2,6 @@ package co.touchlab.kampstarter.splash
 
 import co.touchlab.kampstarter.redux.AppState
 import co.touchlab.kampstarter.redux.store
-import org.reduxkotlin.StoreSubscriber
 import org.reduxkotlin.StoreSubscription
 
 class SplashInteractor {
@@ -15,7 +14,7 @@ class SplashInteractor {
 
     fun subscribe(callback: (state: AppState) -> Unit) {
         unsubscribe = store.subscribe {
-            callback.invoke(store.state)
+           callback.invoke(store.state)
         }
     }
 

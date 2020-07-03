@@ -10,14 +10,16 @@ import com.squareup.sqldelight.android.AndroidSqliteDriver
 import org.koin.core.KoinComponent
 import org.koin.core.get
 
-actual fun enhanceDependencies(dep: Dependencies) {
+actual fun createDependencies(): Dependencies {
     val container = object : KoinComponent {
         val appContext: Context = get()
     }
-    with(dep) {
-        log = Kermit(LogcatLogger()).withTag("APOD")
-        settings = AndroidSettings(container.appContext.getSharedPreferences("APOD_SETTINGS", Context.MODE_PRIVATE))
-        sqlDriver = AndroidSqliteDriver(ApodDb.Schema, container.appContext, "APODDb")
+    val sqlDriver = AndroidSqliteDriver(ApodDb.Schema, container.appContext, "APODDb")
+    val log = Kermit(LogcatLogger()).withTag("APOD")
+    return Dependencies(
+        log = log,
+        settings = AndroidSettings(container.appContext.getSharedPreferences("APOD_SETTINGS", Context.MODE_PRIVATE)),
+        sqlDriver = sqlDriver,
         databaseHelper = DatabaseHelper(sqlDriver, log)
-    }
+    )
 }

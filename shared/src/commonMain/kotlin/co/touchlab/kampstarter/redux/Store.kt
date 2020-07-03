@@ -11,37 +11,34 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.reduxkotlin.*
+import kotlin.native.concurrent.ThreadLocal
 
-val loggingMiddleware = middleware<AppState> { store, next, action ->
+val loggingMiddleware = middleware<AppState> { _, next, action ->
     dep.log.log(Severity.Assert, throwable = null, message = { "dispatching action " + action::class.qualifiedName })
     next(action)
 }
 
 val epicMiddleware = middleware<AppState> { store, next, action ->
     next(action)
-    appStateEpic.forEach { it.invoke(store, store.state, action as Action, dep) }
+    GlobalScope.launch {
+        appStateEpic.forEach { it(store, store.state, action as Action, dep) }
+    }
 }
 
-private var _store : Store<AppState>? = null
-val store : Store<AppState>
-    get() {
-        if(_store == null) {
-            enhanceDependencies(dep)
-            _store = createThreadSafeStore(
-                combineReducers(appStateReducer),
-                AppState(),
-                applyMiddleware(loggingMiddleware, epicMiddleware))
-        }
-        return _store!!
-    }
+val store : Store<AppState> = createThreadSafeStore(
+    ::rootReducer,
+    AppState(),
+    applyMiddleware(loggingMiddleware/*, epicMiddleware*/))
 
-class Dependencies {
-    lateinit var settings: Settings
-    lateinit var log: Kermit
-    lateinit var sqlDriver: SqlDriver
-    lateinit var databaseHelper: DatabaseHelper
-    var httpClient: HttpClient = HttpClient {
+data class Dependencies(
+    val settings: Settings,
+    val log: Kermit,
+    val sqlDriver: SqlDriver,
+    val databaseHelper: DatabaseHelper,
+    val httpClient: HttpClient = HttpClient {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
@@ -55,15 +52,13 @@ class Dependencies {
             level = LogLevel.INFO
         }
     }
-}
+)
 
-private var _dep : Dependencies? = null
-private val dep : Dependencies
-    get() {
-        if(_dep == null) {
-            _dep = Dependencies()
-        }
-        return _dep!!
-    }
+private val dep : Dependencies = createDependencies()
 
-expect fun enhanceDependencies(dep: Dependencies)
+expect fun createDependencies() : Dependencies
+
+
+
+
+

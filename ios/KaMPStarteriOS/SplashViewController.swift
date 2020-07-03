@@ -24,6 +24,7 @@ class SplashViewController: UIViewController {
             self.desc.text = state.splashState.apod.explanation
             self.manager.loadImage(with: URL(string: state.splashState.apod.url), options: SDWebImageOptions(), progress: { i, j, url in }, completed: { a,b,c,d,e,f  in })
         })
+        interactor.doInit()
     }
     
 }
