@@ -1,4 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-KaMPStarteriOS/Pods-KaMPStarteriOS-frameworks.sh
-${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework
+${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework
+${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework
 ${PODS_ROOT}/../../shared/build/cocoapods/framework/shared.framework
 ${PODS_ROOT}/../../shared/build/cocoapods/framework/shared.framework.dSYM

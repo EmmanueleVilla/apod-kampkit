@@ -21,6 +21,7 @@ android {
 
 kotlin {
     android()
+    js()
     //Revert to just ios() when gradle plugin can properly resolve it
     val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos")?:false
     if(onPhone){
@@ -102,7 +103,16 @@ kotlin {
         }
         implementation(Deps.Ktor.iosSerialization)
         implementation(Deps.koinCore)
+    }
 
+    sourceSets["jsMain"].dependencies {
+        implementation(Deps.Ktor.js)
+        implementation(Deps.Ktor.jsCore)
+        implementation(Deps.Ktor.jsJson)
+        implementation(Deps.Ktor.jsLogging)
+        implementation(Deps.Ktor.jsSerialization)
+        implementation(Deps.Coroutines.js)
+        implementation(Deps.koinCoreJS)
     }
 
     cocoapodsext {

@@ -23,3 +23,10 @@ actual fun createDependencies(): Dependencies {
         databaseHelper = DatabaseHelper(sqlDriver, log)
     )
 }
+
+actual fun getActionName(action: Action): String {
+    if(action::class.qualifiedName != null) {
+        return action::class.qualifiedName!!
+    }
+    return action.toString()
+}

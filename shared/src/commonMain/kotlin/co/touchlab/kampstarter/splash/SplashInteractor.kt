@@ -6,21 +6,21 @@ import org.reduxkotlin.StoreSubscription
 
 class SplashInteractor {
 
-    var unsubscribe: StoreSubscription? = null
+    var subscription: StoreSubscription? = null
 
     fun init() {
         store.dispatch(SplashActions.ApodFetch.Request)
     }
 
     fun subscribe(callback: (state: AppState) -> Unit) {
-        unsubscribe = store.subscribe {
+        subscription = store.subscribe {
            callback.invoke(store.state)
         }
     }
 
     fun unsubscribe() {
-        if(unsubscribe != null) {
-            unsubscribe!!.invoke()
+        if(subscription != null) {
+            subscription!!.invoke()
         }
     }
 }

@@ -8,21 +8,22 @@
 
 import UIKit
 import shared
-import SDWebImage
+import PINRemoteImage
 
 class SplashViewController: UIViewController {
     
     let interactor: SplashInteractor = SplashInteractor()
     let image = UIImageView()
     let desc = UILabel()
-    let manager = SDWebImageManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor.cyan
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(image)
+        
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.backgroundColor = UIColor.yellow
         let topImage = image.topAnchor.constraint(equalTo: view.topAnchor)
         let leftImage = image.leftAnchor.constraint(equalTo: view.leftAnchor)
         let rightImage = image.rightAnchor.constraint(equalTo: view.rightAnchor)
@@ -30,15 +31,21 @@ class SplashViewController: UIViewController {
         NSLayoutConstraint.activate([topImage, leftImage, rightImage, heightImage])
         
         view.addSubview(desc)
+        desc.textColor = UIColor.purple
+        desc.backgroundColor = UIColor.green
         desc.translatesAutoresizingMaskIntoConstraints = false
-        let topDesc = desc.topAnchor.constraint(equalTo: view.bottomAnchor)
+        let topDesc = desc.topAnchor.constraint(equalTo: image.bottomAnchor)
         let leftDesc = image.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12)
         let rightDesc = image.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 12)
         NSLayoutConstraint.activate([topDesc, leftDesc, rightDesc])
        
         interactor.subscribe(callback: { state in
-            self.desc.text = state.splashState.apod.explanation
-            self.manager.loadImage(with: URL(string: state.splashState.apod.url), options: SDWebImageOptions(), progress: { i, j, url in }, completed: { a,b,c,d,e,f  in })
+            if(state.splashState.apod.explanation != "") {
+                self.desc.text = state.splashState.apod.explanation
+            }
+            if(state.splashState.apod.url != "") {
+                self.image.pin_setImage(from: URL(string: state.splashState.apod.url)!)
+            }
         })
         interactor.doInit()
     }

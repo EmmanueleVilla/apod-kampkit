@@ -3,11 +3,13 @@ package co.touchlab.kampstarter.android
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import co.touchlab.kampstarter.android.fragments.SplashFragment
 import co.touchlab.kampstarter.db.Apods
 import co.touchlab.kampstarter.splash.SplashInteractor
 import com.bumptech.glide.Glide
@@ -15,7 +17,9 @@ import org.koin.core.KoinComponent
 import kotlin.with as with
 
 class MainActivity : AppCompatActivity(), KoinComponent {
-    private lateinit var container : ConstraintLayout
+
+    private lateinit var container : FrameLayout
+
     private lateinit var image : ImageView
     private lateinit var description : TextView
 
@@ -24,8 +28,16 @@ class MainActivity : AppCompatActivity(), KoinComponent {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        container = ConstraintLayout(this)
+        container = FrameLayout(this)
         container.id = View.generateViewId()
+        setContentView(container)
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(container.id, SplashFragment())
+            .commit()
+        /*
+
 
         image = ImageView(this)
         image.id = View.generateViewId()
@@ -60,6 +72,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
         }
 
         splashInteractor.init()
+         */
     }
 
     override fun onDestroy() {

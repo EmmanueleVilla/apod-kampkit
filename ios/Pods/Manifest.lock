@@ -1,25 +1,41 @@
 PODS:
-  - SDWebImage (5.8.3):
-    - SDWebImage/Core (= 5.8.3)
-  - SDWebImage/Core (5.8.3)
+  - PINCache (3.0.1-beta.8):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.8)
+    - PINCache/Core (= 3.0.1-beta.8)
+  - PINCache/Arc-exception-safe (3.0.1-beta.8):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.8):
+    - PINOperation (~> 1.1.1)
+  - PINOperation (1.1.2)
+  - PINRemoteImage (3.0.0):
+    - PINRemoteImage/PINCache (= 3.0.0)
+  - PINRemoteImage/Core (3.0.0):
+    - PINOperation
+  - PINRemoteImage/PINCache (3.0.0):
+    - PINCache (= 3.0.1-beta.8)
+    - PINRemoteImage/Core
   - shared (1.1)
 
 DEPENDENCIES:
-  - SDWebImage (~> 5.0)
+  - PINRemoteImage
   - shared (from `../shared/`)
 
 SPEC REPOS:
   trunk:
-    - SDWebImage
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
 
 EXTERNAL SOURCES:
   shared:
     :path: "../shared/"
 
 SPEC CHECKSUMS:
-  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  PINCache: 534fd41d358d828dfdf227a0d327f3673a65e20b
+  PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
+  PINRemoteImage: e2b89e19fb6e77ffc099f9d9f3b3fe1745e3f9f9
   shared: 2e5c4aa30e3668fe416c857a709e9465f4d24127
 
-PODFILE CHECKSUM: 788dea3587ea478fbb3c957c1cfd3a86f37bb4a2
+PODFILE CHECKSUM: a3b6aa81a562e5b367856537efe9457c7fa9583a
 
 COCOAPODS: 1.9.1

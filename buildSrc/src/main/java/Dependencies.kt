@@ -34,6 +34,7 @@ object Deps {
     val multiplatformSettings = "com.russhwolf:multiplatform-settings:${Versions.multiplatformSettings}"
     val multiplatformSettingsTest = "com.russhwolf:multiplatform-settings-test:${Versions.multiplatformSettings}"
     val koinCore = "org.koin:koin-core:${Versions.koin}"
+    val koinCoreJS = "org.koin:koin-core-js:${Versions.koin}"
     val koinTest = "org.koin:koin-test:${Versions.koin}"
     val cocoapodsext = "co.touchlab:kotlinnativecocoapods:${Versions.cocoapodsext}"
     val kermit = "co.touchlab:kermit:${Versions.kermit}"
@@ -61,6 +62,7 @@ object Deps {
         val jdk = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         val native = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.coroutines}"
         val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+        val js = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.coroutines}"
         val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
     object SqlDelight{
@@ -85,5 +87,10 @@ object Deps {
         val commonSerialization ="io.ktor:ktor-client-serialization:${Versions.ktor}"
         val androidSerialization ="io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
         val iosSerialization ="io.ktor:ktor-client-serialization-native:${Versions.ktor}"
+        val js =         "io.ktor:ktor-client-js:${Versions.ktor}"
+        val jsCore = "io.ktor:ktor-client-core-js:${Versions.ktor}"
+        val jsJson = "io.ktor:ktor-client-json-js:${Versions.ktor}"
+        val jsLogging = "io.ktor:ktor-client-logging-js:${Versions.ktor}"
+        val jsSerialization = "io.ktor:ktor-client-serialization-js:${Versions.ktor}"
     }
 }

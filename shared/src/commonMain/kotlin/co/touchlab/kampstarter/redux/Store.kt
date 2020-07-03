@@ -13,11 +13,12 @@ import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.PrimitiveKind
 import org.reduxkotlin.*
 import kotlin.native.concurrent.ThreadLocal
 
 val loggingMiddleware = middleware<AppState> { _, next, action ->
-    dep.log.v { "dispatching action " + action::class.qualifiedName }
+    dep.log.v { "dispatching action " + getActionName(action as Action) }
     next(action)
 }
 
@@ -61,7 +62,7 @@ data class Dependencies(
 private val dep : Dependencies = createDependencies()
 
 expect fun createDependencies() : Dependencies
-
+expect fun getActionName(action: Action) : String
 
 
 

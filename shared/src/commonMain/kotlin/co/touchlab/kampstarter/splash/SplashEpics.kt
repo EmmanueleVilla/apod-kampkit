@@ -3,6 +3,7 @@ import co.touchlab.kampstarter.currentTimeMillis
 import co.touchlab.kampstarter.redux.Action
 import co.touchlab.kampstarter.redux.AppState
 import co.touchlab.kampstarter.redux.Dependencies
+import co.touchlab.kampstarter.redux.getActionName
 import co.touchlab.kampstarter.response.ApodResult
 import io.ktor.client.request.get
 import io.ktor.http.takeFrom
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 import org.reduxkotlin.Store
 
 fun splashEpics(store: Store<AppState>, action: Action, dep: Dependencies) {
-    dep.log.v { "splashEpics: Handling action " + action::class.qualifiedName }
+    dep.log.v { "splashEpics: Handling action " + getActionName(action) }
     when (action) {
         is SplashActions.ApodFetch.Request -> {
             handleApodRequest(store, action, dep)
