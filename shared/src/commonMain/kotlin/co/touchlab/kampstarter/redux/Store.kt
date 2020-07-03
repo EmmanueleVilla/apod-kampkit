@@ -17,21 +17,25 @@ import org.reduxkotlin.*
 import kotlin.native.concurrent.ThreadLocal
 
 val loggingMiddleware = middleware<AppState> { _, next, action ->
-    dep.log.log(Severity.Assert, throwable = null, message = { "dispatching action " + action::class.qualifiedName })
+    dep.log.v { "dispatching action " + action::class.qualifiedName }
     next(action)
 }
 
 val epicMiddleware = middleware<AppState> { store, next, action ->
+    dep.log.v { "epicMiddleware start" }
     next(action)
-    GlobalScope.launch {
-        appStateEpic.forEach { it(store, store.state, action as Action, dep) }
-    }
+    //GlobalScope.launch {
+        appStateEpic.forEach {
+            dep.log.v { "sending action to $it" }
+            it(store, action as Action, dep)
+        }
+    //}
 }
 
 val store : Store<AppState> = createThreadSafeStore(
     ::rootReducer,
     AppState(),
-    applyMiddleware(loggingMiddleware/*, epicMiddleware*/))
+    applyMiddleware(loggingMiddleware, epicMiddleware))
 
 data class Dependencies(
     val settings: Settings,
