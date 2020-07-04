@@ -23,6 +23,7 @@ kotlin {
     android()
     js {
         browser {
+            useCommonJs()
         }
     }
     //Revert to just ios() when gradle plugin can properly resolve it
