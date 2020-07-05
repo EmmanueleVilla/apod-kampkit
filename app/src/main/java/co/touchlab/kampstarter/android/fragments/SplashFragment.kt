@@ -1,8 +1,7 @@
 package co.touchlab.kampstarter.android.fragments
 
-import android.graphics.Color
-import android.media.Image
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,42 +12,62 @@ import androidx.fragment.app.Fragment
 import co.touchlab.kampstarter.android.R
 import co.touchlab.kampstarter.splash.SplashInteractor
 
+
 class SplashFragment : Fragment() {
 
     lateinit var nasa : ImageView
     lateinit var kotlin : ImageView
     lateinit var constraintLayout: ConstraintLayout
+    lateinit var imageContainer: ConstraintLayout
     private val splashInteractor : SplashInteractor = SplashInteractor()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val displayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+        val height = displayMetrics.heightPixels
+
         constraintLayout = ConstraintLayout(context)
         constraintLayout.id = View.generateViewId()
-        constraintLayout.setBackgroundColor(Color.BLUE)
+
+        imageContainer = ConstraintLayout(context)
+        imageContainer.id = View.generateViewId()
+        constraintLayout.addView(imageContainer)
 
         nasa = ImageView(context)
         nasa.id = View.generateViewId()
         nasa.scaleType = ImageView.ScaleType.CENTER_INSIDE
         nasa.setImageResource(R.drawable.nasa_logo)
-        constraintLayout.addView(nasa)
+        imageContainer.addView(nasa)
 
         kotlin = ImageView(context)
         kotlin.id = View.generateViewId()
         kotlin.scaleType = ImageView.ScaleType.CENTER_INSIDE
         kotlin.setImageResource(R.drawable.kotlin_logo)
-        constraintLayout.addView(kotlin)
+        imageContainer.addView(kotlin)
 
-        val set = ConstraintSet()
-        set.connect(nasa.id, ConstraintSet.START, constraintLayout.id, ConstraintSet.START)
-        set.connect(nasa.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END)
-        set.connect(nasa.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
-        set.constrainHeight(nasa.id, 200)
+        val constraintLayoutSet = ConstraintSet()
+        constraintLayoutSet.connect(imageContainer.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
+        constraintLayoutSet.connect(imageContainer.id, ConstraintSet.BOTTOM, constraintLayout.id, ConstraintSet.BOTTOM)
+        constraintLayoutSet.connect(imageContainer.id, ConstraintSet.START, constraintLayout.id, ConstraintSet.START)
+        constraintLayoutSet.connect(imageContainer.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END)
+        constraintLayoutSet.constrainHeight(imageContainer.id, height/2)
 
-        set.connect(kotlin.id, ConstraintSet.BOTTOM, constraintLayout.id, ConstraintSet.BOTTOM)
-        set.connect(kotlin.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END)
-        set.connect(kotlin.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
-        set.constrainHeight(kotlin.id, 200)
+        constraintLayout.setConstraintSet(constraintLayoutSet)
 
-        constraintLayout.setConstraintSet(set)
+        val imageContainerSet = ConstraintSet()
+        imageContainerSet.connect(nasa.id, ConstraintSet.TOP, imageContainer.id, ConstraintSet.TOP)
+        imageContainerSet.connect(nasa.id, ConstraintSet.START, imageContainer.id, ConstraintSet.START)
+        imageContainerSet.connect(nasa.id, ConstraintSet.END, imageContainer.id, ConstraintSet.END)
+        imageContainerSet.constrainHeight(nasa.id, height/4)
+
+        imageContainerSet.connect(kotlin.id, ConstraintSet.TOP, nasa.id, ConstraintSet.BOTTOM)
+        imageContainerSet.connect(kotlin.id, ConstraintSet.START, imageContainer.id, ConstraintSet.START)
+        imageContainerSet.connect(kotlin.id, ConstraintSet.END, imageContainer.id, ConstraintSet.END)
+        imageContainerSet.connect(kotlin.id, ConstraintSet.BOTTOM, imageContainer.id, ConstraintSet.BOTTOM)
+        imageContainerSet.constrainHeight(kotlin.id, height/4)
+
+        imageContainer.setConstraintSet(imageContainerSet)
 
         splashInteractor.subscribe {
             /*
