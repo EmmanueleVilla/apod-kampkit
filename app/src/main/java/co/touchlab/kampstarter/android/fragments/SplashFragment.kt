@@ -3,7 +3,9 @@ package co.touchlab.kampstarter.android.fragments
 import android.graphics.Color
 import android.media.Image
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -15,40 +17,38 @@ class SplashFragment : Fragment() {
 
     lateinit var nasa : ImageView
     lateinit var kotlin : ImageView
-    lateinit var container : ConstraintLayout
+    lateinit var constraintLayout: ConstraintLayout
     private val splashInteractor : SplashInteractor = SplashInteractor()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        container = ConstraintLayout(context)
-        container.id = View.generateViewId()
-        container.setBackgroundColor(Color.BLUE)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        constraintLayout = ConstraintLayout(context)
+        constraintLayout.id = View.generateViewId()
+        constraintLayout.setBackgroundColor(Color.BLUE)
 
         nasa = ImageView(context)
         nasa.id = View.generateViewId()
         nasa.scaleType = ImageView.ScaleType.CENTER_INSIDE
         nasa.setImageResource(R.drawable.nasa_logo)
-        container.addView(nasa)
+        constraintLayout.addView(nasa)
 
         kotlin = ImageView(context)
         kotlin.id = View.generateViewId()
         kotlin.scaleType = ImageView.ScaleType.CENTER_INSIDE
         kotlin.setImageResource(R.drawable.kotlin_logo)
-        container.addView(kotlin)
+        constraintLayout.addView(kotlin)
 
         val set = ConstraintSet()
-        set.connect(nasa.id, ConstraintSet.START, container.id, ConstraintSet.START)
-        set.connect(nasa.id, ConstraintSet.END, container.id, ConstraintSet.END)
-        set.connect(nasa.id, ConstraintSet.TOP, container.id, ConstraintSet.TOP)
+        set.connect(nasa.id, ConstraintSet.START, constraintLayout.id, ConstraintSet.START)
+        set.connect(nasa.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END)
+        set.connect(nasa.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
         set.constrainHeight(nasa.id, 200)
 
-        set.connect(kotlin.id, ConstraintSet.BOTTOM, container.id, ConstraintSet.BOTTOM)
-        set.connect(kotlin.id, ConstraintSet.END, container.id, ConstraintSet.END)
-        set.connect(kotlin.id, ConstraintSet.TOP, container.id, ConstraintSet.TOP)
+        set.connect(kotlin.id, ConstraintSet.BOTTOM, constraintLayout.id, ConstraintSet.BOTTOM)
+        set.connect(kotlin.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END)
+        set.connect(kotlin.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
         set.constrainHeight(kotlin.id, 200)
 
-        container.setConstraintSet(set)
+        constraintLayout.setConstraintSet(set)
 
         splashInteractor.subscribe {
             /*
@@ -61,5 +61,7 @@ class SplashFragment : Fragment() {
         }
 
         splashInteractor.init()
+        return constraintLayout
     }
+
 }

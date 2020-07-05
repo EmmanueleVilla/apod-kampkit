@@ -13,22 +13,20 @@ import org.koin.core.KoinComponent
 
 class MainActivity : AppCompatActivity(), KoinComponent {
 
-    private lateinit var container : FrameLayout
-
     //private lateinit var image : ImageView
     //private lateinit var description : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        container = FrameLayout(this)
-        container.setBackgroundColor(Color.RED)
-        container.id = View.generateViewId()
-        setContentView(container)
-
+        if(savedInstanceState != null) {
+            return
+        }
+        val frameLayout: FrameLayout = FrameLayout(this)
+        frameLayout.id = View.generateViewId()
+        setContentView(frameLayout)
         supportFragmentManager
             .beginTransaction()
-            .replace(container.id, SplashFragment())
+            .replace(frameLayout.id, SplashFragment())
             .commit()
         /*
 
