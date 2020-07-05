@@ -17,7 +17,7 @@ object Versions {
     val koin = "3.0.0-alpha-2"
     val serialization = "0.20.0"
     val cocoapodsext = "0.9"
-    val kermit = "0.1.5"
+    val kermit = "0.1.7"
     val lifecycle = "2.1.0"
     val karmok = "0.1.7"
 }
