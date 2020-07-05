@@ -7,34 +7,28 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import co.touchlab.kampstarter.android.fragments.SplashFragment
-import co.touchlab.kampstarter.db.Apods
 import co.touchlab.kampstarter.splash.SplashInteractor
-import com.bumptech.glide.Glide
 import org.koin.core.KoinComponent
-import kotlin.with as with
 
 class MainActivity : AppCompatActivity(), KoinComponent {
 
     private lateinit var container : FrameLayout
 
-    private lateinit var image : ImageView
-    private lateinit var description : TextView
-
-    private val splashInteractor : SplashInteractor = SplashInteractor()
+    //private lateinit var image : ImageView
+    //private lateinit var description : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         container = FrameLayout(this)
+        container.setBackgroundColor(Color.RED)
         container.id = View.generateViewId()
         setContentView(container)
 
         supportFragmentManager
             .beginTransaction()
-            .add(container.id, SplashFragment())
+            .replace(container.id, SplashFragment())
             .commit()
         /*
 
@@ -63,20 +57,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
         setContentView(container)
 
-        splashInteractor.subscribe {
-            runOnUiThread {
-                val apod = it.splashState.apod
-                description.text = apod.explanation
-                Glide.with(this).load(apod.url).into(image)
-            }
-        }
 
-        splashInteractor.init()
          */
-    }
-
-    override fun onDestroy() {
-        splashInteractor.unsubscribe()
-        super.onDestroy()
     }
 }

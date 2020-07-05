@@ -1,5 +1,6 @@
 package co.touchlab.kampstarter.android.fragments
 
+import android.graphics.Color
 import android.media.Image
 import android.os.Bundle
 import android.view.View
@@ -8,18 +9,21 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import co.touchlab.kampstarter.android.R
+import co.touchlab.kampstarter.splash.SplashInteractor
 
 class SplashFragment : Fragment() {
 
     lateinit var nasa : ImageView
     lateinit var kotlin : ImageView
     lateinit var container : ConstraintLayout
+    private val splashInteractor : SplashInteractor = SplashInteractor()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         container = ConstraintLayout(context)
         container.id = View.generateViewId()
+        container.setBackgroundColor(Color.BLUE)
 
         nasa = ImageView(context)
         nasa.id = View.generateViewId()
@@ -45,5 +49,17 @@ class SplashFragment : Fragment() {
         set.constrainHeight(kotlin.id, 200)
 
         container.setConstraintSet(set)
+
+        splashInteractor.subscribe {
+            /*
+            runOnUiThread {
+                val apod = it.splashState.apod
+                description.text = apod.explanation
+                Glide.with(this).load(apod.url).into(image)
+            }
+             */
+        }
+
+        splashInteractor.init()
     }
 }

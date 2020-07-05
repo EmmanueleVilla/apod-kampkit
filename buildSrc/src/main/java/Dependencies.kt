@@ -65,13 +65,6 @@ object Deps {
         val js = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.coroutines}"
         val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
-    object SqlDelight{
-        val gradle = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
-        val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-        val runtimeJdk = "com.squareup.sqldelight:runtime-jvm:${Versions.sqlDelight}"
-        val driverIos = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
-        val driverAndroid = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-    }
     object Ktor {
         val commonCore = "io.ktor:ktor-client-core:${Versions.ktor}"
         val commonJson = "io.ktor:ktor-client-json:${Versions.ktor}"

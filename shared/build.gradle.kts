@@ -5,7 +5,6 @@ plugins {
     id("co.touchlab.native.cocoapods")
     id("kotlinx-serialization")
     id("com.android.library")
-    id("com.squareup.sqldelight")
 }
 
 android {
@@ -49,7 +48,6 @@ kotlin {
 
     sourceSets["commonMain"].dependencies {
         implementation(kotlin("stdlib-common", Versions.kotlin))
-        implementation(Deps.SqlDelight.runtime)
         implementation(Deps.Ktor.commonCore)
         implementation(Deps.Ktor.commonJson)
         implementation(Deps.Ktor.commonLogging)
@@ -73,7 +71,6 @@ kotlin {
 
     sourceSets["androidMain"].dependencies {
         implementation(kotlin("stdlib", Versions.kotlin))
-        implementation(Deps.SqlDelight.driverAndroid)
         implementation(Deps.Ktor.jvmCore)
         implementation(Deps.Ktor.jvmJson)
         implementation(Deps.Ktor.jvmLogging)
@@ -95,7 +92,6 @@ kotlin {
     }
 
     sourceSets["iosMain"].dependencies {
-        implementation(Deps.SqlDelight.driverIos)
         implementation(Deps.Ktor.ios)
         implementation(Deps.Ktor.iosCore)
         implementation(Deps.Ktor.iosJson)
@@ -122,6 +118,18 @@ kotlin {
         api(npm("utf-8-validate"))
         api(npm("abort-controller"))
         api(npm("fs"))
+        implementation(kotlin("stdlib-js"))
+        implementation("org.jetbrains:kotlin-react:16.13.0-pre.94-kotlin-1.3.70")
+        implementation("org.jetbrains:kotlin-react-dom:16.13.0-pre.94-kotlin-1.3.70")
+        implementation(npm("react", "16.13.0"))
+        implementation(npm("react-is", "16.13.0"))
+        implementation(npm("react-dom", "16.13.0"))
+        implementation("org.jetbrains:kotlin-styled:1.0.0-pre.94-kotlin-1.3.70")
+        implementation(npm("styled-components"))
+        implementation(npm("inline-style-prefixer"))
+        implementation(npm("react-router-dom", "5.1.2"))
+        //implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.107-kotlin-1.3.72")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
     }
 
     cocoapodsext {
@@ -132,11 +140,5 @@ kotlin {
             export(Deps.kermit)
             transitiveExport = true
         }
-    }
-}
-
-sqldelight {
-    database("ApodDb") {
-        packageName = "co.touchlab.kampstarter.db"
     }
 }

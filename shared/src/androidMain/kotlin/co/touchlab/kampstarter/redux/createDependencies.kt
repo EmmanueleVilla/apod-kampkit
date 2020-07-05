@@ -1,32 +1,34 @@
 package co.touchlab.kampstarter.redux
 
 import android.content.Context
-import co.touchlab.kampstarter.DatabaseHelper
-import co.touchlab.kampstarter.db.ApodDb
 import co.touchlab.kermit.Kermit
 import co.touchlab.kermit.LogcatLogger
 import com.russhwolf.settings.AndroidSettings
-import com.squareup.sqldelight.android.AndroidSqliteDriver
 import org.koin.core.KoinComponent
 import org.koin.core.get
+import java.text.SimpleDateFormat
+import java.util.*
 
 actual fun createDependencies(): Dependencies {
     val container = object : KoinComponent {
         val appContext: Context = get()
     }
-    val sqlDriver = AndroidSqliteDriver(ApodDb.Schema, container.appContext, "APODDb")
     val log = Kermit(LogcatLogger()).withTag("APOD")
     return Dependencies(
-        log = log,
-        settings = AndroidSettings(container.appContext.getSharedPreferences("APOD_SETTINGS", Context.MODE_PRIVATE)),
-        sqlDriver = sqlDriver,
-        databaseHelper = DatabaseHelper(sqlDriver, log)
+        utils = Utils(
+            getActionName = {
+                if(it::class.qualifiedName != null) {
+                    it::class.qualifiedName!!
+                }
+                it.toString()
+            },
+            getPlatform = { Platforms.Jvm },
+            log = log,
+            today = { SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Calendar.getInstance().time) }
+        ),
+        http = Http(),
+        storage = Storage(
+            settings = AndroidSettings(container.appContext.getSharedPreferences("APOD_SETTINGS", Context.MODE_PRIVATE))
+        )
     )
-}
-
-actual fun getActionName(action: Action): String {
-    if(action::class.qualifiedName != null) {
-        return action::class.qualifiedName!!
-    }
-    return action.toString()
 }
