@@ -85,8 +85,7 @@ class SplashFragment : Fragment() {
         imageContainer.setConstraintSet(imageContainerSet)
 
         homeInteractor.subscribe {
-            val apod = it.homeState.apod
-            if (activity != null && apod.url != "") {
+            if (activity != null && it.homeState.latest.isNotEmpty()) {
                 (activity as MainActivity).openHome()
             }
         }

@@ -9,7 +9,6 @@ class HomeInteractor {
     var subscription: StoreSubscription? = null
 
     fun init() {
-        store.dispatch(HomeActions.ApodFetch.Request)
         store.dispatch(HomeActions.LatestFetch.Request)
     }
 

@@ -21,12 +21,12 @@ sealed class HomeActions : Action() {
                 return "HomeActions.LatestFetch.FetchFromWeb"
             }
         }
-        data class DownloadCompleted(val payload: Apod) : LatestFetch() {
+        data class DownloadCompleted(val payload: List<Apod>) : LatestFetch() {
             override fun toString(): String {
                 return "HomeActions.LatestFetch.DownloadCompleted"
             }
         }
-        data class Completed(val payload: Apod) : LatestFetch() {
+        data class Completed(val payload: List<Apod>) : LatestFetch() {
             override fun toString(): String {
                 return "HomeActions.LatestFetch.Completed"
             }
@@ -34,38 +34,6 @@ sealed class HomeActions : Action() {
         data class Error(val message: String) : LatestFetch() {
             override fun toString(): String {
                 return "HomeActions.LatestFetch.Error"
-            }
-        }
-    }
-    sealed class ApodFetch : Action() {
-        object Request : ApodFetch() {
-            override fun toString(): String {
-                return "HomeActions.ApodFetch.Request"
-            }
-        }
-        object LoadFromCache : ApodFetch() {
-            override fun toString(): String {
-                return "HomeActions.ApodFetch.LoadFromCache"
-            }
-        }
-        object FetchFromWeb : ApodFetch() {
-            override fun toString(): String {
-                return "HomeActions.ApodFetch.FetchFromWeb"
-            }
-        }
-        data class DownloadCompleted(val payload: Apod) : ApodFetch() {
-            override fun toString(): String {
-                return "HomeActions.ApodFetch.DownloadCompleted"
-            }
-        }
-        data class Completed(val payload: Apod) : ApodFetch() {
-            override fun toString(): String {
-                return "HomeActions.ApodFetch.Completed"
-            }
-        }
-        data class Error(val message: String) : ApodFetch() {
-            override fun toString(): String {
-                return "HomeActions.ApodFetch.Error"
             }
         }
     }

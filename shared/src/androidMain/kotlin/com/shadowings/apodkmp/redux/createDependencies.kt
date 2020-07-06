@@ -25,7 +25,11 @@ actual fun createDependencies(): Dependencies {
             },
             getPlatform = { Platforms.Android },
             log = log,
-            date = { SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Calendar.getInstance().add(Calendar.DATE, -it)) }
+            date = {
+                val calendar = Calendar.getInstance()
+                calendar.add(Calendar.DATE, -it)
+                SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time)
+            }
         ),
         http = Http(),
         storage = Storage(

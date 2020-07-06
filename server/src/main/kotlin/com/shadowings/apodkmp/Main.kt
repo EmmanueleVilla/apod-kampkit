@@ -86,7 +86,7 @@ fun getApodAtDateOffset(offset: Int): Apod {
     return runBlocking {
         val day = dep.utils.date(offset)
         val result = collection.find(Apod::date eq day).toList()
-        if (result.size == 0) {
+        if (result.isEmpty()) {
             try {
                 val apodResult = dep.http.httpClient.get<Apod> {
                     url {
@@ -106,10 +106,9 @@ fun getApodAtDateOffset(offset: Int): Apod {
 }
 
 fun getLatest(): String {
-    val dep = getDep()
     return runBlocking {
-        val latest: List<Apod> = List(10) {
-            getApodAtDateOffset(it + 1)
+        val latest: List<Apod> = List(11) {
+            getApodAtDateOffset(it)
         }
         return@runBlocking Json(JsonConfiguration.Stable).stringify(Apod.serializer().list, latest)
     }
