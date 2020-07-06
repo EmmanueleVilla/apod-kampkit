@@ -70,7 +70,6 @@ fun getApod() : String {
             }
         }
         val afterResult = collection.find(Apod::date eq today).toList()
-        return@runBlocking "after result: " + afterResult.size
-        //return@runBlocking Json(JsonConfiguration.Stable).stringify(Apod.serializer(), afterResult[0])
+        return@runBlocking Json(JsonConfiguration.Stable).stringify(Apod.serializer(), afterResult[0])
     }
 }

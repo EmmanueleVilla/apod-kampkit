@@ -13,3 +13,4 @@
 *.xcbkptlist
 ios/Pods
 web/node_modules
+server/build

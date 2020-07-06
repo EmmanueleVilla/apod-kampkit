@@ -1,19 +1,15 @@
 package co.touchlab.kampstarter.redux
 
-import android.content.Context
+import co.touchlab.kermit.CommonLogger
 import co.touchlab.kermit.Kermit
-import co.touchlab.kermit.LogcatLogger
-import com.russhwolf.settings.AndroidSettings
-import org.koin.core.KoinComponent
-import org.koin.core.get
+import com.russhwolf.settings.ExperimentalJvm
+import com.russhwolf.settings.JvmPropertiesSettings
 import java.text.SimpleDateFormat
 import java.util.*
 
+@ExperimentalJvm
 actual fun createDependencies(): Dependencies {
-    val container = object : KoinComponent {
-        val appContext: Context = get()
-    }
-    val log = Kermit(LogcatLogger()).withTag("APOD")
+    val log = Kermit(CommonLogger()).withTag("APOD")
     return Dependencies(
         utils = Utils(
             getActionName = {
@@ -22,13 +18,13 @@ actual fun createDependencies(): Dependencies {
                 }
                 it.toString()
             },
-            getPlatform = { Platforms.Android },
+            getPlatform = { Platforms.Jvm },
             log = log,
             today = { SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Calendar.getInstance().time) }
         ),
         http = Http(),
         storage = Storage(
-            settings = AndroidSettings(container.appContext.getSharedPreferences("APOD_SETTINGS", Context.MODE_PRIVATE))
+            settings = JvmPropertiesSettings(Properties())
         )
     )
 }

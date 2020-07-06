@@ -38,6 +38,7 @@ object Deps {
     val koinTest = "org.koin:koin-test:${Versions.koin}"
     val cocoapodsext = "co.touchlab:kotlinnativecocoapods:${Versions.cocoapodsext}"
     val kermit = "co.touchlab:kermit:${Versions.kermit}"
+    val kermitJvm = "co.touchlab:kermit-jvm:${Versions.kermit}"
     val lifecycle_viewmodel = "android.arch.lifecycle:viewmodel:${Versions.lifecycle}"
     val lifecycle_viewmodel_extensions = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     val lifecycle_livedata = "android.arch.lifecycle:livedata:${Versions.lifecycle}"

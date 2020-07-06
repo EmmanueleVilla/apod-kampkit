@@ -27,6 +27,11 @@ val store : Store<AppState> = createThreadSafeStore(
     AppState(),
     applyMiddleware(loggingMiddleware, epicMiddleware))
 
+
+fun getDep() : Dependencies {
+    return dep
+}
+
 data class Dependencies(
     val utils: Utils,
     val storage: Storage,
@@ -66,6 +71,7 @@ expect fun createDependencies() : Dependencies
 
 enum class Platforms {
     IOS,
+    Android,
     Jvm,
     Js
 }

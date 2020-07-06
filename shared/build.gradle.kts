@@ -20,6 +20,7 @@ android {
 
 kotlin {
     android()
+    jvm()
     js {
         browser {
             useCommonJs()
@@ -76,6 +77,17 @@ kotlin {
         implementation(Deps.Ktor.jvmLogging)
         implementation(Deps.Coroutines.jdk)
         implementation(Deps.Coroutines.android)
+        implementation(Deps.Ktor.androidSerialization)
+        implementation(Deps.Ktor.androidCore)
+    }
+
+    sourceSets["jvmMain"].dependencies {
+        implementation(kotlin("stdlib", Versions.kotlin))
+        implementation(Deps.kermitJvm)
+        implementation(Deps.Ktor.jvmCore)
+        implementation(Deps.Ktor.jvmJson)
+        implementation(Deps.Ktor.jvmLogging)
+        implementation(Deps.Coroutines.jdk)
         implementation(Deps.Ktor.androidSerialization)
         implementation(Deps.Ktor.androidCore)
     }
