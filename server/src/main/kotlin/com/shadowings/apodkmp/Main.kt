@@ -1,5 +1,6 @@
 package com.shadowings.apodkmp
 
+import com.mongodb.ConnectionString
 import com.shadowings.apodkmp.model.Apod
 import com.shadowings.apodkmp.redux.getDep
 import io.ktor.application.call
@@ -27,12 +28,17 @@ import org.litote.kmongo.coroutine.insertOne
 import org.litote.kmongo.coroutine.toList
 import org.litote.kmongo.eq
 
-val client = KMongo.createClient()
-val database = client.getDatabase("apods")
+val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
+    ConnectionString("$it?retryWrites=false")
+}
+
+val client = if (connectionString != null) KMongo.createClient(connectionString) else KMongo.createClient()
+val database = client.getDatabase(connectionString?.database ?: "apods")
 val collection = database.getCollection<Apod>()
 
 fun main() {
-    embeddedServer(Netty, 9090) {
+    val port = System.getenv("PORT")?.toInt() ?: 9090
+    embeddedServer(Netty, port) {
         install(ContentNegotiation) {
             json()
         }
