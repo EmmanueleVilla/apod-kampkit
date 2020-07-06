@@ -10,6 +10,7 @@ import io.ktor.features.CORS
 import io.ktor.features.Compression
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.gzip
+import io.ktor.http.ContentType
 import io.ktor.http.HttpMethod
 import io.ktor.http.takeFrom
 import io.ktor.response.respondText
@@ -19,6 +20,7 @@ import io.ktor.serialization.json
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
@@ -35,6 +37,9 @@ val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
 val client = if (connectionString != null) KMongo.createClient(connectionString) else KMongo.createClient()
 val database = client.getDatabase(connectionString?.database ?: "apods")
 val collection = database.getCollection<Apod>()
+
+@Serializable
+data class Error(val message: String)
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 9090
@@ -55,17 +60,21 @@ fun main() {
         routing {
             get("/apod") {
                 try {
-                    call.respondText(getApod())
+                    call.respondText(getApod(), ContentType.Application.Json)
                 } catch (e: Exception) {
-                    call.respondText { e.toString() }
+                    call.respondText(
+                        Json(JsonConfiguration.Stable)
+                            .stringify(Error.serializer(), Error(e.toString())), ContentType.Application.Json)
                 }
             }
 
             get("/latest") {
                 try {
-                    call.respondText(getLatest())
+                    call.respondText(getLatest(), ContentType.Application.Json)
                 } catch (e: Exception) {
-                    call.respondText { e.toString() }
+                    call.respondText(
+                        Json(JsonConfiguration.Stable)
+                            .stringify(Error.serializer(), Error(e.toString())), ContentType.Application.Json)
                 }
             }
         }

@@ -50,8 +50,8 @@ private fun handleFetchFromWeb(store: Store<AppState>, action: Action, dep: Depe
         try {
             val apodResult = dep.http.httpClient.get<Apod> {
                 url {
-                    takeFrom("https://api.nasa.gov/")
-                    encodedPath = "planetary/apod?api_key=OFxlCY0NrHskLzRpbnSjUh2xpgkVPLg3Pfq98jfQ"
+                    takeFrom("https://young-ridge-07105.herokuapp.com/")
+                    encodedPath = "apod"
                 }
             }
             if (dep.utils.getPlatform() != Platforms.Js) {
