@@ -45,3 +45,14 @@ tasks.getByName<JavaExec>("run") {
 tasks.create("stage") {
     dependsOn(tasks.getByName("installDist"))
 }
+
+distributions {
+    main {
+        contents {
+            from("$buildDir/libs") {
+                rename("${rootProject.name}-jvm", rootProject.name)
+                into("lib")
+            }
+        }
+    }
+}
