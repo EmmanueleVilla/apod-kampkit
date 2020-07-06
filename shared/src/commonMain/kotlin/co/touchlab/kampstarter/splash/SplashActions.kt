@@ -3,7 +3,7 @@ package co.touchlab.kampstarter.splash
 import co.touchlab.kampstarter.model.Apod
 import co.touchlab.kampstarter.redux.Action
 
-//toString override because we cannot print the action name via reflection in js
+// toString override because we cannot print the action name via reflection in js
 sealed class SplashActions : Action() {
     sealed class ApodFetch : Action() {
         object Request : ApodFetch() {

@@ -26,11 +26,11 @@ kotlin {
             useCommonJs()
         }
     }
-    //Revert to just ios() when gradle plugin can properly resolve it
-    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos")?:false
-    if(onPhone){
+    // Revert to just ios() when gradle plugin can properly resolve it
+    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
+    if (onPhone) {
         iosArm64("ios")
-    }else{
+    } else {
         iosX64("ios")
     }
 
@@ -66,7 +66,7 @@ kotlin {
         implementation(Deps.KotlinTest.common)
         implementation(Deps.KotlinTest.annotations)
         implementation(Deps.koinTest)
-        //Karmok is an experimental library which helps with mocking interfaces
+        // Karmok is an experimental library which helps with mocking interfaces
         implementation(Deps.karmok)
     }
 
@@ -131,6 +131,7 @@ kotlin {
         api(npm("abort-controller"))
         api(npm("fs"))
         implementation(kotlin("stdlib-js"))
+        // version 94 is the last one that works (108 and 109 are bugged)
         implementation("org.jetbrains:kotlin-react:16.13.0-pre.94-kotlin-1.3.70")
         implementation("org.jetbrains:kotlin-react-dom:16.13.0-pre.94-kotlin-1.3.70")
         implementation(npm("react", "16.13.0"))
@@ -140,8 +141,8 @@ kotlin {
         implementation(npm("styled-components"))
         implementation(npm("inline-style-prefixer"))
         implementation(npm("react-router-dom", "5.1.2"))
-        //implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.107-kotlin-1.3.72")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
+        // implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.107-kotlin-1.3.72")
     }
 
     cocoapodsext {

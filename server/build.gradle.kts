@@ -8,7 +8,6 @@ plugins {
     id("kotlinx-serialization")
 }
 
-
 repositories {
     mavenCentral()
 }

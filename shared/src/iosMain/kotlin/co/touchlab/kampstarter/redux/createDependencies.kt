@@ -12,7 +12,7 @@ actual fun createDependencies(): Dependencies {
     return Dependencies(
         utils = Utils(
             getActionName = {
-                if(it::class.qualifiedName != null) {
+                if (it::class.qualifiedName != null) {
                     it::class.qualifiedName!!
                 }
                 it.toString()

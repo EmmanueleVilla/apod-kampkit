@@ -8,7 +8,10 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
-import org.reduxkotlin.*
+import org.reduxkotlin.Store
+import org.reduxkotlin.applyMiddleware
+import org.reduxkotlin.createThreadSafeStore
+import org.reduxkotlin.middleware
 
 val loggingMiddleware = middleware<AppState> { _, next, action ->
     dep.utils.log.v { "dispatching action " + dep.utils.getActionName(action as Action) }
@@ -22,13 +25,12 @@ val epicMiddleware = middleware<AppState> { store, next, action ->
     }
 }
 
-val store : Store<AppState> = createThreadSafeStore(
+val store: Store<AppState> = createThreadSafeStore(
     ::rootReducer,
     AppState(),
     applyMiddleware(loggingMiddleware, epicMiddleware))
 
-
-fun getDep() : Dependencies {
+fun getDep(): Dependencies {
     return dep
 }
 
@@ -42,7 +44,8 @@ data class Utils(
     val log: Kermit,
     val today: () -> String,
     val getActionName: (action: Action) -> String,
-    val getPlatform: () -> Platforms)
+    val getPlatform: () -> Platforms
+)
 
 data class Storage(
     val settings: Settings
@@ -65,9 +68,9 @@ data class Http(
     }
 )
 
-private val dep : Dependencies = createDependencies()
+private val dep: Dependencies = createDependencies()
 
-expect fun createDependencies() : Dependencies
+expect fun createDependencies(): Dependencies
 
 enum class Platforms {
     IOS,
@@ -75,6 +78,3 @@ enum class Platforms {
     Jvm,
     Js
 }
-
-
-

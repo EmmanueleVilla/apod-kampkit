@@ -4,7 +4,7 @@ import kotlin.js.Date
 import kotlin.math.roundToLong
 
 internal actual fun printThrowable(t: Throwable) {
-    //TODO
+    // TODO
 }
 
 actual fun currentTimeMillis(): Long {

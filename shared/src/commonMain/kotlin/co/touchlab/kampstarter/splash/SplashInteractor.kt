@@ -14,12 +14,12 @@ class SplashInteractor {
 
     fun subscribe(callback: (state: AppState) -> Unit) {
         subscription = store.subscribe {
-           callback.invoke(store.state)
+            callback.invoke(store.state)
         }
     }
 
     fun unsubscribe() {
-        if(subscription != null) {
+        if (subscription != null) {
             subscription!!.invoke()
         }
     }

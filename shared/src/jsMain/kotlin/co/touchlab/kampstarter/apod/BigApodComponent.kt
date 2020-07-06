@@ -9,13 +9,13 @@ import react.dom.div
 import react.dom.img
 import react.dom.p
 
-interface ApodProps: RProps {
+interface ApodProps : RProps {
     var apod: Apod
 }
 
 class BigApodComponent : RComponent<ApodProps, RState>() {
     override fun RBuilder.render() {
-        if(props.apod == undefined) {
+        if (props.apod == undefined) {
             return
         }
         div {
@@ -26,5 +26,4 @@ class BigApodComponent : RComponent<ApodProps, RState>() {
             }
         }
     }
-
 }

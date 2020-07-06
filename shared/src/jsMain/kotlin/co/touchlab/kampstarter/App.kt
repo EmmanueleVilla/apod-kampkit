@@ -3,11 +3,15 @@ package co.touchlab.kampstarter
 import co.touchlab.kampstarter.apod.BigApodComponent
 import co.touchlab.kampstarter.model.Apod
 import co.touchlab.kampstarter.splash.SplashInteractor
-import react.*
+import react.RBuilder
+import react.RComponent
+import react.RProps
+import react.RState
 import react.dom.h1
+import react.setState
 
-interface AppState: RState {
-    var interactor : SplashInteractor
+interface AppState : RState {
+    var interactor: SplashInteractor
     var apod: Apod
 }
 

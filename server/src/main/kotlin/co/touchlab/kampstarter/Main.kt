@@ -2,16 +2,22 @@ package co.touchlab.kampstarter
 
 import co.touchlab.kampstarter.model.Apod
 import co.touchlab.kampstarter.redux.getDep
-import io.ktor.application.*
-import io.ktor.features.*
-import io.ktor.http.*
-import io.ktor.response.*
-import io.ktor.routing.*
-import io.ktor.serialization.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
+import io.ktor.application.call
+import io.ktor.application.install
 import io.ktor.client.request.get
-import kotlinx.coroutines.*
+import io.ktor.features.CORS
+import io.ktor.features.Compression
+import io.ktor.features.ContentNegotiation
+import io.ktor.features.gzip
+import io.ktor.http.HttpMethod
+import io.ktor.http.takeFrom
+import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.routing
+import io.ktor.serialization.json
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import org.litote.kmongo.async.KMongo
@@ -43,7 +49,7 @@ fun main() {
             get("/apod") {
                 try {
                     call.respondText(getApod())
-                } catch (e : Exception) {
+                } catch (e: Exception) {
                     call.respondText { e.toString() }
                 }
             }
@@ -51,7 +57,7 @@ fun main() {
     }.start(wait = true)
 }
 
-fun getApod() : String {
+fun getApod(): String {
     return runBlocking {
         val dep = getDep()
         val today = dep.utils.today()

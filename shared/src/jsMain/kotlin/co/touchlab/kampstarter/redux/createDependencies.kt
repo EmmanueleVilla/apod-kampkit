@@ -16,11 +16,11 @@ actual fun createDependencies(): Dependencies {
             log = log,
             today = {
                 val today = Date()
-                val day : Int = today.getDate()
-                var month : Int = today.getMonth() + 1
-                val year : Int = today.getFullYear()
-                val dd : String = if(day < 10) "0$day" else day.toString()
-                val MM : String = if(month < 10) "0$month" else month.toString()
+                val day: Int = today.getDate()
+                var month: Int = today.getMonth() + 1
+                val year: Int = today.getFullYear()
+                val dd: String = if (day < 10) "0$day" else day.toString()
+                val MM: String = if (month < 10) "0$month" else month.toString()
                 "$year-$MM-$dd"
             }
         ),

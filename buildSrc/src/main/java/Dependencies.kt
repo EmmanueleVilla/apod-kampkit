@@ -2,7 +2,6 @@ object Versions {
     val min_sdk = 21
     val target_sdk = 29
     val compile_sdk = 29
-
     val kotlin = "1.3.72"
     val androidx_test = "1.2.0"
     val androidx_test_ext = "1.1.1"
@@ -53,10 +52,10 @@ object Deps {
     }
 
     object KotlinTest {
-        val common =      "org.jetbrains.kotlin:kotlin-test-common:${Versions.kotlin}"
+        val common = "org.jetbrains.kotlin:kotlin-test-common:${Versions.kotlin}"
         val annotations = "org.jetbrains.kotlin:kotlin-test-annotations-common:${Versions.kotlin}"
-        val jvm =         "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
-        val junit =       "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
+        val jvm = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
+        val junit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     }
     object Coroutines {
         val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.coroutines}"
@@ -70,18 +69,18 @@ object Deps {
         val commonCore = "io.ktor:ktor-client-core:${Versions.ktor}"
         val commonJson = "io.ktor:ktor-client-json:${Versions.ktor}"
         val commonLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
-        val jvmCore =     "io.ktor:ktor-client-core-jvm:${Versions.ktor}"
+        val jvmCore = "io.ktor:ktor-client-core-jvm:${Versions.ktor}"
         val androidCore = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
-        val jvmJson =     "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
-        val jvmLogging =     "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
-        val ios =         "io.ktor:ktor-client-ios:${Versions.ktor}"
-        val iosCore =     "io.ktor:ktor-client-core-native:${Versions.ktor}"
-        val iosJson =     "io.ktor:ktor-client-json-native:${Versions.ktor}"
-        val iosLogging =     "io.ktor:ktor-client-logging-native:${Versions.ktor}"
-        val commonSerialization ="io.ktor:ktor-client-serialization:${Versions.ktor}"
-        val androidSerialization ="io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
-        val iosSerialization ="io.ktor:ktor-client-serialization-native:${Versions.ktor}"
-        val js =         "io.ktor:ktor-client-js:${Versions.ktor}"
+        val jvmJson = "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
+        val jvmLogging = "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
+        val ios = "io.ktor:ktor-client-ios:${Versions.ktor}"
+        val iosCore = "io.ktor:ktor-client-core-native:${Versions.ktor}"
+        val iosJson = "io.ktor:ktor-client-json-native:${Versions.ktor}"
+        val iosLogging = "io.ktor:ktor-client-logging-native:${Versions.ktor}"
+        val commonSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
+        val androidSerialization = "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
+        val iosSerialization = "io.ktor:ktor-client-serialization-native:${Versions.ktor}"
+        val js = "io.ktor:ktor-client-js:${Versions.ktor}"
         val jsCore = "io.ktor:ktor-client-core-js:${Versions.ktor}"
         val jsJson = "io.ktor:ktor-client-json-js:${Versions.ktor}"
         val jsLogging = "io.ktor:ktor-client-logging-js:${Versions.ktor}"

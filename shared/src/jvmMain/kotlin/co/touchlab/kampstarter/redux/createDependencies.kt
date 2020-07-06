@@ -5,7 +5,9 @@ import co.touchlab.kermit.Kermit
 import com.russhwolf.settings.ExperimentalJvm
 import com.russhwolf.settings.JvmPropertiesSettings
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
+import java.util.Properties
 
 @ExperimentalJvm
 actual fun createDependencies(): Dependencies {
@@ -13,7 +15,7 @@ actual fun createDependencies(): Dependencies {
     return Dependencies(
         utils = Utils(
             getActionName = {
-                if(it::class.qualifiedName != null) {
+                if (it::class.qualifiedName != null) {
                     it::class.qualifiedName!!
                 }
                 it.toString()

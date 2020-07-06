@@ -1,24 +1,20 @@
 package co.touchlab.kampstarter.android
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import co.touchlab.kampstarter.android.fragments.SplashFragment
-import co.touchlab.kampstarter.splash.SplashInteractor
 import org.koin.core.KoinComponent
 
 class MainActivity : AppCompatActivity(), KoinComponent {
 
-    //private lateinit var image : ImageView
-    //private lateinit var description : TextView
+    // private lateinit var image : ImageView
+    // private lateinit var description : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             return
         }
         val frameLayout: FrameLayout = FrameLayout(this)

@@ -1,6 +1,5 @@
 package co.touchlab.kampstarter.android.fragments
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -13,15 +12,14 @@ import androidx.fragment.app.Fragment
 import co.touchlab.kampstarter.android.R
 import co.touchlab.kampstarter.splash.SplashInteractor
 
-
 class SplashFragment : Fragment() {
 
-    lateinit var nasa : ImageView
-    lateinit var add : ImageView
-    lateinit var kotlin : ImageView
+    lateinit var nasa: ImageView
+    lateinit var add: ImageView
+    lateinit var kotlin: ImageView
     lateinit var constraintLayout: ConstraintLayout
     lateinit var imageContainer: ConstraintLayout
-    private val splashInteractor : SplashInteractor = SplashInteractor()
+    private val splashInteractor: SplashInteractor = SplashInteractor()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -54,7 +52,7 @@ class SplashFragment : Fragment() {
         kotlin.setImageResource(R.drawable.kotlin_logo)
         imageContainer.addView(kotlin)
 
-        val half = height/2
+        val half = height / 2
 
         val constraintLayoutSet = ConstraintSet()
         constraintLayoutSet.connect(imageContainer.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
@@ -69,19 +67,19 @@ class SplashFragment : Fragment() {
         imageContainerSet.connect(nasa.id, ConstraintSet.TOP, imageContainer.id, ConstraintSet.TOP)
         imageContainerSet.connect(nasa.id, ConstraintSet.START, imageContainer.id, ConstraintSet.START)
         imageContainerSet.connect(nasa.id, ConstraintSet.END, imageContainer.id, ConstraintSet.END)
-        imageContainerSet.constrainHeight(nasa.id, half/100*45)
+        imageContainerSet.constrainHeight(nasa.id, half / 100 * 45)
 
         imageContainerSet.connect(add.id, ConstraintSet.TOP, nasa.id, ConstraintSet.BOTTOM)
         imageContainerSet.connect(add.id, ConstraintSet.START, imageContainer.id, ConstraintSet.START)
         imageContainerSet.connect(add.id, ConstraintSet.END, imageContainer.id, ConstraintSet.END)
         imageContainerSet.connect(add.id, ConstraintSet.BOTTOM, kotlin.id, ConstraintSet.TOP)
-        imageContainerSet.constrainHeight(add.id, half/100*10)
+        imageContainerSet.constrainHeight(add.id, half / 100 * 10)
 
         imageContainerSet.connect(kotlin.id, ConstraintSet.TOP, add.id, ConstraintSet.BOTTOM)
         imageContainerSet.connect(kotlin.id, ConstraintSet.START, imageContainer.id, ConstraintSet.START)
         imageContainerSet.connect(kotlin.id, ConstraintSet.END, imageContainer.id, ConstraintSet.END)
         imageContainerSet.connect(kotlin.id, ConstraintSet.BOTTOM, imageContainer.id, ConstraintSet.BOTTOM)
-        imageContainerSet.constrainHeight(kotlin.id, half/100*45)
+        imageContainerSet.constrainHeight(kotlin.id, half / 100 * 45)
 
         imageContainer.setConstraintSet(imageContainerSet)
 
@@ -98,5 +96,4 @@ class SplashFragment : Fragment() {
         splashInteractor.init()
         return constraintLayout
     }
-
 }

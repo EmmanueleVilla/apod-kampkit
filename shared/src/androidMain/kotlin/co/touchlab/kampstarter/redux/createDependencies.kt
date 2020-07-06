@@ -4,10 +4,11 @@ import android.content.Context
 import co.touchlab.kermit.Kermit
 import co.touchlab.kermit.LogcatLogger
 import com.russhwolf.settings.AndroidSettings
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import org.koin.core.KoinComponent
 import org.koin.core.get
-import java.text.SimpleDateFormat
-import java.util.*
 
 actual fun createDependencies(): Dependencies {
     val container = object : KoinComponent {
@@ -17,7 +18,7 @@ actual fun createDependencies(): Dependencies {
     return Dependencies(
         utils = Utils(
             getActionName = {
-                if(it::class.qualifiedName != null) {
+                if (it::class.qualifiedName != null) {
                     it::class.qualifiedName!!
                 }
                 it.toString()
