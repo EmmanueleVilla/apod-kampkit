@@ -83,7 +83,7 @@ private fun handleDownloadCompleted(store: Store<AppState>, action: SplashAction
 private fun handleLoadFromCache(store: Store<AppState>, action: Action, dep: Dependencies) {
     MainScope().launch {
         try {
-            val apodJson = dep.storage.settings[dep.utils.today(), ""]
+            val apodJson = dep.storage.settings[dep.utils.date(0), ""]
             if (apodJson == "") {
                 store.dispatch(SplashActions.ApodFetch.Error("Nothing cached"))
             } else {

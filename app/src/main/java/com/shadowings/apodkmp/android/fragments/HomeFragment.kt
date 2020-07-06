@@ -28,14 +28,9 @@ import com.shadowings.apodkmp.splash.SplashInteractor
 class HomeFragment : Fragment() {
 
     private lateinit var image: AppCompatImageView
-    private lateinit var description: AppCompatTextView
     private lateinit var title: AppCompatTextView
     lateinit var constraintLayout: ConstraintLayout
     private val splashInteractor: SplashInteractor = SplashInteractor()
-
-    fun fadeValueHolder(view: View): PropertyValuesHolder {
-        return PropertyValuesHolder.ofInt("ALPHA_COLOR", view.alpha.toInt(), 0)
-    }
 
     fun imageValueHolder(context: Context, resource: Drawable): PropertyValuesHolder {
         val displayMetrics = DisplayMetrics()
@@ -56,11 +51,6 @@ class HomeFragment : Fragment() {
         constraintSet.clone(constraintLayout)
         constraintSet.constrainHeight(image.id, it.getAnimatedValue("IMAGE_HEIGHT") as Int)
         constraintSet.applyTo(constraintLayout)
-        val c = it.getAnimatedValue("ALPHA_COLOR") as Int
-        val color = Color.argb(c, 200, 200, 200)
-        image.setBackgroundColor(color)
-        description.setBackgroundColor(color)
-        title.setBackgroundColor(color)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,18 +59,13 @@ class HomeFragment : Fragment() {
 
         image = AppCompatImageView(context)
         image.id = View.generateViewId()
-        image.setBackgroundColor(Color.argb(250, 200, 200, 200))
         image.elevation = 9.0F
-
-        description = AppCompatTextView(activity)
-        description.id = View.generateViewId()
-        description.setBackgroundColor(Color.argb(250, 200, 200, 200))
 
         title = AppCompatTextView(activity)
         title.id = View.generateViewId()
-        title.setBackgroundColor(Color.argb(250, 200, 200, 200))
         title.setTextColor(Color.WHITE)
         title.gravity = Gravity.BOTTOM
+        title.textSize = 32.0F
         title.elevation = 10.0F
 
         val set = ConstraintSet()
@@ -89,18 +74,12 @@ class HomeFragment : Fragment() {
         set.connect(image.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
         set.constrainHeight(image.id, 1)
 
-        set.connect(description.id, ConstraintSet.START, constraintLayout.id, ConstraintSet.START, 12)
-        set.connect(description.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END, 12)
-        set.connect(description.id, ConstraintSet.TOP, image.id, ConstraintSet.BOTTOM, 24)
-        set.connect(description.id, ConstraintSet.BOTTOM, constraintLayout.id, ConstraintSet.BOTTOM, 12)
-
         set.connect(title.id, ConstraintSet.START, image.id, ConstraintSet.START, 12)
         set.connect(title.id, ConstraintSet.END, image.id, ConstraintSet.END, 12)
         set.connect(title.id, ConstraintSet.BOTTOM, image.id, ConstraintSet.BOTTOM, 12)
         set.connect(title.id, ConstraintSet.TOP, image.id, ConstraintSet.TOP, 12)
 
         constraintLayout.addView(image)
-        constraintLayout.addView(description)
         constraintLayout.addView(title)
         constraintLayout.setConstraintSet(set)
 
@@ -108,7 +87,6 @@ class HomeFragment : Fragment() {
             if (activity != null) {
                 activity!!.runOnUiThread {
                     val apod = it.splashState.apod
-                    description.text = apod.explanation
                     Glide.with(this)
                             .load(apod.url)
                             .into(object : CustomViewTarget<ImageView, Drawable>(image) {
@@ -121,8 +99,7 @@ class HomeFragment : Fragment() {
                                 override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
                                     val valueAnimator =
                                             ValueAnimator.ofPropertyValuesHolder(
-                                                    imageValueHolder(context!!, resource),
-                                                    fadeValueHolder(description)
+                                                    imageValueHolder(context!!, resource)
                                             )
 
                                     with(valueAnimator) {
@@ -134,8 +111,6 @@ class HomeFragment : Fragment() {
                                             }
 
                                             override fun onAnimationEnd(animation: Animator?) {
-                                                // show buttons and things
-                                                description.text = apod.explanation
                                                 title.text = apod.title
                                             }
 

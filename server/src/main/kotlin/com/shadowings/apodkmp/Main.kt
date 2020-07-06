@@ -18,6 +18,7 @@ import io.ktor.serialization.json
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import org.litote.kmongo.async.KMongo
@@ -53,29 +54,55 @@ fun main() {
                     call.respondText { e.toString() }
                 }
             }
+
+            get("/latest") {
+                try {
+                    call.respondText(getLatest())
+                } catch (e: Exception) {
+                    call.respondText { e.toString() }
+                }
+            }
         }
     }.start(wait = true)
 }
 
-fun getApod(): String {
+fun getApodAtDateOffset(offset: Int): Apod {
+    val dep = getDep()
     return runBlocking {
-        val dep = getDep()
-        val today = dep.utils.today()
-        val result = collection.find(Apod::date eq today).toList()
+        val day = dep.utils.date(offset)
+        val result = collection.find(Apod::date eq day).toList()
         if (result.size == 0) {
             try {
                 val apodResult = dep.http.httpClient.get<Apod> {
                     url {
                         takeFrom("https://api.nasa.gov/")
-                        encodedPath = "planetary/apod?api_key=OFxlCY0NrHskLzRpbnSjUh2xpgkVPLg3Pfq98jfQ"
+                        encodedPath = "planetary/apod?api_key=OFxlCY0NrHskLzRpbnSjUh2xpgkVPLg3Pfq98jfQ&date=$day"
                     }
                 }
                 collection.insertOne(apodResult)
+                return@runBlocking apodResult
             } catch (e: Exception) {
-                return@runBlocking e.toString()
+                Apod()
             }
+        } else {
+            result[0]
         }
-        val afterResult = collection.find(Apod::date eq today).toList()
-        return@runBlocking Json(JsonConfiguration.Stable).stringify(Apod.serializer(), afterResult[0])
+    }
+}
+
+fun getLatest(): String {
+    val dep = getDep()
+    return runBlocking {
+        val latest: List<Apod> = List(10) {
+            getApodAtDateOffset(it + 1)
+        }
+        return@runBlocking Json(JsonConfiguration.Stable).stringify(Apod.serializer().list, latest)
+    }
+}
+
+fun getApod(): String {
+    return runBlocking {
+        val apod = getApodAtDateOffset(0)
+        return@runBlocking Json(JsonConfiguration.Stable).stringify(Apod.serializer(), apod)
     }
 }

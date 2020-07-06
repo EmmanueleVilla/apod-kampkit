@@ -14,7 +14,8 @@ actual fun createDependencies(): Dependencies {
             },
             getPlatform = { Platforms.Js },
             log = log,
-            today = {
+            date = {
+                // no need to use the parameter, we only need it in the server logic
                 val today = Date()
                 val day: Int = today.getDate()
                 var month: Int = today.getMonth() + 1

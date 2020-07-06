@@ -19,7 +19,8 @@ actual fun createDependencies(): Dependencies {
             },
             getPlatform = { Platforms.IOS },
             log = log,
-            today = {
+            date = {
+                // no need to use the parameter, we only need it in the server logic
                 val formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
                 formatter.stringFromDate(NSDate())

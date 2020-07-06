@@ -25,7 +25,7 @@ actual fun createDependencies(): Dependencies {
             },
             getPlatform = { Platforms.Android },
             log = log,
-            today = { SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Calendar.getInstance().time) }
+            date = { SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Calendar.getInstance().add(Calendar.DATE, -it)) }
         ),
         http = Http(),
         storage = Storage(
