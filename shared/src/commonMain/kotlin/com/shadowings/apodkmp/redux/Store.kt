@@ -36,11 +36,6 @@ data class Dependencies(
     val http: Http
 )
 
-data class Callbacks(
-    val beforeDispatch: (action: Action) -> Unit,
-    val afterDispatch: (action: Action) -> Unit
-)
-
 data class Utils(
     val log: Kermit,
     val today: () -> String,
