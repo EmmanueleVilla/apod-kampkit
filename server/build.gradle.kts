@@ -35,7 +35,7 @@ dependencies {
 }
 
 application {
-    mainClassName = "co.touchlab.kampstarter.MainKt"
+    mainClassName = "com.shadowings.apodkmp.MainKt"
 }
 
 tasks.getByName<JavaExec>("run") {

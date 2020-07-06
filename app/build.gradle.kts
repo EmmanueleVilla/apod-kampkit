@@ -10,7 +10,7 @@ android {
     compileSdkVersion(Versions.compile_sdk)
     buildToolsVersion = Versions.buildToolsVersion
     defaultConfig {
-        applicationId = "co.touchlab.kampstarter"
+        applicationId = "com.shadowings.apodkmp"
         minSdkVersion(Versions.min_sdk)
         targetSdkVersion(Versions.target_sdk)
         versionCode = 1

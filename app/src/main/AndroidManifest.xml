@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".MainApp"
+        android:name="com.shadowings.apodkmp.android.MainApp"
     >
-        <activity android:name=".MainActivity">
+        <activity android:name="com.shadowings.apodkmp.android.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

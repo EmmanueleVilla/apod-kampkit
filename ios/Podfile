@@ -4,7 +4,7 @@ platform :ios, '9.0'
 
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'KaMPStarteriOS' do
+target 'ApodKMP' do
     pod 'shared', :path => '../shared/'
     pod 'PINRemoteImage'
 end
