@@ -1,7 +1,7 @@
 package com.shadowings.apodkmp.redux
 
-import com.shadowings.apodkmp.splash.splashReducer
+import com.shadowings.apodkmp.home.homeReducer
 
 fun rootReducer(state: AppState, action: Any) = AppState(
-    splashState = splashReducer(state.splashState, action)
+    homeState = homeReducer(state.homeState, action)
 )

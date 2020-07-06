@@ -23,14 +23,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.shadowings.apodkmp.android.MainActivity
-import com.shadowings.apodkmp.splash.SplashInteractor
+import com.shadowings.apodkmp.home.HomeInteractor
 
 class HomeFragment : Fragment() {
 
     private lateinit var image: AppCompatImageView
     private lateinit var title: AppCompatTextView
     lateinit var constraintLayout: ConstraintLayout
-    private val splashInteractor: SplashInteractor = SplashInteractor()
+    private val homeInteractor: HomeInteractor =
+        HomeInteractor()
 
     fun imageValueHolder(context: Context, resource: Drawable): PropertyValuesHolder {
         val displayMetrics = DisplayMetrics()
@@ -83,10 +84,10 @@ class HomeFragment : Fragment() {
         constraintLayout.addView(title)
         constraintLayout.setConstraintSet(set)
 
-        splashInteractor.subscribe {
+        homeInteractor.subscribe {
             if (activity != null) {
                 activity!!.runOnUiThread {
-                    val apod = it.splashState.apod
+                    val apod = it.homeState.apod
                     Glide.with(this)
                             .load(apod.url)
                             .into(object : CustomViewTarget<ImageView, Drawable>(image) {
@@ -129,7 +130,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        splashInteractor.init()
+        homeInteractor.init()
 
         return constraintLayout
     }

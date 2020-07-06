@@ -1,4 +1,4 @@
-package com.shadowings.apodkmp.splash
+package com.shadowings.apodkmp.home
 import com.russhwolf.settings.get
 import com.shadowings.apodkmp.currentTimeMillis
 import com.shadowings.apodkmp.model.Apod
@@ -14,21 +14,21 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import org.reduxkotlin.Store
 
-fun splashEpics(store: Store<AppState>, action: Action, dep: Dependencies) {
+fun homeEpics(store: Store<AppState>, action: Action, dep: Dependencies) {
     when (action) {
-        is SplashActions.ApodFetch.Request -> {
+        is HomeActions.ApodFetch.Request -> {
             handleApodRequest(store, action, dep)
         }
 
-        is SplashActions.ApodFetch.FetchFromWeb -> {
+        is HomeActions.ApodFetch.FetchFromWeb -> {
             handleFetchFromWeb(store, action, dep)
         }
 
-        is SplashActions.ApodFetch.DownloadCompleted -> {
+        is HomeActions.ApodFetch.DownloadCompleted -> {
             handleDownloadCompleted(store, action, dep)
         }
 
-        is SplashActions.ApodFetch.LoadFromCache -> {
+        is HomeActions.ApodFetch.LoadFromCache -> {
             handleLoadFromCache(store, action, dep)
         }
     }
@@ -39,9 +39,9 @@ private fun handleApodRequest(store: Store<AppState>, action: Action, dep: Depen
     val oneHourMS = 60 * 60 * 1000
     val expired = (lastDownloadTimeMS + oneHourMS < currentTimeMillis())
     if (expired || dep.utils.getPlatform() == Platforms.Js) {
-        store.dispatch(SplashActions.ApodFetch.FetchFromWeb)
+        store.dispatch(HomeActions.ApodFetch.FetchFromWeb)
     } else {
-        store.dispatch(SplashActions.ApodFetch.LoadFromCache)
+        store.dispatch(HomeActions.ApodFetch.LoadFromCache)
     }
 }
 
@@ -55,18 +55,26 @@ private fun handleFetchFromWeb(store: Store<AppState>, action: Action, dep: Depe
                 }
             }
             if (dep.utils.getPlatform() != Platforms.Js) {
-                store.dispatch(SplashActions.ApodFetch.DownloadCompleted(apodResult))
+                store.dispatch(
+                    HomeActions.ApodFetch.DownloadCompleted(
+                        apodResult
+                    )
+                )
             } else {
-                store.dispatch(SplashActions.ApodFetch.Completed(apodResult))
+                store.dispatch(
+                    HomeActions.ApodFetch.Completed(
+                        apodResult
+                    )
+                )
             }
         } catch (e: Exception) {
             dep.utils.log.v { e.toString() }
-            store.dispatch(SplashActions.ApodFetch.LoadFromCache)
+            store.dispatch(HomeActions.ApodFetch.LoadFromCache)
         }
     }
 }
 
-private fun handleDownloadCompleted(store: Store<AppState>, action: SplashActions.ApodFetch.DownloadCompleted, dep: Dependencies) {
+private fun handleDownloadCompleted(store: Store<AppState>, action: HomeActions.ApodFetch.DownloadCompleted, dep: Dependencies) {
     MainScope().launch {
         try {
             val json = Json(JsonConfiguration.Stable).stringify(Apod.serializer(), action.payload)
@@ -75,7 +83,7 @@ private fun handleDownloadCompleted(store: Store<AppState>, action: SplashAction
         } catch (e: Exception) {
             dep.utils.log.v { e.toString() }
         } finally {
-            store.dispatch(SplashActions.ApodFetch.LoadFromCache)
+            store.dispatch(HomeActions.ApodFetch.LoadFromCache)
         }
     }
 }
@@ -85,13 +93,19 @@ private fun handleLoadFromCache(store: Store<AppState>, action: Action, dep: Dep
         try {
             val apodJson = dep.storage.settings[dep.utils.date(0), ""]
             if (apodJson == "") {
-                store.dispatch(SplashActions.ApodFetch.Error("Nothing cached"))
+                store.dispatch(HomeActions.ApodFetch.Error("Nothing cached"))
             } else {
-                store.dispatch(SplashActions.ApodFetch.Completed(Json(JsonConfiguration.Stable).parse(Apod.serializer(), apodJson)))
+                store.dispatch(
+                    HomeActions.ApodFetch.Completed(
+                        Json(
+                            JsonConfiguration.Stable
+                        ).parse(Apod.serializer(), apodJson)
+                    )
+                )
             }
         } catch (e: Exception) {
             dep.utils.log.v { e.toString() }
-            store.dispatch(SplashActions.ApodFetch.Error(e.toString()))
+            store.dispatch(HomeActions.ApodFetch.Error(e.toString()))
         }
     }
 }

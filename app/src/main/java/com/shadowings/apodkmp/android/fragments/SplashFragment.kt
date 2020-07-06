@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import co.touchlab.kampstarter.android.R
 import com.shadowings.apodkmp.android.MainActivity
-import com.shadowings.apodkmp.splash.SplashInteractor
+import com.shadowings.apodkmp.home.HomeInteractor
 
 class SplashFragment : Fragment() {
 
@@ -20,7 +20,7 @@ class SplashFragment : Fragment() {
     lateinit var kotlin: ImageView
     lateinit var constraintLayout: ConstraintLayout
     lateinit var imageContainer: ConstraintLayout
-    private val splashInteractor: SplashInteractor = SplashInteractor()
+    private val homeInteractor: HomeInteractor = HomeInteractor()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -84,19 +84,19 @@ class SplashFragment : Fragment() {
 
         imageContainer.setConstraintSet(imageContainerSet)
 
-        splashInteractor.subscribe {
-            val apod = it.splashState.apod
+        homeInteractor.subscribe {
+            val apod = it.homeState.apod
             if (activity != null && apod.url != "") {
                 (activity as MainActivity).openHome()
             }
         }
 
-        splashInteractor.init()
+        homeInteractor.init()
         return constraintLayout
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        splashInteractor.unsubscribe()
+        homeInteractor.unsubscribe()
     }
 }

@@ -1,4 +1,4 @@
 package com.shadowings.apodkmp.redux
-import com.shadowings.apodkmp.splash.SplashState
+import com.shadowings.apodkmp.home.HomeState
 
-data class AppState(val splashState: SplashState = SplashState())
+data class AppState(val homeState: HomeState = HomeState())

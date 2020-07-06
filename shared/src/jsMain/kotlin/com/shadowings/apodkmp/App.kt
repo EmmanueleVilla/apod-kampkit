@@ -1,8 +1,8 @@
 package com.shadowings.apodkmp
 
 import com.shadowings.apodkmp.apod.BigApodComponent
+import com.shadowings.apodkmp.home.HomeInteractor
 import com.shadowings.apodkmp.model.Apod
-import com.shadowings.apodkmp.splash.SplashInteractor
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -11,7 +11,7 @@ import react.dom.h1
 import react.setState
 
 interface AppState : RState {
-    var interactor: SplashInteractor
+    var interactor: HomeInteractor
     var apod: Apod
 }
 
@@ -19,10 +19,10 @@ class App : RComponent<RProps, AppState>() {
 
     override fun componentDidMount() {
         state.apod = Apod()
-        state.interactor = SplashInteractor()
+        state.interactor = HomeInteractor()
         state.interactor.subscribe {
             setState {
-                apod = it.splashState.apod
+                apod = it.homeState.apod
             }
         }
         state.interactor.init()

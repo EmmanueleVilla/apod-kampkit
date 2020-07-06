@@ -1,15 +1,16 @@
-package com.shadowings.apodkmp.splash
+package com.shadowings.apodkmp.home
 
 import com.shadowings.apodkmp.redux.AppState
 import com.shadowings.apodkmp.redux.store
 import org.reduxkotlin.StoreSubscription
 
-class SplashInteractor {
+class HomeInteractor {
 
     var subscription: StoreSubscription? = null
 
     fun init() {
-        store.dispatch(SplashActions.ApodFetch.Request)
+        store.dispatch(HomeActions.ApodFetch.Request)
+        store.dispatch(HomeActions.LatestFetch.Request)
     }
 
     fun subscribe(callback: (state: AppState) -> Unit) {
