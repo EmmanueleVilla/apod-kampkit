@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import co.touchlab.kampstarter.android.R
+import com.shadowings.apodkmp.android.MainActivity
 import com.shadowings.apodkmp.splash.SplashInteractor
 
 class SplashFragment : Fragment() {
@@ -84,16 +85,18 @@ class SplashFragment : Fragment() {
         imageContainer.setConstraintSet(imageContainerSet)
 
         splashInteractor.subscribe {
-            /*
-            runOnUiThread {
-                val apod = it.splashState.apod
-                description.text = apod.explanation
-                Glide.with(this).load(apod.url).into(image)
+            val apod = it.splashState.apod
+            if (activity != null && apod.url != "") {
+                (activity as MainActivity).openHome()
             }
-             */
         }
 
         splashInteractor.init()
         return constraintLayout
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        splashInteractor.unsubscribe()
     }
 }

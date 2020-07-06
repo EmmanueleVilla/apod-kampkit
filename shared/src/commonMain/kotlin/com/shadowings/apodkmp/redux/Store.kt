@@ -13,12 +13,8 @@ import org.reduxkotlin.applyMiddleware
 import org.reduxkotlin.createThreadSafeStore
 import org.reduxkotlin.middleware
 
-val loggingMiddleware = middleware<AppState> { _, next, action ->
+val middleware = middleware<AppState> { _, next, action ->
     dep.utils.log.v { "dispatching action " + dep.utils.getActionName(action as Action) }
-    next(action)
-}
-
-val epicMiddleware = middleware<AppState> { store, next, action ->
     next(action)
     appStateEpic.forEach {
         it(store, action as Action, dep)
@@ -28,7 +24,7 @@ val epicMiddleware = middleware<AppState> { store, next, action ->
 val store: Store<AppState> = createThreadSafeStore(
     ::rootReducer,
     AppState(),
-    applyMiddleware(loggingMiddleware, epicMiddleware))
+    applyMiddleware(middleware))
 
 fun getDep(): Dependencies {
     return dep
@@ -38,6 +34,11 @@ data class Dependencies(
     val utils: Utils,
     val storage: Storage,
     val http: Http
+)
+
+data class Callbacks(
+    val beforeDispatch: (action: Action) -> Unit,
+    val afterDispatch: (action: Action) -> Unit
 )
 
 data class Utils(
