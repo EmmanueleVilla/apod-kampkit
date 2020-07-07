@@ -11,7 +11,7 @@ import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 
-suspend fun homeEpics(action: Action, dep: Dependencies): List<Action> {
+suspend fun homeTales(action: Action, dep: Dependencies): List<Action> {
     when (action) {
         is HomeActions.LatestFetch.Request -> {
             return handleLatestRequest(action, dep)

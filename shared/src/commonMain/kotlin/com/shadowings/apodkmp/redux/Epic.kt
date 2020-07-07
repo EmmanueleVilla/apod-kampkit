@@ -1,5 +1,5 @@
 package com.shadowings.apodkmp.redux
 
-import com.shadowings.apodkmp.home.homeEpics
+import com.shadowings.apodkmp.home.homeTales
 
-internal val appStateEpic = listOf(::homeEpics)
+internal val appStateTales = listOf(::homeTales)

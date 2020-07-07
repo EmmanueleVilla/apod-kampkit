@@ -18,7 +18,7 @@ import org.reduxkotlin.middleware
 val middleware = middleware<AppState> { _, next, action ->
     dep.utils.log.v { "dispatching action " + dep.utils.getActionName(action as Action) }
     next(action)
-    appStateEpic.forEach {
+    appStateTales.forEach {
         MainScope().launch {
             it(action as Action, dep).forEach { store.dispatch(it) }
         }
