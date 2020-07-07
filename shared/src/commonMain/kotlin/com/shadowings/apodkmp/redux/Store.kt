@@ -8,6 +8,8 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import org.reduxkotlin.Store
 import org.reduxkotlin.applyMiddleware
 import org.reduxkotlin.createThreadSafeStore
@@ -17,7 +19,9 @@ val middleware = middleware<AppState> { _, next, action ->
     dep.utils.log.v { "dispatching action " + dep.utils.getActionName(action as Action) }
     next(action)
     appStateEpic.forEach {
-        it(store, action as Action, dep)
+        MainScope().launch {
+            it(action as Action, dep).forEach { store.dispatch(it) }
+        }
     }
 }
 

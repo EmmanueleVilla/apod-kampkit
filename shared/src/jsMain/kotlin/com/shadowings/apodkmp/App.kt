@@ -22,7 +22,7 @@ class App : RComponent<RProps, AppState>() {
         state.interactor = HomeInteractor()
         state.interactor.subscribe {
             setState {
-                apod = it.homeState.apod
+                apod = it.homeState.latest[0]
             }
         }
         state.interactor.init()

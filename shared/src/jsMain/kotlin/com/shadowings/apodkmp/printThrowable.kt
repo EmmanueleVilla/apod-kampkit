@@ -7,6 +7,5 @@ internal actual fun printThrowable(t: Throwable) {
     // TODO
 }
 
-actual fun currentTimeMillis(): Long {
-    return Date().getTime().roundToLong()
-}
+actual fun currentTimeMillis(): Long =
+    Date().getTime().roundToLong()
