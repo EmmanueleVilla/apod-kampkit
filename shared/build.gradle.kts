@@ -68,6 +68,7 @@ kotlin {
         implementation(Deps.koinTest)
         // Karmok is an experimental library which helps with mocking interfaces
         implementation(Deps.karmok)
+        implementation("io.ktor:ktor-client-mock:${Versions.ktor}")
     }
 
     sourceSets["androidMain"].dependencies {
@@ -100,6 +101,9 @@ kotlin {
         implementation(Deps.AndroidXTest.runner)
         implementation(Deps.AndroidXTest.rules)
         implementation(Deps.Coroutines.test)
+        implementation("io.ktor:ktor-client-mock-jvm:${Versions.ktor}")
+        // implementation("io.ktor:ktor-client-mock-js:${Versions.ktor}")
+        // implementation("io.ktor:ktor-client-mock-native:${Versions.ktor}")
         implementation("org.robolectric:robolectric:4.3")
     }
 

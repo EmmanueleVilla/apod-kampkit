@@ -7,6 +7,9 @@ import com.shadowings.apodkmp.redux.Http
 import com.shadowings.apodkmp.redux.Platforms
 import com.shadowings.apodkmp.redux.Storage
 import com.shadowings.apodkmp.redux.Utils
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.http.fullPath
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -29,7 +32,15 @@ private val mockDep = Dependencies(
             SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time)
         }
     ),
-    http = Http(),
+    http = Http(
+        httpClient = HttpClient(MockEngine) {
+            engine {
+                addHandler { request ->
+                    error("Unhandled ${request.url.fullPath}")
+                }
+            }
+        }
+    ),
     storage = Storage(
         settings = VolatileSettings()
     )

@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
-class HomeEpicsTest {
+class HandleLatestRequestTests {
     @Test
     fun handleLatestRequestTestFar() {
         val actions = runBlocking {
