@@ -34,13 +34,17 @@ suspend fun homeEpics(action: Action, dep: Dependencies): List<Action> {
 }
 
 suspend fun handleLatestRequest(action: Action, dep: Dependencies): List<Action> {
-    val lastDownloadTimeMS = dep.storage.settings.getLong("LATEST_TIMESTAMP", 0)
-    val oneHourMS = 60 * 60 * 1000
-    val expired = (lastDownloadTimeMS + oneHourMS < currentTimeMillis())
-    if (expired || dep.utils.getPlatform() == Platforms.Js) {
-        return listOf(HomeActions.LatestFetch.FetchFromWeb)
-    } else {
-        return listOf(HomeActions.LatestFetch.LoadFromCache)
+    return try {
+        val lastDownloadTimeMS = dep.storage.settings.getLong("LATEST_TIMESTAMP", 0)
+        val oneHourMS = 60 * 60 * 1000
+        val expired = (lastDownloadTimeMS + oneHourMS < currentTimeMillis())
+        if (expired || dep.utils.getPlatform() == Platforms.Js) {
+            listOf(HomeActions.LatestFetch.FetchFromWeb)
+        } else {
+            listOf(HomeActions.LatestFetch.LoadFromCache)
+        }
+    } catch (e: Exception) {
+        listOf(HomeActions.LatestFetch.FetchFromWeb)
     }
 }
 
