@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import co.touchlab.kampstarter.android.R
 import com.bumptech.glide.Glide
-import com.shadowings.apodkmp.android.utils.verticalLayout
-import com.shadowings.apodkmp.android.utils.verticalScroll
+import com.shadowings.apodkmp.android.utils.dsl.ConstraintPositions
+import com.shadowings.apodkmp.android.utils.dsl.Dimens
+import com.shadowings.apodkmp.android.utils.dsl.verticalLayout
+import com.shadowings.apodkmp.android.utils.dsl.verticalScroll
 import com.shadowings.apodkmp.home.HomeInteractor
 import com.shadowings.apodkmp.model.Apod
 
@@ -27,8 +30,12 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
         val view = verticalScroll {
             verticalLayout {
-                highlightImage = image()
-                title = bigText()
+                constraintLayout(height = 500) {
+                    highlightImage = image(position = ConstraintPositions.CenterMatch)
+                    title = text(size = Dimens.textSizeBig, position = ConstraintPositions.TopLeft)
+                    logo = image(drawable = R.drawable.youtube_logo, position = ConstraintPositions.BottomLeft)
+                }
+                latestLabel = text(value = "Latest:")
             }
         }
 

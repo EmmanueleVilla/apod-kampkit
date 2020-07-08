@@ -13,7 +13,7 @@ import co.touchlab.kampstarter.android.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.shadowings.apodkmp.android.utils.Dimens
+import com.shadowings.apodkmp.android.utils.dsl.Dimens
 import com.shadowings.apodkmp.model.Apod
 
 class ApodAdapter(var clickListener: (image: AppCompatImageView, apod: Apod) -> Unit) : RecyclerView.Adapter<ApodViewHolder>() {

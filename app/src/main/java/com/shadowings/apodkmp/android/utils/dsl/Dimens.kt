@@ -1,4 +1,4 @@
-package com.shadowings.apodkmp.android.utils
+package com.shadowings.apodkmp.android.utils.dsl
 
 object Dimens {
 

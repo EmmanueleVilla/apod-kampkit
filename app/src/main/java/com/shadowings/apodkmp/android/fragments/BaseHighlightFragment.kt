@@ -3,10 +3,8 @@ package com.shadowings.apodkmp.android.fragments
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.DisplayMetrics
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
@@ -16,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.shadowings.apodkmp.android.MainActivity
-import com.shadowings.apodkmp.android.utils.Views
 
 open class BaseHighlightFragment : BaseFragment() {
 
@@ -29,7 +26,7 @@ open class BaseHighlightFragment : BaseFragment() {
     protected val imageContainerSet: ConstraintSet = ConstraintSet()
 
     fun initViews(context: Context, imageHeight: Int) {
-
+/*
         scrollView = Views.buildScrollView(context)
         linearLayout = Views.buildLinearLayout(context)
         scrollView.addView(linearLayout)
@@ -50,6 +47,8 @@ open class BaseHighlightFragment : BaseFragment() {
         imageContainerSet.applyTo(imageContainer)
 
         linearLayout.addView(imageContainer)
+
+ */
     }
 
     fun loadImage(url: String) {
