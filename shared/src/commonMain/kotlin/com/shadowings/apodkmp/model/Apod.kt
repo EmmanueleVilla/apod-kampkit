@@ -12,4 +12,32 @@ data class Apod(
     val service_version: String = "",
     val title: String = "",
     val url: String = ""
-)
+) {
+    val imageUrl: String
+        get() {
+            return when (media_type) {
+                "image" -> url
+                "video" -> "https://img.youtube.com/vi/$youtubeId/hqdefault.jpg"
+                else -> ""
+            }
+        }
+
+    val imageUrlHD: String
+        get() {
+            return when (media_type) {
+                "image" -> hdurl
+                "video" -> "https://img.youtube.com/vi/$youtubeId/hqdefault.jpg"
+                else -> ""
+            }
+        }
+
+    val youtubeId: String
+        get() {
+            if (url == "") {
+                return ""
+            }
+            val regex = Regex("(ed/|v=|be/|/v/|/e/)(.*?)([?&#])")
+            val matchResult = regex.find("$url?") ?: return ""
+            return matchResult.groupValues[2]
+        }
+}

@@ -27,6 +27,7 @@ import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.shadowings.apodkmp.android.MainActivity
 import com.shadowings.apodkmp.android.adapters.ApodAdapter
+import com.shadowings.apodkmp.android.utils.Dimens
 import com.shadowings.apodkmp.home.HomeInteractor
 
 class HomeFragment : Fragment() {
@@ -75,15 +76,15 @@ class HomeFragment : Fragment() {
         title = AppCompatTextView(activity)
         title.id = View.generateViewId()
         title.setTextColor(Color.WHITE)
-        title.gravity = Gravity.BOTTOM
-        title.textSize = 32.0F
+        title.gravity = Gravity.TOP
+        title.textSize = Dimens.textSizeBig
         title.elevation = 10.0F
 
         latestLabel = AppCompatTextView(activity)
         latestLabel.id = View.generateViewId()
         latestLabel.setTextColor(Color.DKGRAY)
         latestLabel.gravity = Gravity.BOTTOM
-        latestLabel.textSize = 24.0F
+        latestLabel.textSize = Dimens.textSizeMedium
         latestLabel.text = "Latest:"
 
         latest = RecyclerView(activity!!)
@@ -93,27 +94,31 @@ class HomeFragment : Fragment() {
         latest.layoutManager = manager
         latest.adapter = ApodAdapter()
 
+        val displayMetrics = DisplayMetrics()
+        (context as MainActivity).windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val screenH = displayMetrics.heightPixels
+
         val set = ConstraintSet()
         set.connect(image.id, ConstraintSet.START, constraintLayout.id, ConstraintSet.START)
         set.connect(image.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END)
         set.connect(image.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
-        set.constrainHeight(image.id, 1)
+        set.constrainHeight(image.id, screenH / 2)
 
-        set.connect(title.id, ConstraintSet.START, image.id, ConstraintSet.START, 0)
-        set.connect(title.id, ConstraintSet.END, image.id, ConstraintSet.END, 0)
-        set.connect(title.id, ConstraintSet.BOTTOM, image.id, ConstraintSet.BOTTOM, 0)
-        set.connect(title.id, ConstraintSet.TOP, image.id, ConstraintSet.TOP, 0)
+        set.connect(title.id, ConstraintSet.START, image.id, ConstraintSet.START, Dimens.margin)
+        set.connect(title.id, ConstraintSet.END, image.id, ConstraintSet.END, Dimens.margin)
+        set.connect(title.id, ConstraintSet.BOTTOM, image.id, ConstraintSet.BOTTOM, Dimens.margin)
+        set.connect(title.id, ConstraintSet.TOP, image.id, ConstraintSet.TOP, Dimens.margin)
 
-        set.connect(latestLabel.id, ConstraintSet.START, image.id, ConstraintSet.START, 0)
-        set.connect(latestLabel.id, ConstraintSet.END, image.id, ConstraintSet.END, 0)
-        set.connect(latestLabel.id, ConstraintSet.TOP, image.id, ConstraintSet.BOTTOM, 24)
-        set.constrainHeight(latestLabel.id, 24)
+        set.connect(latestLabel.id, ConstraintSet.START, image.id, ConstraintSet.START, Dimens.margin)
+        set.connect(latestLabel.id, ConstraintSet.END, image.id, ConstraintSet.END, Dimens.margin)
+        set.connect(latestLabel.id, ConstraintSet.TOP, image.id, ConstraintSet.BOTTOM, Dimens.margin)
+        set.constrainHeight(latestLabel.id, (Dimens.margin + Dimens.textSizeMedium + Dimens.margin).toInt())
 
         set.connect(latest.id, ConstraintSet.START, image.id, ConstraintSet.START, 0)
         set.connect(latest.id, ConstraintSet.END, image.id, ConstraintSet.END, 0)
-        set.connect(latest.id, ConstraintSet.TOP, latestLabel.id, ConstraintSet.BOTTOM, 0)
-        set.connect(latest.id, ConstraintSet.BOTTOM, constraintLayout.id, ConstraintSet.BOTTOM, 0)
-        set.constrainHeight(latest.id, 325)
+        set.connect(latest.id, ConstraintSet.TOP, latestLabel.id, ConstraintSet.BOTTOM, Dimens.margin)
+        set.connect(latest.id, ConstraintSet.BOTTOM, constraintLayout.id, ConstraintSet.BOTTOM, Dimens.margin)
+        set.constrainHeight(latest.id, Dimens.latestCardSize)
 
         constraintLayout.addView(image)
         constraintLayout.addView(title)
