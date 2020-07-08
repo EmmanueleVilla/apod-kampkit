@@ -23,13 +23,14 @@ actual fun createDependencies(): Dependencies {
                 }
                 it.toString()
             },
-            getPlatform = { Platforms.Android },
+            platform = Platforms.Android,
             log = log,
             date = {
                 val calendar = Calendar.getInstance()
                 calendar.add(Calendar.DATE, -it)
                 SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time)
-            }
+            },
+            currentTimeMillis = { System.currentTimeMillis() }
         ),
         http = Http(),
         storage = Storage(

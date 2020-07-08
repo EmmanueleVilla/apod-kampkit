@@ -57,7 +57,7 @@ kotlin {
         implementation(Deps.multiplatformSettings)
         implementation(Deps.koinCore)
         implementation(Deps.Ktor.commonSerialization)
-        implementation("org.reduxkotlin:redux-kotlin-threadsafe:0.5.1")
+        implementation(Deps.Redux.core)
         api(Deps.kermit)
     }
 
@@ -68,7 +68,7 @@ kotlin {
         implementation(Deps.koinTest)
         // Karmok is an experimental library which helps with mocking interfaces
         implementation(Deps.karmok)
-        implementation("io.ktor:ktor-client-mock:${Versions.ktor}")
+        implementation(Deps.Ktor.mock)
     }
 
     sourceSets["androidMain"].dependencies {
@@ -101,10 +101,8 @@ kotlin {
         implementation(Deps.AndroidXTest.runner)
         implementation(Deps.AndroidXTest.rules)
         implementation(Deps.Coroutines.test)
-        implementation("io.ktor:ktor-client-mock-jvm:${Versions.ktor}")
-        // implementation("io.ktor:ktor-client-mock-js:${Versions.ktor}")
-        // implementation("io.ktor:ktor-client-mock-native:${Versions.ktor}")
-        implementation("org.robolectric:robolectric:4.3")
+        implementation(Deps.Ktor.jvmMock)
+        implementation(Deps.RoboEletric.droid)
     }
 
     sourceSets["iosMain"].dependencies {
@@ -134,17 +132,18 @@ kotlin {
         api(npm("utf-8-validate"))
         api(npm("abort-controller"))
         api(npm("fs"))
-        implementation(kotlin("stdlib-js"))
-        // version 94 is the last one that works (108 and 109 are bugged)
-        implementation("org.jetbrains:kotlin-react:16.13.0-pre.94-kotlin-1.3.70")
-        implementation("org.jetbrains:kotlin-react-dom:16.13.0-pre.94-kotlin-1.3.70")
-        implementation(npm("react", "16.13.0"))
-        implementation(npm("react-is", "16.13.0"))
-        implementation(npm("react-dom", "16.13.0"))
-        implementation("org.jetbrains:kotlin-styled:1.0.0-pre.94-kotlin-1.3.70")
         implementation(npm("styled-components"))
         implementation(npm("inline-style-prefixer"))
         implementation(npm("react-router-dom", "5.1.2"))
+        implementation(kotlin("stdlib-js"))
+        implementation(npm("react", "16.13.0"))
+        implementation(npm("react-is", "16.13.0"))
+        implementation(npm("react-dom", "16.13.0"))
+
+        // version 94 is the last one that works (108 and 109 are bugged)
+        implementation("org.jetbrains:kotlin-react:16.13.0-pre.94-kotlin-1.3.70")
+        implementation("org.jetbrains:kotlin-react-dom:16.13.0-pre.94-kotlin-1.3.70")
+        implementation("org.jetbrains:kotlin-styled:1.0.0-pre.94-kotlin-1.3.70")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
         // implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.107-kotlin-1.3.72")
     }

@@ -19,6 +19,8 @@ object Versions {
     val kermit = "0.1.7"
     val lifecycle = "2.1.0"
     val karmok = "0.1.7"
+    val roboelectric = "4.3"
+    val redux = "0.5.1"
 }
 
 object Deps {
@@ -44,6 +46,10 @@ object Deps {
     val lifecycle_extension = "android.arch.lifecycle:extensions:${Versions.lifecycle}"
     val karmok = "co.touchlab:karmok-library:${Versions.karmok}"
 
+    object RoboEletric {
+        val droid = "org.robolectric:robolectric:${Versions.roboelectric}"
+    }
+
     object AndroidXTest {
         val core = "androidx.test:core:${Versions.androidx_test}"
         val junit = "androidx.test.ext:junit:${Versions.androidx_test_ext}"
@@ -65,6 +71,11 @@ object Deps {
         val js = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.coroutines}"
         val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
+
+    object Redux {
+        val core = "org.reduxkotlin:redux-kotlin-threadsafe:${Versions.redux}"
+    }
+
     object Ktor {
         val commonCore = "io.ktor:ktor-client-core:${Versions.ktor}"
         val commonJson = "io.ktor:ktor-client-json:${Versions.ktor}"
@@ -85,5 +96,7 @@ object Deps {
         val jsJson = "io.ktor:ktor-client-json-js:${Versions.ktor}"
         val jsLogging = "io.ktor:ktor-client-logging-js:${Versions.ktor}"
         val jsSerialization = "io.ktor:ktor-client-serialization-js:${Versions.ktor}"
+        val mock = "io.ktor:ktor-client-mock:${Versions.ktor}"
+        val jvmMock = "io.ktor:ktor-client-mock-jvm:${Versions.ktor}"
     }
 }

@@ -14,9 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-fun getMockDeps() = mockDep.copy()
-
-private val mockDep = Dependencies(
+fun getMockDeps() = Dependencies(
     utils = Utils(
         getActionName = {
             if (it::class.qualifiedName != null) {
@@ -24,13 +22,14 @@ private val mockDep = Dependencies(
             }
             it.toString()
         },
-        getPlatform = { Platforms.Android },
+        platform = Platforms.Android,
         log = Kermit(CommonLogger()).withTag("APOD"),
         date = {
             val calendar = Calendar.getInstance()
             calendar.add(Calendar.DATE, -it)
             SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time)
-        }
+        },
+        currentTimeMillis = { 10 }
     ),
     http = Http(
         httpClient = HttpClient(MockEngine) {

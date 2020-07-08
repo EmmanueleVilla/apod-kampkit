@@ -1,6 +1,5 @@
 package com.shadowings.apodkmp.home
 import com.russhwolf.settings.get
-import com.shadowings.apodkmp.currentTimeMillis
 import com.shadowings.apodkmp.model.Apod
 import com.shadowings.apodkmp.redux.Action
 import com.shadowings.apodkmp.redux.Dependencies
@@ -33,12 +32,12 @@ suspend fun homeTales(action: Action, dep: Dependencies): List<Action> {
     }
 }
 
-suspend fun handleLatestRequest(action: Action, dep: Dependencies): List<Action> {
+fun handleLatestRequest(action: Action, dep: Dependencies): List<Action> {
     return try {
         val lastDownloadTimeMS = dep.storage.settings.getLong("LATEST_TIMESTAMP", 0)
         val oneHourMS = 60 * 60 * 1000
-        val expired = (lastDownloadTimeMS + oneHourMS < currentTimeMillis())
-        if (expired || dep.utils.getPlatform() == Platforms.Js) {
+        val expired = (lastDownloadTimeMS + oneHourMS < dep.utils.currentTimeMillis())
+        if (expired || dep.utils.platform == Platforms.Js) {
             listOf(HomeActions.LatestFetch.FetchFromWeb)
         } else {
             listOf(HomeActions.LatestFetch.LoadFromCache)
@@ -56,7 +55,7 @@ suspend fun handleLatestFetchFromWeb(action: Action, dep: Dependencies): List<Ac
                 encodedPath = "latest"
             }
         }
-        return if (dep.utils.getPlatform() != Platforms.Js) {
+        return if (dep.utils.platform != Platforms.Js) {
             listOf(
                 HomeActions.LatestFetch.DownloadCompleted(
                     apodResult.toList()
@@ -75,25 +74,25 @@ suspend fun handleLatestFetchFromWeb(action: Action, dep: Dependencies): List<Ac
     }
 }
 
-suspend fun handleDownloadCompleted(action: HomeActions.LatestFetch.DownloadCompleted, dep: Dependencies): List<Action> {
-    try {
+fun handleDownloadCompleted(action: HomeActions.LatestFetch.DownloadCompleted, dep: Dependencies): List<Action> {
+    return try {
         val json = Json(JsonConfiguration.Stable).stringify(Apod.serializer().list, action.payload)
         dep.storage.settings.putString("LATEST", json)
-        dep.storage.settings.putLong("DOWNLOAD_TIMESTAMP_KEY", currentTimeMillis())
+        dep.storage.settings.putLong("DOWNLOAD_TIMESTAMP_KEY", dep.utils.currentTimeMillis())
+        listOf(HomeActions.LatestFetch.LoadFromCache)
     } catch (e: Exception) {
         dep.utils.log.v { e.toString() }
-    } finally {
-        return listOf(HomeActions.LatestFetch.LoadFromCache)
+        listOf(HomeActions.LatestFetch.Error(e.toString()))
     }
 }
 
-suspend fun handleLoadLatestFromCache(action: Action, dep: Dependencies): List<Action> {
+fun handleLoadLatestFromCache(action: Action, dep: Dependencies): List<Action> {
     try {
         val apodJson = dep.storage.settings["LATEST", ""]
-        if (apodJson == "") {
-            return listOf(HomeActions.LatestFetch.Error("Nothing cached"))
+        return if (apodJson == "") {
+            listOf(HomeActions.LatestFetch.Error("Nothing cached"))
         } else {
-            return listOf(
+            listOf(
                 HomeActions.LatestFetch.Completed(
                     Json(
                         JsonConfiguration.Stable

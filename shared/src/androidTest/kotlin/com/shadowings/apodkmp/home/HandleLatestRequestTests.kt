@@ -10,7 +10,7 @@ class HandleLatestRequestTests {
     @Test
     fun handleLatestRequestTestFar() {
         val actions = runBlocking {
-            val dep = getMockDeps()
+            val dep = getMockDeps().copy(utils = getMockDeps().utils.copy(currentTimeMillis = { 365L * 24 * 60 * 60 * 1000 }))
             dep.storage.settings.putLong("LATEST_TIMESTAMP", 0)
             return@runBlocking handleLatestRequest(HomeActions.LatestFetch.Request, dep)
         }
@@ -21,8 +21,8 @@ class HandleLatestRequestTests {
     @Test
     fun handleLatestRequestTestNear() {
         val actions = runBlocking {
-            val dep = getMockDeps()
-            dep.storage.settings.putLong("LATEST_TIMESTAMP", 4102444800000) // year 2100
+            val dep = getMockDeps().copy(utils = getMockDeps().utils.copy(currentTimeMillis = { 1000 }))
+            dep.storage.settings.putLong("LATEST_TIMESTAMP", 999)
             return@runBlocking handleLatestRequest(HomeActions.LatestFetch.Request, dep)
         }
         assertEquals(1, actions.size)
@@ -32,8 +32,8 @@ class HandleLatestRequestTests {
     @Test
     fun handleLatestRequestTestNearButJS() {
         val actions = runBlocking {
-            val dep = getMockDeps().copy(utils = getMockDeps().utils.copy(getPlatform = { Platforms.Js }))
-            dep.storage.settings.putLong("LATEST_TIMESTAMP", 4102444800000) // year 2100
+            val dep = getMockDeps().copy(utils = getMockDeps().utils.copy(currentTimeMillis = { 1000 }, platform = Platforms.Js))
+            dep.storage.settings.putLong("LATEST_TIMESTAMP", 999)
             return@runBlocking handleLatestRequest(HomeActions.LatestFetch.Request, dep)
         }
         assertEquals(1, actions.size)

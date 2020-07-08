@@ -43,8 +43,9 @@ data class Dependencies(
 data class Utils(
     val log: Kermit,
     val date: (offset: Int) -> String,
+    val currentTimeMillis: () -> Long,
     val getActionName: (action: Action) -> String,
-    val getPlatform: () -> Platforms
+    val platform: Platforms
 )
 
 data class Storage(
