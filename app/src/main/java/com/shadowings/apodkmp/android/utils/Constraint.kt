@@ -34,8 +34,20 @@ fun ConstraintSet.appendBelowWithMarginAndHeight(
     margin: Int,
     height: Int
 ) {
-    this.connect(child.id, ConstraintSet.START, parent.id, ConstraintSet.START, margin)
-    this.connect(child.id, ConstraintSet.END, parent.id, ConstraintSet.END, margin)
+    this.connect(child.id, ConstraintSet.START, parent.id, ConstraintSet.START, 0)
+    this.connect(child.id, ConstraintSet.END, parent.id, ConstraintSet.END, 0)
     this.connect(child.id, ConstraintSet.TOP, parent.id, ConstraintSet.BOTTOM, margin * 2)
     this.constrainHeight(child.id, height)
+}
+
+fun ConstraintSet.appendBelowAndToBottom(
+    child: View,
+    parent: View,
+    container: View,
+    margin: Int
+) {
+    this.connect(child.id, ConstraintSet.START, parent.id, ConstraintSet.START, 0)
+    this.connect(child.id, ConstraintSet.END, parent.id, ConstraintSet.END, 0)
+    this.connect(child.id, ConstraintSet.TOP, parent.id, ConstraintSet.BOTTOM, margin * 2)
+    this.connect(child.id, ConstraintSet.BOTTOM, container.id, ConstraintSet.BOTTOM, margin * 2)
 }
