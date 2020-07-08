@@ -58,9 +58,9 @@ fun main() {
         }
 
         routing {
-            get("/apod") {
+            get("/apod/{date}") {
                 try {
-                    call.respondText(getApod(), ContentType.Application.Json)
+                    call.respondText(Json(JsonConfiguration.Stable).stringify(Apod.serializer(), getApodAtDate(call.parameters["date"])), ContentType.Application.Json)
                 } catch (e: Exception) {
                     call.respondText(
                         Json(JsonConfiguration.Stable)
@@ -85,6 +85,16 @@ fun getApodAtDateOffset(offset: Int): Apod {
     val dep = getDep()
     return runBlocking {
         val day = dep.utils.date(offset)
+        return@runBlocking getApodAtDate(day)
+    }
+}
+
+fun getApodAtDate(day: String?): Apod {
+    if (day == null) {
+        return Apod()
+    }
+    val dep = getDep()
+    return runBlocking {
         val result = collection.find(Apod::date eq day).toList()
         if (result.isEmpty()) {
             try {
