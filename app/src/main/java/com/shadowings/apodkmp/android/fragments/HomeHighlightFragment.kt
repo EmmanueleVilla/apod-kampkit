@@ -10,11 +10,11 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.touchlab.kampstarter.android.R
 import com.shadowings.apodkmp.android.adapters.ApodAdapter
 import com.shadowings.apodkmp.android.utils.Dimens
+import com.shadowings.apodkmp.android.utils.Views
 import com.shadowings.apodkmp.android.utils.appendBelowWithMarginAndHeight
 import com.shadowings.apodkmp.android.utils.bottomStartInParentWithSide
 import com.shadowings.apodkmp.android.utils.centerInParentWithMargin
@@ -33,42 +33,20 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
         val set = initViews(context!!)
 
-        logo = AppCompatImageView(context)
-        with(logo) {
-            id = View.generateViewId()
-            setBackgroundResource(R.drawable.youtube_logo)
-            elevation = 10.0F
-            scaleType = ImageView.ScaleType.CENTER_INSIDE
-            visibility = View.GONE
-        }
+        logo = Views.buildImage(context!!, View.GONE)
+        logo.setBackgroundResource(R.drawable.youtube_logo)
+        logo.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        logo.alpha = 0F
 
-        title = AppCompatTextView(activity)
-        with(title) {
-            setTextColor(Color.WHITE)
-            id = View.generateViewId()
-            gravity = Gravity.TOP
-            textSize = Dimens.textSizeBig
-            elevation = 10.0F
-        }
+        title = Views.buildBigText(context!!, Color.WHITE)
+        title.gravity = Gravity.TOP
 
-        latestLabel = AppCompatTextView(activity)
-        with(latestLabel) {
-            id = View.generateViewId()
-            setTextColor(Color.DKGRAY)
-            gravity = Gravity.BOTTOM
-            textSize = Dimens.textSizeMedium
-            text = "Latest:"
-        }
+        latestLabel = Views.buildMediumText(context!!, Color.DKGRAY)
+        latestLabel.gravity = Gravity.BOTTOM
+        latestLabel.text = "Latest:"
 
-        val manager = LinearLayoutManager(activity)
-        manager.orientation = RecyclerView.HORIZONTAL
-        latest = RecyclerView(activity!!)
-
-        with(latest) {
-            id = View.generateViewId()
-            layoutManager = manager
-            adapter = ApodAdapter()
-        }
+        latest = Views.buildHorizontalRecyclerView(context!!)
+        latest.adapter = ApodAdapter()
 
         set.centerInParentWithMargin(title, highlightImage, Dimens.margin)
         set.bottomStartInParentWithSide(logo, highlightImage, 200)
@@ -97,7 +75,8 @@ class HomeHighlightFragment : BaseHighlightFragment() {
                     (latest.adapter as ApodAdapter).notifyDataSetChanged()
 
                     val apod = apods.first()
-                    logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
+                    logo.visibility = View.GONE
+                    // logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
                     title.text = apod.title
                     loadImage(apod.url)
                 }

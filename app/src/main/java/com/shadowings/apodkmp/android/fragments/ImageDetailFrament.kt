@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintSet
 import com.shadowings.apodkmp.android.utils.Dimens
+import com.shadowings.apodkmp.android.utils.appendBelowWithMarginAndHeight
 import com.shadowings.apodkmp.model.Apod
 
 class ImageDetailFrament(val apod: Apod) : BaseHighlightFragment() {
@@ -28,15 +28,8 @@ class ImageDetailFrament(val apod: Apod) : BaseHighlightFragment() {
         description.setTextColor(Color.DKGRAY)
         description.textSize = Dimens.textSizeMedium
 
-        set.connect(title.id, ConstraintSet.START, constraintLayout.id, ConstraintSet.START, Dimens.margin)
-        set.connect(title.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END, Dimens.margin)
-        set.connect(title.id, ConstraintSet.TOP, highlightImage.id, ConstraintSet.BOTTOM, Dimens.margin)
-        set.constrainHeight(title.id, Dimens.textSizeBig.toInt())
-
-        set.connect(description.id, ConstraintSet.START, constraintLayout.id, ConstraintSet.START, Dimens.margin)
-        set.connect(description.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END, Dimens.margin)
-        set.connect(description.id, ConstraintSet.TOP, title.id, ConstraintSet.BOTTOM, Dimens.margin)
-        set.constrainHeight(description.id, Dimens.textSizeMedium.toInt())
+        set.appendBelowWithMarginAndHeight(title, highlightImage, Dimens.margin, Dimens.textSizeBig.toInt())
+        set.appendBelowWithMarginAndHeight(description, title, Dimens.margin, Dimens.textSizeMedium.toInt())
 
         loadImage(apod.url)
         title.text = apod.title
