@@ -2,6 +2,7 @@ package com.shadowings.apodkmp.android.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -32,10 +33,12 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        initViews(context!!)
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        initViews(requireContext(), displayMetrics.heightPixels / 2)
 
         highlightImage.setOnClickListener {
-            (activity as MainActivity).openDetail(apod)
+            (activity as MainActivity).openDetailFromFragment(apod, this, highlightImage.height)
         }
 
         logo = Views.buildImage(context!!, View.GONE)
@@ -51,7 +54,10 @@ class HomeHighlightFragment : BaseHighlightFragment() {
         latestLabel.text = "Latest:"
 
         latest = Views.buildHorizontalRecyclerView(context!!)
-        latest.adapter = ApodAdapter()
+        latest.adapter = ApodAdapter { image, apod ->
+            val multiplier = 1.0f * displayMetrics.widthPixels / image.drawable.intrinsicWidth
+            (activity as MainActivity).openDetailFromFragment(apod, this, (image.drawable.intrinsicHeight * multiplier).toInt())
+        }
 
         imageContainer.addView(title)
         imageContainer.addView(logo)
@@ -66,9 +72,10 @@ class HomeHighlightFragment : BaseHighlightFragment() {
         homeInteractor.subscribe {
             if (activity != null && it.homeState.latest.isNotEmpty()) {
                 activity!!.runOnUiThread {
-                    val apods = it.homeState.latest
 
+                    val apods = it.homeState.latest
                     this.apod = apods.first()
+
                     (latest.adapter as ApodAdapter).apods = apods.subList(1, apods.size - 1)
                     (latest.adapter as ApodAdapter).notifyDataSetChanged()
 

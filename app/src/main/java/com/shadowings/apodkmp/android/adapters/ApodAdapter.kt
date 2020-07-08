@@ -16,12 +16,12 @@ import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.shadowings.apodkmp.android.utils.Dimens
 import com.shadowings.apodkmp.model.Apod
 
-class ApodAdapter : RecyclerView.Adapter<ApodViewHolder>() {
+class ApodAdapter(var clickListener: (image: AppCompatImageView, apod: Apod) -> Unit) : RecyclerView.Adapter<ApodViewHolder>() {
 
     var apods: List<Apod> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApodViewHolder {
-        return ApodViewHolder(ApodView(parent.context))
+        return ApodViewHolder(ApodView(parent.context), clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -33,7 +33,7 @@ class ApodAdapter : RecyclerView.Adapter<ApodViewHolder>() {
     }
 }
 
-class ApodViewHolder(itemView: ApodView) : RecyclerView.ViewHolder(itemView) {
+class ApodViewHolder(itemView: ApodView, var clickListener: (image: AppCompatImageView, apod: Apod) -> Unit) : RecyclerView.ViewHolder(itemView) {
     fun setData(apod: Apod) {
         if (apod.imageUrl != "") {
             val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
@@ -45,6 +45,10 @@ class ApodViewHolder(itemView: ApodView) : RecyclerView.ViewHolder(itemView) {
             (itemView as ApodView).image.setBackgroundResource(android.R.color.transparent)
         }
         itemView.logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
+
+        itemView.setOnClickListener {
+            clickListener(itemView.image, apod)
+        }
     }
 }
 
@@ -57,8 +61,8 @@ class ApodView(context: Context) : ConstraintLayout(context) {
         this.layoutParams = LayoutParams(Dimens.latestCardSize, Dimens.latestCardSize)
 
         image.id = View.generateViewId()
-        image.scaleType = ImageView.ScaleType.CENTER_CROP
-        image.setBackgroundColor(Color.GRAY)
+        image.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        image.setBackgroundColor(Color.BLACK)
         addView(image)
 
         logo.id = View.generateViewId()

@@ -1,9 +1,13 @@
 package com.shadowings.apodkmp.android
 
+import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.transition.Fade
 import com.shadowings.apodkmp.android.fragments.HomeHighlightFragment
 import com.shadowings.apodkmp.android.fragments.ImageDetailFrament
 import com.shadowings.apodkmp.android.fragments.SplashFragment
@@ -34,8 +38,29 @@ class MainActivity : AppCompatActivity(), KoinComponent {
     }
 
     fun openDetail(apod: Apod) {
-        supportFragmentManager.beginTransaction()
-            .replace(frameLayout.id, ImageDetailFrament(apod))
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val detail = ImageDetailFrament(apod, displayMetrics.heightPixels / 2)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            detail.enterTransition = Fade()
+        }
+        supportFragmentManager
+            .beginTransaction()
+            .add(frameLayout.id, detail)
+            .addToBackStack(apod.date)
+            .commit()
+    }
+
+    fun openDetailFromFragment(apod: Apod, from: Fragment, height: Int) {
+
+        val detail = ImageDetailFrament(apod, height)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            detail.enterTransition = Fade()
+            from.exitTransition = Fade()
+        }
+        supportFragmentManager
+            .beginTransaction()
+            .add(frameLayout.id, detail)
             .addToBackStack(apod.date)
             .commit()
     }

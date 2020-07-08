@@ -3,6 +3,7 @@ package com.shadowings.apodkmp.android.fragments
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.DisplayMetrics
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -27,15 +28,17 @@ open class BaseHighlightFragment : BaseFragment() {
     protected lateinit var highlightImage: AppCompatImageView
     protected val imageContainerSet: ConstraintSet = ConstraintSet()
 
-    override fun initViews(context: Context) {
-        super.initViews(context)
+    fun initViews(context: Context, imageHeight: Int) {
 
-        val displayMetrics = DisplayMetrics()
-        (context as MainActivity).windowManager.defaultDisplay.getMetrics(displayMetrics)
+        scrollView = Views.buildScrollView(context)
+        linearLayout = Views.buildLinearLayout(context)
+        scrollView.addView(linearLayout)
+
+        scrollView.setBackgroundColor(Color.LTGRAY)
 
         highlightImage = Views.buildImage(context)
         imageContainer = Views.buildConstraintLayout(context)
-        imageContainer.layoutParams = ConstraintLayout.LayoutParams(MATCH_PARENT, displayMetrics.heightPixels / 2)
+        imageContainer.layoutParams = ConstraintLayout.LayoutParams(MATCH_PARENT, imageHeight)
 
         imageContainer.addView(highlightImage)
 
@@ -67,7 +70,7 @@ open class BaseHighlightFragment : BaseFragment() {
 
                     with(valueAnimator) {
                         interpolator = DecelerateInterpolator()
-                        duration = 300
+                        duration = 250
                         addUpdateListener { updateListener(it) }
                     }
                     valueAnimator.start()
