@@ -37,6 +37,22 @@ The first draft of the app contains a landing page with the highlight of the apo
 
 When clicking on an APOD, you will be redirected to another detail page where you can see additional informations.
 
+### CURRENT MVP COMPLETED FEATURES:
+#### Common:
+- [ ] Tales unit tests (wip)
+#### Android:
+- [X] Landing page Highlight
+- [ ] Latest strip (wip)
+- [ ] Detail page
+#### iOS:
+- [X] Landing page Highlight
+- [ ] Latest strip (wip)
+- [ ] Detail page
+#### React:
+- [ ] Landing page Highlight (wip)
+- [ ] Latest strip
+- [ ] Detail page
+
 ### NEXT MVP STEPS:
 - DeepLink to an APOD detail page
 - Favourites APODs
