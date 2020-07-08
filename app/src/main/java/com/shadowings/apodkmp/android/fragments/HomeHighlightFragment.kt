@@ -28,37 +28,44 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val set = initViews()
+        val set = initViews(context!!)
 
         logo = AppCompatImageView(context)
-        logo.id = View.generateViewId()
-        logo.elevation = 10.0F
+        with(logo) {
+            id = View.generateViewId()
+            setBackgroundResource(R.drawable.youtube_logo)
+            elevation = 10.0F
+            scaleType = ImageView.ScaleType.CENTER_INSIDE
+            visibility = View.GONE
+        }
 
         title = AppCompatTextView(activity)
-        title.id = View.generateViewId()
-        title.setTextColor(Color.WHITE)
-        title.gravity = Gravity.TOP
-        title.textSize = Dimens.textSizeBig
-        title.elevation = 10.0F
-
-        logo.id = View.generateViewId()
-        logo.scaleType = ImageView.ScaleType.CENTER_INSIDE
-        logo.setBackgroundResource(R.drawable.youtube_logo)
-        logo.visibility = View.GONE
+        with(title) {
+            setTextColor(Color.WHITE)
+            id = View.generateViewId()
+            gravity = Gravity.TOP
+            textSize = Dimens.textSizeBig
+            elevation = 10.0F
+        }
 
         latestLabel = AppCompatTextView(activity)
-        latestLabel.id = View.generateViewId()
-        latestLabel.setTextColor(Color.DKGRAY)
-        latestLabel.gravity = Gravity.BOTTOM
-        latestLabel.textSize = Dimens.textSizeMedium
-        latestLabel.text = "Latest:"
+        with(latestLabel) {
+            id = View.generateViewId()
+            setTextColor(Color.DKGRAY)
+            gravity = Gravity.BOTTOM
+            textSize = Dimens.textSizeMedium
+            text = "Latest:"
+        }
 
-        latest = RecyclerView(activity!!)
-        latest.id = View.generateViewId()
         val manager = LinearLayoutManager(activity)
         manager.orientation = RecyclerView.HORIZONTAL
-        latest.layoutManager = manager
-        latest.adapter = ApodAdapter()
+        latest = RecyclerView(activity!!)
+
+        with(latest) {
+            id = View.generateViewId()
+            layoutManager = manager
+            adapter = ApodAdapter()
+        }
 
         set.connect(title.id, ConstraintSet.START, highlightImage.id, ConstraintSet.START, Dimens.margin)
         set.connect(title.id, ConstraintSet.END, highlightImage.id, ConstraintSet.END, Dimens.margin)
@@ -81,12 +88,14 @@ class HomeHighlightFragment : BaseHighlightFragment() {
         set.connect(latest.id, ConstraintSet.BOTTOM, constraintLayout.id, ConstraintSet.BOTTOM, Dimens.margin)
         set.constrainHeight(latest.id, Dimens.latestCardSize)
 
-        constraintLayout.addView(highlightImage)
-        constraintLayout.addView(title)
-        constraintLayout.addView(logo)
-        constraintLayout.addView(latestLabel)
-        constraintLayout.addView(latest)
-        constraintLayout.setConstraintSet(set)
+        with(constraintLayout) {
+            addView(highlightImage)
+            addView(title)
+            addView(logo)
+            addView(latestLabel)
+            addView(latest)
+            setConstraintSet(set)
+        }
 
         scrollView.addView(constraintLayout)
 

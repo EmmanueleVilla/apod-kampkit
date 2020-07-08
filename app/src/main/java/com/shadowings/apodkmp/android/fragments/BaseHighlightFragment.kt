@@ -5,7 +5,6 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.DisplayMetrics
-import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
@@ -14,30 +13,25 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.shadowings.apodkmp.android.MainActivity
+import com.shadowings.apodkmp.android.utils.Views
+import com.shadowings.apodkmp.android.utils.connectToTopWithHeight
 
 open class BaseHighlightFragment : BaseFragment() {
 
     companion object {
-        val IMAGE_HEIGHT: String = "IMAGE_HEIGHT"
+        const val IMAGE_HEIGHT: String = "IMAGE_HEIGHT"
     }
 
     protected lateinit var highlightImage: AppCompatImageView
 
-    override fun initViews(): ConstraintSet {
-        val set = super.initViews()
-        highlightImage = AppCompatImageView(context)
-        highlightImage.id = View.generateViewId()
-        highlightImage.elevation = 9.0F
+    override fun initViews(context: Context): ConstraintSet {
+        val set = super.initViews(context)
+        highlightImage = Views.buildImage(context)
 
         val displayMetrics = DisplayMetrics()
         (context as MainActivity).windowManager.defaultDisplay.getMetrics(displayMetrics)
         val screenH = displayMetrics.heightPixels
-
-        set.connect(highlightImage.id, ConstraintSet.START, constraintLayout.id, ConstraintSet.START)
-        set.connect(highlightImage.id, ConstraintSet.END, constraintLayout.id, ConstraintSet.END)
-        set.connect(highlightImage.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP)
-        set.constrainHeight(highlightImage.id, screenH / 2)
-
+        set.connectToTopWithHeight(highlightImage, constraintLayout, screenH / 2)
         return set
     }
 

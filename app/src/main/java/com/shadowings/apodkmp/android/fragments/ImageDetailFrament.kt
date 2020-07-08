@@ -16,7 +16,7 @@ class ImageDetailFrament(val apod: Apod) : BaseHighlightFragment() {
     private lateinit var description: AppCompatTextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val set = initViews()
+        val set = initViews(context!!)
 
         title = AppCompatTextView(activity)
         title.id = View.generateViewId()
