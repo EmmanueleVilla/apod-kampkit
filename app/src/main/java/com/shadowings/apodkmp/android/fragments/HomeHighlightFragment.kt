@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import co.touchlab.kampstarter.android.R
 import com.shadowings.apodkmp.android.adapters.ApodAdapter
 import com.shadowings.apodkmp.android.utils.Dimens
+import com.shadowings.apodkmp.android.utils.appendBelowWithMarginAndHeight
+import com.shadowings.apodkmp.android.utils.bottomStartInParentWithSide
+import com.shadowings.apodkmp.android.utils.centerInParentWithMargin
 import com.shadowings.apodkmp.home.HomeInteractor
 
 class HomeHighlightFragment : BaseHighlightFragment() {
@@ -67,26 +70,12 @@ class HomeHighlightFragment : BaseHighlightFragment() {
             adapter = ApodAdapter()
         }
 
-        set.connect(title.id, ConstraintSet.START, highlightImage.id, ConstraintSet.START, Dimens.margin)
-        set.connect(title.id, ConstraintSet.END, highlightImage.id, ConstraintSet.END, Dimens.margin)
-        set.connect(title.id, ConstraintSet.BOTTOM, highlightImage.id, ConstraintSet.BOTTOM, Dimens.margin)
-        set.connect(title.id, ConstraintSet.TOP, highlightImage.id, ConstraintSet.TOP, Dimens.margin)
+        set.centerInParentWithMargin(title, highlightImage, Dimens.margin)
+        set.bottomStartInParentWithSide(logo, highlightImage, 200)
+        set.appendBelowWithMarginAndHeight(latestLabel, highlightImage, Dimens.margin, (Dimens.margin + Dimens.textSizeMedium).toInt())
+        set.appendBelowWithMarginAndHeight(latest, latestLabel, 0, Dimens.latestCardSize)
 
-        set.connect(logo.id, ConstraintSet.BOTTOM, highlightImage.id, ConstraintSet.BOTTOM, Dimens.margin)
-        set.connect(logo.id, ConstraintSet.START, highlightImage.id, ConstraintSet.START, Dimens.margin)
-        set.constrainHeight(logo.id, 200)
-        set.constrainWidth(logo.id, 200)
-
-        set.connect(latestLabel.id, ConstraintSet.START, highlightImage.id, ConstraintSet.START, Dimens.margin)
-        set.connect(latestLabel.id, ConstraintSet.END, highlightImage.id, ConstraintSet.END, Dimens.margin)
-        set.connect(latestLabel.id, ConstraintSet.TOP, highlightImage.id, ConstraintSet.BOTTOM, Dimens.margin)
-        set.constrainHeight(latestLabel.id, (Dimens.margin + Dimens.textSizeMedium + Dimens.margin).toInt())
-
-        set.connect(latest.id, ConstraintSet.START, highlightImage.id, ConstraintSet.START, 0)
-        set.connect(latest.id, ConstraintSet.END, highlightImage.id, ConstraintSet.END, 0)
-        set.connect(latest.id, ConstraintSet.TOP, latestLabel.id, ConstraintSet.BOTTOM, Dimens.margin)
         set.connect(latest.id, ConstraintSet.BOTTOM, constraintLayout.id, ConstraintSet.BOTTOM, Dimens.margin)
-        set.constrainHeight(latest.id, Dimens.latestCardSize)
 
         with(constraintLayout) {
             addView(highlightImage)
