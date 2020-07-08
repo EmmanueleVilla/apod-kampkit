@@ -1,23 +1,15 @@
 package com.shadowings.apodkmp.android.fragments
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import co.touchlab.kampstarter.android.R
-import com.shadowings.apodkmp.android.MainActivity
-import com.shadowings.apodkmp.android.adapters.ApodAdapter
-import com.shadowings.apodkmp.android.utils.Dimens
-import com.shadowings.apodkmp.android.utils.Views
-import com.shadowings.apodkmp.android.utils.bottomStartInParentWithSide
-import com.shadowings.apodkmp.android.utils.centerInParentWithMargin
+import com.bumptech.glide.Glide
+import com.shadowings.apodkmp.android.utils.verticalLayout
+import com.shadowings.apodkmp.android.utils.verticalScroll
 import com.shadowings.apodkmp.home.HomeInteractor
 import com.shadowings.apodkmp.model.Apod
 
@@ -33,6 +25,45 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        val view = verticalScroll {
+            verticalLayout {
+                highlightImage = image()
+                title = bigText()
+            }
+        }
+
+        homeInteractor.subscribe {
+            if (activity != null && it.homeState.latest.isNotEmpty()) {
+                requireActivity().runOnUiThread {
+
+                    val apods = it.homeState.latest
+                    this.apod = apods.first()
+
+                    /*
+                    (latest.adapter as ApodAdapter).apods = apods.subList(1, apods.size - 1)
+                    (latest.adapter as ApodAdapter).notifyDataSetChanged()
+
+                    logo.visibility = View.GONE
+                    logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
+                    title.text = apod.title
+
+                    loadImage(apod.url)
+
+                     */
+
+                    Glide.with(this)
+                            .load(apod.imageUrl)
+                            .into(highlightImage)
+
+                    title.text = apod.title
+                }
+            }
+        }
+
+        homeInteractor.init()
+
+        return view
+/*
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
         initViews(requireContext(), displayMetrics.heightPixels / 2)
@@ -44,7 +75,6 @@ class HomeHighlightFragment : BaseHighlightFragment() {
         logo = Views.buildImage(context!!, View.GONE)
         logo.setBackgroundResource(R.drawable.youtube_logo)
         logo.scaleType = ImageView.ScaleType.CENTER_INSIDE
-        logo.alpha = 0F
 
         title = Views.buildBigText(context!!, Color.WHITE)
         title.gravity = Gravity.TOP
@@ -69,26 +99,10 @@ class HomeHighlightFragment : BaseHighlightFragment() {
         linearLayout.addView(latestLabel)
         linearLayout.addView(latest)
 
-        homeInteractor.subscribe {
-            if (activity != null && it.homeState.latest.isNotEmpty()) {
-                activity!!.runOnUiThread {
 
-                    val apods = it.homeState.latest
-                    this.apod = apods.first()
-
-                    (latest.adapter as ApodAdapter).apods = apods.subList(1, apods.size - 1)
-                    (latest.adapter as ApodAdapter).notifyDataSetChanged()
-
-                    logo.visibility = View.GONE
-                    logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
-                    title.text = apod.title
-                    loadImage(apod.url)
-                }
-            }
-        }
-
-        homeInteractor.init()
 
         return scrollView
+
+ */
     }
 }

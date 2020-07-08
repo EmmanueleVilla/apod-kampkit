@@ -34,10 +34,9 @@ class Views {
             return view
         }
 
-        fun buildImage(context: Context, visibility: Int = View.VISIBLE): AppCompatImageView {
+        fun buildImage(context: Context): AppCompatImageView {
             val view = AppCompatImageView(context)
             view.id = View.generateViewId()
-            view.visibility = visibility
             view.elevation = 9.0F
             return view
         }
