@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.shadowings.apodkmp.android.fragments.HomeFragment
+import com.shadowings.apodkmp.android.fragments.HomeHighlightFragment
 import com.shadowings.apodkmp.android.fragments.SplashFragment
 import org.koin.core.KoinComponent
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
     fun openHome() {
         supportFragmentManager.beginTransaction()
-            .replace(frameLayout.id, HomeFragment())
+            .replace(frameLayout.id, HomeHighlightFragment())
             .commit()
     }
 }
