@@ -22,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import co.touchlab.kampstarter.android.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
@@ -38,6 +39,7 @@ class HomeFragment : Fragment() {
     private lateinit var constraintLayout: ConstraintLayout
     private lateinit var scrollView: ScrollView
     private lateinit var latest: RecyclerView
+    private lateinit var logo: AppCompatImageView
     private val homeInteractor: HomeInteractor =
         HomeInteractor()
 
@@ -73,12 +75,21 @@ class HomeFragment : Fragment() {
         image.id = View.generateViewId()
         image.elevation = 9.0F
 
+        logo = AppCompatImageView(context)
+        logo.id = View.generateViewId()
+        logo.elevation = 10.0F
+
         title = AppCompatTextView(activity)
         title.id = View.generateViewId()
         title.setTextColor(Color.WHITE)
         title.gravity = Gravity.TOP
         title.textSize = Dimens.textSizeBig
         title.elevation = 10.0F
+
+        logo.id = View.generateViewId()
+        logo.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        logo.setBackgroundResource(R.drawable.youtube_logo)
+        logo.visibility = View.GONE
 
         latestLabel = AppCompatTextView(activity)
         latestLabel.id = View.generateViewId()
@@ -109,6 +120,11 @@ class HomeFragment : Fragment() {
         set.connect(title.id, ConstraintSet.BOTTOM, image.id, ConstraintSet.BOTTOM, Dimens.margin)
         set.connect(title.id, ConstraintSet.TOP, image.id, ConstraintSet.TOP, Dimens.margin)
 
+        set.connect(logo.id, ConstraintSet.BOTTOM, image.id, ConstraintSet.BOTTOM, Dimens.margin)
+        set.connect(logo.id, ConstraintSet.START, image.id, ConstraintSet.START, Dimens.margin)
+        set.constrainHeight(logo.id, 200)
+        set.constrainWidth(logo.id, 200)
+
         set.connect(latestLabel.id, ConstraintSet.START, image.id, ConstraintSet.START, Dimens.margin)
         set.connect(latestLabel.id, ConstraintSet.END, image.id, ConstraintSet.END, Dimens.margin)
         set.connect(latestLabel.id, ConstraintSet.TOP, image.id, ConstraintSet.BOTTOM, Dimens.margin)
@@ -122,6 +138,7 @@ class HomeFragment : Fragment() {
 
         constraintLayout.addView(image)
         constraintLayout.addView(title)
+        constraintLayout.addView(logo)
         constraintLayout.addView(latestLabel)
         constraintLayout.addView(latest)
         constraintLayout.setConstraintSet(set)
@@ -137,6 +154,7 @@ class HomeFragment : Fragment() {
                     (latest.adapter as ApodAdapter).notifyDataSetChanged()
 
                     val apod = apods.first()
+                    logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
                     Glide.with(this)
                             .load(apod.url)
                             .into(object : CustomViewTarget<ImageView, Drawable>(image) {

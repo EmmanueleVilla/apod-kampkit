@@ -44,7 +44,7 @@ class ApodViewHolder(itemView: ApodView) : RecyclerView.ViewHolder(itemView) {
         } else {
             (itemView as ApodView).image.setBackgroundResource(android.R.color.transparent)
         }
-        (itemView as ApodView).logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
+        itemView.logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
     }
 }
 
