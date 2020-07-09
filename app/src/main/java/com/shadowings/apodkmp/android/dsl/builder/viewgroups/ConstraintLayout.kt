@@ -1,4 +1,4 @@
-package com.shadowings.apodkmp.android.dsl.builder
+package com.shadowings.apodkmp.android.dsl.builder.viewgroups
 
 import android.content.Context
 import android.graphics.Color
@@ -11,6 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.MATCH_CONSTRAINT
 import androidx.constraintlayout.widget.ConstraintSet
 import com.shadowings.apodkmp.android.dsl.ALayoutContainerBuilder
+import com.shadowings.apodkmp.android.dsl.builder.views.ImageBuilder
+import com.shadowings.apodkmp.android.dsl.builder.views.TextBuilder
 import com.shadowings.apodkmp.android.dsl.constants.Dimens
 import com.shadowings.apodkmp.android.dsl.utils.centerInParent
 import org.koin.core.KoinComponent

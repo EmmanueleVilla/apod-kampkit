@@ -1,4 +1,4 @@
-package com.shadowings.apodkmp.android.dsl.builder
+package com.shadowings.apodkmp.android.dsl.builder.viewgroups
 
 import android.content.Context
 import android.graphics.Color
@@ -10,11 +10,14 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.shadowings.apodkmp.android.dsl.ALayoutContainerBuilder
+import com.shadowings.apodkmp.android.dsl.builder.views.ImageBuilder
+import com.shadowings.apodkmp.android.dsl.builder.views.TextBuilder
 import com.shadowings.apodkmp.android.dsl.constants.Dimens
 import org.koin.core.KoinComponent
 import org.koin.core.get
 
-fun verticalLayout(block: VerticalLayoutBuilder.() -> Unit): LinearLayout = VerticalLayoutBuilder().apply(block).build()
+fun verticalLayout(block: VerticalLayoutBuilder.() -> Unit): LinearLayout = VerticalLayoutBuilder()
+    .apply(block).build()
 
 class VerticalLayoutBuilder : ALayoutContainerBuilder<LinearLayout>() {
     override fun create(): LinearLayout {

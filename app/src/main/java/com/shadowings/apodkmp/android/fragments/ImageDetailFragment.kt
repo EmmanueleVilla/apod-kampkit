@@ -9,9 +9,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.shadowings.apodkmp.android.dsl.builder.ConstraintPositions
-import com.shadowings.apodkmp.android.dsl.builder.verticalLayout
-import com.shadowings.apodkmp.android.dsl.builder.verticalScroll
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.ConstraintPositions
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.verticalLayout
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.verticalScroll
 import com.shadowings.apodkmp.model.Apod
 
 class ImageDetailFragment(private val apod: Apod, private val imageHeight: Int) : Fragment() {

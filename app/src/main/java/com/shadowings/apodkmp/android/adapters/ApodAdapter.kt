@@ -12,8 +12,8 @@ import co.touchlab.kampstarter.android.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.shadowings.apodkmp.android.dsl.builder.ConstraintPositions
-import com.shadowings.apodkmp.android.dsl.builder.constraintLayout
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.ConstraintPositions
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.constraintLayout
 import com.shadowings.apodkmp.android.dsl.constants.Dimens
 import com.shadowings.apodkmp.model.Apod
 
@@ -25,9 +25,21 @@ class ApodAdapter(var clickListener: (image: AppCompatImageView, apod: Apod) -> 
         var image: AppCompatImageView? = null
         var logo: AppCompatImageView? = null
 
-        val view = constraintLayout(height = Dimens.latestCardSize, width = Dimens.latestCardSize) {
-            image = image(position = ConstraintPositions.Center, scaleType = ImageView.ScaleType.CENTER_CROP, backgroundColor = Color.GRAY)
-            logo = image(drawable = R.drawable.youtube_logo, width = Dimens.logo / 2, height = Dimens.logo / 2, position = ConstraintPositions.BottomStart)
+        val view = constraintLayout(
+            height = Dimens.latestCardSize,
+            width = Dimens.latestCardSize
+        ) {
+            image = image(
+                position = ConstraintPositions.Center,
+                scaleType = ImageView.ScaleType.CENTER_CROP,
+                backgroundColor = Color.GRAY
+            )
+            logo = image(
+                drawable = R.drawable.youtube_logo,
+                width = Dimens.logo / 2,
+                height = Dimens.logo / 2,
+                position = ConstraintPositions.BottomStart
+            )
         }
         return ApodViewHolder(view, image!!, logo!!, clickListener)
     }

@@ -14,9 +14,9 @@ import co.touchlab.kampstarter.android.R
 import com.shadowings.apodkmp.android.MainActivity
 import com.shadowings.apodkmp.android.adapters.ApodAdapter
 import com.shadowings.apodkmp.android.animations.loadImageAnimated
-import com.shadowings.apodkmp.android.dsl.builder.ConstraintPositions
-import com.shadowings.apodkmp.android.dsl.builder.verticalLayout
-import com.shadowings.apodkmp.android.dsl.builder.verticalScroll
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.ConstraintPositions
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.verticalLayout
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.verticalScroll
 import com.shadowings.apodkmp.android.dsl.constants.Dimens
 import com.shadowings.apodkmp.home.HomeInteractor
 import com.shadowings.apodkmp.model.Apod
@@ -57,7 +57,12 @@ class HomeHighlightFragment : Fragment() {
                 imageContainer = constraintLayout(height = 500) {
                     highlightImage = image(position = ConstraintPositions.Center, margin = 0)
                     title = text(size = Dimens.textSizeBig, color = Color.WHITE, position = ConstraintPositions.Center)
-                    logo = image(drawable = R.drawable.youtube_logo, width = Dimens.logo, height = Dimens.logo, position = ConstraintPositions.BottomStart)
+                    logo = image(
+                        drawable = R.drawable.youtube_logo,
+                        width = Dimens.logo,
+                        height = Dimens.logo,
+                        position = ConstraintPositions.BottomStart
+                    )
                 }
                 text(value = "Latest:")
                 horizontalRecycler(apodAdapter, height = Dimens.latestCardSize)

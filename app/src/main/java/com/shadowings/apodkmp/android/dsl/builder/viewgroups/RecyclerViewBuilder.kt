@@ -1,4 +1,4 @@
-package com.shadowings.apodkmp.android.dsl.builder
+package com.shadowings.apodkmp.android.dsl.builder.viewgroups
 
 import android.content.Context
 import android.view.View

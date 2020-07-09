@@ -7,10 +7,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.shadowings.apodkmp.android.dsl.builder.ConstraintLayoutBuilder
-import com.shadowings.apodkmp.android.dsl.builder.ImageBuilder
-import com.shadowings.apodkmp.android.dsl.builder.RecyclerViewBuilder
-import com.shadowings.apodkmp.android.dsl.builder.TextBuilder
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.ConstraintLayoutBuilder
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.RecyclerViewBuilder
+import com.shadowings.apodkmp.android.dsl.builder.views.ImageBuilder
+import com.shadowings.apodkmp.android.dsl.builder.views.TextBuilder
 
 abstract class ALayoutContainerBuilder<T : ViewGroup> {
 
