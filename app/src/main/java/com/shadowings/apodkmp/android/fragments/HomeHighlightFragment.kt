@@ -2,6 +2,7 @@ package com.shadowings.apodkmp.android.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,10 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
         val apodAdapter = ApodAdapter {
                 image, apod ->
-            (activity as MainActivity).openDetailFromFragment(apod, this, image.height)
+            val displayMetrics = DisplayMetrics()
+            requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+            val multiplier = 1.0f * displayMetrics.widthPixels / image.drawable.intrinsicWidth
+            (activity as MainActivity).openDetailFromFragment(apod, this, (image.drawable.intrinsicHeight * multiplier).toInt())
         }
 
         val view = verticalScroll {
@@ -45,6 +49,10 @@ class HomeHighlightFragment : BaseHighlightFragment() {
                 latestLabel = text(value = "Latest:")
                 horizontalRecycler(apodAdapter, height = Dimens.latestCardSize)
             }
+        }
+
+        imageContainer.setOnClickListener {
+            (activity as MainActivity).openDetailFromFragment(apod, this, imageContainer.height)
         }
 
         homeInteractor.subscribe {
