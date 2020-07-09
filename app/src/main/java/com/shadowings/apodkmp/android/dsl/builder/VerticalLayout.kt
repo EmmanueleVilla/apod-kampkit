@@ -1,15 +1,16 @@
-package com.shadowings.apodkmp.android.utils.dsl
+package com.shadowings.apodkmp.android.dsl.builder
 
 import android.content.Context
 import android.graphics.Color
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.shadowings.apodkmp.android.dsl.ALayoutContainerBuilder
+import com.shadowings.apodkmp.android.dsl.constants.Dimens
 import org.koin.core.KoinComponent
 import org.koin.core.get
 

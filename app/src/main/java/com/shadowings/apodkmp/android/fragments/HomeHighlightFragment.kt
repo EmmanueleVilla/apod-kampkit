@@ -8,18 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import co.touchlab.kampstarter.android.R
 import com.shadowings.apodkmp.android.MainActivity
 import com.shadowings.apodkmp.android.adapters.ApodAdapter
-import com.shadowings.apodkmp.android.utils.dsl.ConstraintPositions
-import com.shadowings.apodkmp.android.utils.dsl.Dimens
-import com.shadowings.apodkmp.android.utils.dsl.verticalLayout
-import com.shadowings.apodkmp.android.utils.dsl.verticalScroll
+import com.shadowings.apodkmp.android.animations.loadImageAnimated
+import com.shadowings.apodkmp.android.dsl.builder.ConstraintPositions
+import com.shadowings.apodkmp.android.dsl.builder.verticalLayout
+import com.shadowings.apodkmp.android.dsl.builder.verticalScroll
+import com.shadowings.apodkmp.android.dsl.constants.Dimens
 import com.shadowings.apodkmp.home.HomeInteractor
 import com.shadowings.apodkmp.model.Apod
 
-class HomeHighlightFragment : BaseHighlightFragment() {
+class HomeHighlightFragment : Fragment() {
 
+    private lateinit var imageContainer: ConstraintLayout
+    private lateinit var highlightImage: AppCompatImageView
     private lateinit var title: AppCompatTextView
     private lateinit var logo: AppCompatImageView
     private val homeInteractor: HomeInteractor =
@@ -74,7 +79,7 @@ class HomeHighlightFragment : BaseHighlightFragment() {
                     apodAdapter.apods = apods.subList(1, apods.size - 1)
                     apodAdapter.notifyDataSetChanged()
 
-                    loadImage(apod.imageUrl)
+                    highlightImage.loadImageAnimated(imageContainer, apod.imageUrl)
                     title.text = apod.title
                     logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
                 }

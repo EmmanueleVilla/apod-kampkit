@@ -1,4 +1,4 @@
-package com.shadowings.apodkmp.android.utils.dsl
+package com.shadowings.apodkmp.android.dsl.utils
 
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintSet

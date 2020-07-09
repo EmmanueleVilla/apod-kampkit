@@ -14,7 +14,7 @@ import androidx.transition.ChangeTransform
 import androidx.transition.Fade
 import androidx.transition.TransitionSet
 import com.shadowings.apodkmp.android.fragments.HomeHighlightFragment
-import com.shadowings.apodkmp.android.fragments.ImageDetailFrament
+import com.shadowings.apodkmp.android.fragments.ImageDetailFragment
 import com.shadowings.apodkmp.android.fragments.SplashFragment
 import com.shadowings.apodkmp.model.Apod
 import org.koin.core.KoinComponent
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
     fun openDetail(apod: Apod) {
         val displayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val detail = ImageDetailFrament(apod, displayMetrics.heightPixels / 2)
+        val detail = ImageDetailFragment(apod, displayMetrics.heightPixels / 2)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             detail.enterTransition = Fade()
         }
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
     fun openDetailFromFragment(apod: Apod, from: Fragment, view: ImageView, height: Int) {
 
-        val detail = ImageDetailFrament(apod, height)
+        val detail = ImageDetailFragment(apod, height)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             detail.sharedElementEnterTransition = DetailsTransition()
             detail.sharedElementReturnTransition = DetailsTransition()

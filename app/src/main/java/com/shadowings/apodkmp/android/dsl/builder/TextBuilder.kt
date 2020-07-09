@@ -1,9 +1,10 @@
-package com.shadowings.apodkmp.android.utils.dsl
+package com.shadowings.apodkmp.android.dsl.builder
 
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import com.shadowings.apodkmp.android.dsl.constants.Dimens
 import org.koin.core.KoinComponent
 import org.koin.core.get
 

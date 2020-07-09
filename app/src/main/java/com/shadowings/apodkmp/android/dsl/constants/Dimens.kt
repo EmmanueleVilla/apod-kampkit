@@ -1,7 +1,6 @@
-package com.shadowings.apodkmp.android.utils.dsl
+package com.shadowings.apodkmp.android.dsl.constants
 
 object Dimens {
-
     val logo: Int
         get() = 128
 

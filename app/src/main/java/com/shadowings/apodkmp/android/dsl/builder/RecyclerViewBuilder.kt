@@ -1,9 +1,8 @@
-package com.shadowings.apodkmp.android.utils.dsl
+package com.shadowings.apodkmp.android.dsl.builder
 
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView

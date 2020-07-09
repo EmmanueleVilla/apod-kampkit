@@ -1,13 +1,16 @@
-package com.shadowings.apodkmp.android.utils.dsl
+package com.shadowings.apodkmp.android.dsl
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.shadowings.apodkmp.android.dsl.builder.ConstraintLayoutBuilder
+import com.shadowings.apodkmp.android.dsl.builder.ImageBuilder
+import com.shadowings.apodkmp.android.dsl.builder.RecyclerViewBuilder
+import com.shadowings.apodkmp.android.dsl.builder.TextBuilder
 
 abstract class ALayoutContainerBuilder<T : ViewGroup> {
 
@@ -32,7 +35,8 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
         backgroundColor: Int,
         block: ImageBuilder.() -> Unit
     ): AppCompatImageView {
-        val view = ImageBuilder().apply(block).build(drawable, scaleType, width, height, backgroundColor)
+        val view = ImageBuilder()
+            .apply(block).build(drawable, scaleType, width, height, backgroundColor)
         children.add(view)
         return view
     }
@@ -42,7 +46,8 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
         height: Int,
         block: RecyclerViewBuilder.() -> Unit
     ): RecyclerView {
-        val view = RecyclerViewBuilder().apply(block).build(height, adapter)
+        val view = RecyclerViewBuilder()
+            .apply(block).build(height, adapter)
         children.add(view)
         return view
     }
@@ -53,7 +58,8 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
         color: Int,
         block: TextBuilder.() -> Unit
     ): AppCompatTextView {
-        val view = TextBuilder().apply(block).build(text, size, color)
+        val view = TextBuilder()
+            .apply(block).build(text, size, color)
         children.add(view)
         return view
     }
