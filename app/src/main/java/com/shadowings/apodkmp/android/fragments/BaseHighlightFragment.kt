@@ -9,7 +9,6 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
@@ -23,33 +22,6 @@ open class BaseHighlightFragment : BaseFragment() {
 
     protected lateinit var imageContainer: ConstraintLayout
     protected lateinit var highlightImage: AppCompatImageView
-    protected val imageContainerSet: ConstraintSet = ConstraintSet()
-
-    fun initViews(context: Context, imageHeight: Int) {
-/*
-        scrollView = Views.buildScrollView(context)
-        linearLayout = Views.buildLinearLayout(context)
-        scrollView.addView(linearLayout)
-
-        scrollView.setBackgroundColor(Color.LTGRAY)
-
-        highlightImage = Views.buildImage(context)
-        imageContainer = Views.buildConstraintLayout(context)
-        imageContainer.layoutParams = ConstraintLayout.LayoutParams(MATCH_PARENT, imageHeight)
-
-        imageContainer.addView(highlightImage)
-
-        imageContainerSet.connect(highlightImage.id, ConstraintSet.TOP, imageContainer.id, ConstraintSet.TOP)
-        imageContainerSet.connect(highlightImage.id, ConstraintSet.LEFT, imageContainer.id, ConstraintSet.LEFT)
-        imageContainerSet.connect(highlightImage.id, ConstraintSet.RIGHT, imageContainer.id, ConstraintSet.RIGHT)
-        imageContainerSet.connect(highlightImage.id, ConstraintSet.BOTTOM, imageContainer.id, ConstraintSet.BOTTOM)
-
-        imageContainerSet.applyTo(imageContainer)
-
-        linearLayout.addView(imageContainer)
-
- */
-    }
 
     fun loadImage(url: String) {
         Glide.with(this)

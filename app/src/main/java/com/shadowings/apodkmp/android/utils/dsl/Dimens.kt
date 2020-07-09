@@ -2,6 +2,9 @@ package com.shadowings.apodkmp.android.utils.dsl
 
 object Dimens {
 
+    val logo: Int
+        get() = 128
+
     val textSizeMedium: Float
         get() = 18.0F
 
@@ -9,7 +12,7 @@ object Dimens {
         get() = 24.0F
 
     val margin: Int
-        get() = 64
+        get() = 32
 
     val latestCardSize: Int
         get() = 500

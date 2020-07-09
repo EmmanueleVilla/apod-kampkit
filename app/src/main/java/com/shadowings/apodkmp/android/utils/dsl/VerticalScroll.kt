@@ -1,6 +1,7 @@
 package com.shadowings.apodkmp.android.utils.dsl
 
 import android.content.Context
+import android.graphics.Color
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import org.koin.core.KoinComponent
@@ -12,5 +13,6 @@ fun verticalScroll(block: ScrollView.() -> LinearLayout): ScrollView {
     }
     val view = ScrollView(container.ctx)
     view.addView(block(view))
+    view.setBackgroundColor(Color.LTGRAY)
     return view
 }
