@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.recyclerview.widget.RecyclerView
 import co.touchlab.kampstarter.android.R
 import com.shadowings.apodkmp.android.MainActivity
 import com.shadowings.apodkmp.android.adapters.ApodAdapter
@@ -22,8 +21,6 @@ import com.shadowings.apodkmp.model.Apod
 class HomeHighlightFragment : BaseHighlightFragment() {
 
     private lateinit var title: AppCompatTextView
-    private lateinit var latestLabel: AppCompatTextView
-    private lateinit var latest: RecyclerView
     private lateinit var logo: AppCompatImageView
     private val homeInteractor: HomeInteractor =
         HomeInteractor()
@@ -57,7 +54,7 @@ class HomeHighlightFragment : BaseHighlightFragment() {
                     title = text(size = Dimens.textSizeBig, color = Color.WHITE, position = ConstraintPositions.Center)
                     logo = image(drawable = R.drawable.youtube_logo, width = Dimens.logo, height = Dimens.logo, position = ConstraintPositions.BottomStart)
                 }
-                latestLabel = text(value = "Latest:")
+                text(value = "Latest:")
                 horizontalRecycler(apodAdapter, height = Dimens.latestCardSize)
             }
         }

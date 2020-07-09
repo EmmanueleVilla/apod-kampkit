@@ -12,10 +12,10 @@
         android:theme="@style/AppTheme"
         android:name="com.shadowings.apodkmp.android.MainApp"
     >
-        <activity android:name="com.shadowings.apodkmp.android.MainActivity">
+        <activity android:name="com.shadowings.apodkmp.android.MainActivity"
+                  android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
