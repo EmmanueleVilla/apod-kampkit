@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.Adapter
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -34,8 +35,10 @@ class VerticalLayoutBuilder : ALayoutContainerBuilder<LinearLayout>() {
         drawable: Int? = null,
         width: Int = MATCH_PARENT,
         height: Int = MATCH_PARENT,
+        scaleType: ImageView.ScaleType = ImageView.ScaleType.FIT_XY,
+        backgroundColor: Int = Color.TRANSPARENT,
         block: ImageBuilder.() -> Unit = { }
-    ): AppCompatImageView = imageInternal(drawable, width, height, block)
+    ): AppCompatImageView = imageInternal(drawable, width, height, scaleType, backgroundColor, block)
 
     fun text(
         value: String = "",

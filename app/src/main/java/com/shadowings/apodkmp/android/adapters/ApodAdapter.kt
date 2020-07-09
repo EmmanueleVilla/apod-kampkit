@@ -1,8 +1,12 @@
 package com.shadowings.apodkmp.android.adapters
 
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import co.touchlab.kampstarter.android.R
 import com.bumptech.glide.Glide
@@ -10,7 +14,6 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withC
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.shadowings.apodkmp.android.utils.dsl.ConstraintPositions
 import com.shadowings.apodkmp.android.utils.dsl.Dimens
-import com.shadowings.apodkmp.android.utils.dsl.Dimens.logo
 import com.shadowings.apodkmp.android.utils.dsl.constraintLayout
 import com.shadowings.apodkmp.model.Apod
 
@@ -21,8 +24,9 @@ class ApodAdapter(var clickListener: (image: AppCompatImageView, apod: Apod) -> 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApodViewHolder {
         var image: AppCompatImageView? = null
         var logo: AppCompatImageView? = null
+
         val view = constraintLayout(height = Dimens.latestCardSize, width = Dimens.latestCardSize) {
-            image = image(position = ConstraintPositions.Center)
+            image = image(position = ConstraintPositions.Center, scaleType = ImageView.ScaleType.CENTER_CROP, backgroundColor = Color.GRAY)
             logo = image(drawable = R.drawable.youtube_logo, width = Dimens.logo / 2, height = Dimens.logo / 2, position = ConstraintPositions.BottomStart)
         }
         return ApodViewHolder(view, image!!, logo!!, clickListener)
@@ -38,15 +42,22 @@ class ApodAdapter(var clickListener: (image: AppCompatImageView, apod: Apod) -> 
 }
 
 class ApodViewHolder(
-    itemView: View,
+    private val container: ConstraintLayout,
     private val image: AppCompatImageView,
     private val logo: AppCompatImageView,
     val clickListener: (image: AppCompatImageView, apod: Apod) -> Unit
 ) :
-    RecyclerView.ViewHolder(itemView) {
+    RecyclerView.ViewHolder(container) {
     fun setData(apod: Apod) {
         if (apod.imageUrl != "") {
             val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
+
+            if (apod.imageAspectRatio != 0.0F) {
+                val set = ConstraintSet()
+                set.clone(container)
+                set.constrainWidth(image.id, (Dimens.latestCardSize * apod.imageAspectRatio).toInt())
+            }
+
             Glide.with(itemView)
                 .load(apod.imageUrl)
                 .transition(withCrossFade(factory))

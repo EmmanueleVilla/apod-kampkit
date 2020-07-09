@@ -58,19 +58,15 @@ class HomeHighlightFragment : BaseHighlightFragment() {
         homeInteractor.subscribe {
             if (activity != null && it.homeState.latest.isNotEmpty()) {
                 requireActivity().runOnUiThread {
-
                     val apods = it.homeState.latest
                     this.apod = apods.first()
 
                     apodAdapter.apods = apods.subList(1, apods.size - 1)
                     apodAdapter.notifyDataSetChanged()
 
-                    logo.visibility = View.GONE
-                    logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
-                    title.text = apod.title
-
                     loadImage(apod.imageUrl)
                     title.text = apod.title
+                    logo.visibility = if (apod.media_type == "video") View.VISIBLE else View.GONE
                 }
             }
         }

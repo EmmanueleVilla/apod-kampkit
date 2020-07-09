@@ -13,6 +13,7 @@ data class Apod(
     val title: String = "",
     val url: String = ""
 ) {
+    var imageAspectRatio = 0.0F
     val imageUrl: String
         get() {
             return when (media_type) {

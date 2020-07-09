@@ -3,6 +3,7 @@ package com.shadowings.apodkmp.android.utils.dsl
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -27,9 +28,11 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
         drawable: Int?,
         width: Int,
         height: Int,
+        scaleType: ImageView.ScaleType,
+        backgroundColor: Int,
         block: ImageBuilder.() -> Unit
     ): AppCompatImageView {
-        val view = ImageBuilder().apply(block).build(drawable, width, height)
+        val view = ImageBuilder().apply(block).build(drawable, scaleType, width, height, backgroundColor)
         children.add(view)
         return view
     }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -101,11 +102,13 @@ class ConstraintLayoutBuilder : ALayoutContainerBuilder<ConstraintLayout>() {
         drawable: Int? = null,
         position: ConstraintPositions,
         margin: Int = Dimens.margin,
+        scaleType: ImageView.ScaleType = ImageView.ScaleType.FIT_XY,
         width: Int = MATCH_CONSTRAINT,
         height: Int = MATCH_CONSTRAINT,
+        backgroundColor: Int = Color.TRANSPARENT,
         block: ImageBuilder.() -> Unit = { }
     ): AppCompatImageView {
-        val image = imageInternal(drawable, width, height, block)
+        val image = imageInternal(drawable, width, height, scaleType, backgroundColor, block)
         addConstraints(image, position, width, height, margin)
         return image
     }
