@@ -5,9 +5,14 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.ChangeTransform
 import androidx.transition.Fade
+import androidx.transition.TransitionSet
 import com.shadowings.apodkmp.android.fragments.HomeHighlightFragment
 import com.shadowings.apodkmp.android.fragments.ImageDetailFrament
 import com.shadowings.apodkmp.android.fragments.SplashFragment
@@ -17,6 +22,7 @@ import org.koin.core.KoinComponent
 class MainActivity : AppCompatActivity(), KoinComponent {
 
     private lateinit var frameLayout: FrameLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
@@ -51,17 +57,30 @@ class MainActivity : AppCompatActivity(), KoinComponent {
             .commit()
     }
 
-    fun openDetailFromFragment(apod: Apod, from: Fragment, height: Int) {
+    fun openDetailFromFragment(apod: Apod, from: Fragment, view: ImageView, height: Int) {
 
         val detail = ImageDetailFrament(apod, height)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            detail.sharedElementEnterTransition = DetailsTransition()
+            detail.sharedElementReturnTransition = DetailsTransition()
             detail.enterTransition = Fade()
             from.exitTransition = Fade()
         }
         supportFragmentManager
             .beginTransaction()
+            .detach(from)
             .add(frameLayout.id, detail)
+            .addSharedElement(view, apod.date)
             .addToBackStack(apod.date)
             .commit()
+    }
+
+    class DetailsTransition : TransitionSet() {
+        init {
+            ordering = ORDERING_TOGETHER
+            addTransition(ChangeBounds())
+            .addTransition(ChangeTransform())
+            .addTransition(ChangeImageTransform())
+        }
     }
 }

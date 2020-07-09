@@ -28,18 +28,33 @@ class HomeHighlightFragment : BaseHighlightFragment() {
     private val homeInteractor: HomeInteractor =
         HomeInteractor()
     private var apod: Apod = Apod()
+    private var content: View? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        if (content != null) {
+            return content
+        }
 
         val apodAdapter = ApodAdapter {
                 image, apod ->
             val displayMetrics = DisplayMetrics()
             requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
             val multiplier = 1.0f * displayMetrics.widthPixels / image.drawable.intrinsicWidth
-            (activity as MainActivity).openDetailFromFragment(apod, this, (image.drawable.intrinsicHeight * multiplier).toInt())
+            image.transitionName = apod.date
+            (activity as MainActivity).openDetailFromFragment(
+                apod,
+                this,
+                image,
+                (image.drawable.intrinsicHeight * multiplier).toInt()
+            )
         }
 
-        val view = verticalScroll {
+        content = verticalScroll {
             verticalLayout {
                 imageContainer = constraintLayout(height = 500) {
                     highlightImage = image(position = ConstraintPositions.Center, margin = 0)
@@ -52,7 +67,7 @@ class HomeHighlightFragment : BaseHighlightFragment() {
         }
 
         imageContainer.setOnClickListener {
-            (activity as MainActivity).openDetailFromFragment(apod, this, imageContainer.height)
+            (activity as MainActivity).openDetailFromFragment(apod, this, highlightImage, imageContainer.height)
         }
 
         homeInteractor.subscribe {
@@ -60,6 +75,8 @@ class HomeHighlightFragment : BaseHighlightFragment() {
                 requireActivity().runOnUiThread {
                     val apods = it.homeState.latest
                     this.apod = apods.first()
+
+                    highlightImage.transitionName = apod.date
 
                     apodAdapter.apods = apods.subList(1, apods.size - 1)
                     apodAdapter.notifyDataSetChanged()
@@ -73,6 +90,6 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
         homeInteractor.init()
 
-        return view
+        return content
     }
 }

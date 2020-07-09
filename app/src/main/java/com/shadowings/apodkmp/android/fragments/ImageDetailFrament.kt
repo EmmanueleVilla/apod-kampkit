@@ -27,6 +27,9 @@ class ImageDetailFrament(private val apod: Apod, private val imageHeight: Int) :
                 description = text()
             }
         }
+
+        highlightImage.transitionName = apod.date
+
         Glide.with(this)
             .load(apod.imageUrl)
             .into(highlightImage)
