@@ -30,10 +30,6 @@ class HomeHighlightFragment : BaseHighlightFragment() {
     private var apod: Apod = Apod()
     private var content: View? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         if (content != null) {
