@@ -9,7 +9,7 @@ object Dimens {
         get() = 24.0F
 
     val margin: Int
-        get() = 32
+        get() = 64
 
     val latestCardSize: Int
         get() = 500

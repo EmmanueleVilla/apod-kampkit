@@ -3,21 +3,21 @@ package com.shadowings.apodkmp.android.utils.dsl
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintSet
 
-fun ConstraintSet.connectToTopWithHeightAndMargin(child: View, parent: View, height: Int, margin: Int) {
-    this.connect(child.id, ConstraintSet.START, parent.id, ConstraintSet.START, margin)
-    this.connect(child.id, ConstraintSet.END, parent.id, ConstraintSet.END, margin)
-    this.connect(child.id, ConstraintSet.TOP, parent.id, ConstraintSet.TOP, margin)
-    this.constrainHeight(child.id, height)
+enum class Connection {
+    Top,
+    Bottom
 }
 
-fun ConstraintSet.connectToBottomWithHeightAndMargin(child: View, parent: View, height: Int, margin: Int) {
+fun ConstraintSet.connectTo(connection: Connection, child: View, parent: View, margin: Int = Dimens.margin) {
     this.connect(child.id, ConstraintSet.START, parent.id, ConstraintSet.START, margin)
     this.connect(child.id, ConstraintSet.END, parent.id, ConstraintSet.END, margin)
-    this.connect(child.id, ConstraintSet.BOTTOM, parent.id, ConstraintSet.BOTTOM, margin)
-    this.constrainHeight(child.id, height)
+    when (connection) {
+        Connection.Top -> this.connect(child.id, ConstraintSet.TOP, parent.id, ConstraintSet.TOP, margin)
+        Connection.Bottom -> this.connect(child.id, ConstraintSet.BOTTOM, parent.id, ConstraintSet.BOTTOM, margin)
+    }
 }
 
-fun ConstraintSet.centerInParentWithMargin(child: View, parent: View, margin: Int) {
+fun ConstraintSet.centerInParent(child: View, parent: View, margin: Int = Dimens.margin) {
     this.connect(child.id, ConstraintSet.START, parent.id, ConstraintSet.START, margin)
     this.connect(child.id, ConstraintSet.END, parent.id, ConstraintSet.END, margin)
     this.connect(child.id, ConstraintSet.BOTTOM, parent.id, ConstraintSet.BOTTOM, margin)

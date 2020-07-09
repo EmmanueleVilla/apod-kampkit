@@ -1,14 +1,15 @@
 package com.shadowings.apodkmp.android.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import co.touchlab.kampstarter.android.R
-import com.bumptech.glide.Glide
 import com.shadowings.apodkmp.android.utils.dsl.ConstraintPositions
 import com.shadowings.apodkmp.android.utils.dsl.Dimens
 import com.shadowings.apodkmp.android.utils.dsl.verticalLayout
@@ -30,14 +31,17 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
         val view = verticalScroll {
             verticalLayout {
-                constraintLayout(height = 500) {
-                    highlightImage = image(position = ConstraintPositions.CenterMatch)
-                    title = text(size = Dimens.textSizeBig, position = ConstraintPositions.TopLeft)
-                    logo = image(drawable = R.drawable.youtube_logo, position = ConstraintPositions.BottomLeft)
+                imageContainer = constraintLayout(height = 500) {
+                    highlightImage = image(drawable = R.drawable.youtube_logo, position = ConstraintPositions.CenterMatch)
+                    title = text(size = Dimens.textSizeBig, color = Color.WHITE, position = ConstraintPositions.CenterMatch)
+                    logo = image(drawable = R.drawable.youtube_logo, width = 128, height = 128, position = ConstraintPositions.BottomLeft)
                 }
                 latestLabel = text(value = "Latest:")
             }
         }
+
+        val set = ConstraintSet()
+        set.clone(imageContainer)
 
         homeInteractor.subscribe {
             if (activity != null && it.homeState.latest.isNotEmpty()) {
@@ -58,11 +62,8 @@ class HomeHighlightFragment : BaseHighlightFragment() {
 
                      */
 
-                    Glide.with(this)
-                            .load(apod.imageUrl)
-                            .into(highlightImage)
-
-                    title.text = apod.title
+                    // loadImage(apod.imageUrl)
+                    // title.text = apod.title
                 }
             }
         }
