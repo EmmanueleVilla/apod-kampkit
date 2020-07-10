@@ -2,12 +2,14 @@ package com.shadowings.apodkmp.android.dsl
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.shadowings.apodkmp.android.dsl.builder.viewgroups.ConstraintLayoutBuilder
 import com.shadowings.apodkmp.android.dsl.builder.viewgroups.RecyclerViewBuilder
+import com.shadowings.apodkmp.android.dsl.builder.viewgroups.VerticalLayoutBuilder
 import com.shadowings.apodkmp.android.dsl.builder.views.ImageBuilder
 import com.shadowings.apodkmp.android.dsl.builder.views.TextBuilder
 
@@ -48,6 +50,13 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
     ): RecyclerView {
         val view = RecyclerViewBuilder()
             .apply(block).build(width, height, margin, adapter)
+        children.add(view)
+        return view
+    }
+
+    protected fun verticalLayoutInternal(width: Int, height: Int, gravity: Int, block: VerticalLayoutBuilder.() -> Unit): LinearLayout {
+        var view = VerticalLayoutBuilder(width, height, gravity)
+            .apply(block).build()
         children.add(view)
         return view
     }

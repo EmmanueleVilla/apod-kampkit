@@ -130,4 +130,17 @@ class ConstraintLayoutBuilder : ALayoutContainerBuilder<ConstraintLayout>() {
         addConstraints(text, position, width, height, margin)
         return text
     }
+
+    fun constraintLayout(
+        margin: Int = Dimens.margin,
+        position: ConstraintPositions,
+        width: Int = ViewGroup.LayoutParams.MATCH_PARENT,
+        height: Int = ViewGroup.LayoutParams.MATCH_PARENT,
+        block: ConstraintLayoutBuilder.() -> Unit = { }
+    ): ConstraintLayout {
+        val view = ConstraintLayoutBuilder().apply(block).build()
+        view.layoutParams = ConstraintLayout.LayoutParams(width, height)
+        addConstraints(view, position, width, height, margin)
+        return view
+    }
 }
