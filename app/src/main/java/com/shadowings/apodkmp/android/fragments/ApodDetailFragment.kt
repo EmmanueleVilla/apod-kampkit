@@ -14,7 +14,7 @@ import com.shadowings.apodkmp.android.dsl.builder.viewgroups.verticalLayout
 import com.shadowings.apodkmp.android.dsl.builder.viewgroups.verticalScroll
 import com.shadowings.apodkmp.model.Apod
 
-class ImageDetailFragment(private val apod: Apod, private val imageHeight: Int) : Fragment() {
+class ApodDetailFragment(private val apod: Apod, private val imageHeight: Int) : Fragment() {
 
     private lateinit var imageContainer: ConstraintLayout
     private lateinit var highlightImage: AppCompatImageView

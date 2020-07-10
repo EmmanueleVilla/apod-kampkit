@@ -44,7 +44,7 @@ class HomeHighlightFragment : Fragment() {
             requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
             val multiplier = 1.0f * displayMetrics.widthPixels / image.drawable.intrinsicWidth
             image.transitionName = apod.date
-            (activity as MainActivity).openDetailFromFragment(
+            (activity as MainActivity).openDetailWithTransaction(
                 apod,
                 this,
                 image,
@@ -70,7 +70,7 @@ class HomeHighlightFragment : Fragment() {
         }
 
         imageContainer.setOnClickListener {
-            (activity as MainActivity).openDetailFromFragment(apod, this, highlightImage, imageContainer.height)
+            (activity as MainActivity).openDetailWithHeight(apod, imageContainer.height)
         }
 
         homeInteractor.subscribe {

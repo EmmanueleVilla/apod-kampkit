@@ -17,13 +17,18 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     packagingOptions {
         exclude("META-INF/*.kotlin_module")
     }
     buildTypes {
+        getByName("debug") {
+            buildConfigField("String", "YOUTUBE_API_KEY", "\"" + System.getenv("YOUTUBE_API_KEY") + "\"")
+        }
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            buildConfigField("String", "YOUTUBE_API_KEY", "\"" + System.getenv("YOUTUBE_API_KEY") + "\"")
         }
     }
     compileOptions {
@@ -56,6 +61,5 @@ dependencies {
     testImplementation(Deps.junit)
     implementation("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
+    implementation("com.github.davidmigloz:youtube-android-player-api-gradle:1.2.2")
 }

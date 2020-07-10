@@ -13,8 +13,8 @@ import androidx.transition.ChangeImageTransform
 import androidx.transition.ChangeTransform
 import androidx.transition.Fade
 import androidx.transition.TransitionSet
+import com.shadowings.apodkmp.android.fragments.ApodDetailFragment
 import com.shadowings.apodkmp.android.fragments.HomeHighlightFragment
-import com.shadowings.apodkmp.android.fragments.ImageDetailFragment
 import com.shadowings.apodkmp.android.fragments.SplashFragment
 import com.shadowings.apodkmp.model.Apod
 import org.koin.core.KoinComponent
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
     fun openDetail(apod: Apod) {
         val displayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val detail = ImageDetailFragment(apod, displayMetrics.heightPixels / 2)
+        val detail = ApodDetailFragment(apod, displayMetrics.heightPixels / 2)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             detail.enterTransition = Fade()
         }
@@ -57,9 +57,20 @@ class MainActivity : AppCompatActivity(), KoinComponent {
             .commit()
     }
 
-    fun openDetailFromFragment(apod: Apod, from: Fragment, view: ImageView, height: Int) {
+    fun openDetailWithHeight(apod: Apod, height: Int) {
+        val detail = ApodDetailFragment(apod, height)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            detail.enterTransition = Fade()
+        }
+        supportFragmentManager
+            .beginTransaction()
+            .add(frameLayout.id, detail)
+            .addToBackStack(apod.date)
+            .commit()
+    }
 
-        val detail = ImageDetailFragment(apod, height)
+    fun openDetailWithTransaction(apod: Apod, from: Fragment, view: ImageView, height: Int) {
+        val detail = ApodDetailFragment(apod, height)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             detail.sharedElementEnterTransition = DetailsTransition()
             detail.sharedElementReturnTransition = DetailsTransition()

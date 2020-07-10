@@ -8,6 +8,7 @@ buildscript {
         google()
         maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
         maven { setUrl("https://dl.bintray.com/kotlin/kotlin-eap") }
+        maven { setUrl("https://jitpack.io") }
     }
     dependencies {
         classpath(Deps.android_gradle_plugin)
@@ -29,5 +30,6 @@ allprojects {
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
         maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
         maven { setUrl("https://dl.bintray.com/kotlin/kotlin-eap") }
+        maven { setUrl("https://jitpack.io") }
     }
 }
