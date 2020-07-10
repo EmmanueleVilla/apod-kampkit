@@ -30,21 +30,24 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
         width: Int,
         height: Int,
         margin: Int,
+        bottomMargin: Int?,
         block: ImageBuilder.() -> Unit
     ): AppCompatImageView {
         val view = ImageBuilder()
-            .apply(block).build(width, height, margin)
+            .apply(block).build(width, height, margin, bottomMargin)
         children.add(view)
         return view
     }
 
     protected fun <T : RecyclerView.ViewHolder> horizontalRecyclerInternal(
         adapter: RecyclerView.Adapter<T>,
+        width: Int,
         height: Int,
+        margin: Int,
         block: RecyclerViewBuilder.() -> Unit
     ): RecyclerView {
         val view = RecyclerViewBuilder()
-            .apply(block).build(height, adapter)
+            .apply(block).build(width, height, margin, adapter)
         children.add(view)
         return view
     }
@@ -53,10 +56,11 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
         width: Int,
         height: Int,
         margin: Int,
+        bottomMargin: Int?,
         block: TextBuilder.() -> Unit
     ): AppCompatTextView {
         val view = TextBuilder()
-            .apply(block).build(width, height, margin)
+            .apply(block).build(width, height, margin, bottomMargin)
         children.add(view)
         return view
     }

@@ -12,13 +12,13 @@ class TextBuilder : AViewBuilder<AppCompatTextView>() {
     var color: Int = Color.DKGRAY
     var label: String = ""
 
-    fun build(width: Int, height: Int, margin: Int): AppCompatTextView {
+    fun build(width: Int, height: Int, margin: Int, bottomMargin: Int?): AppCompatTextView {
         val container = object : KoinComponent {
             val ctx: Context = get()
         }
         val view = AppCompatTextView(container.ctx)
 
-        return addAttributes(view, width, height, margin)
+        return addAttributes(view, width, height, margin, bottomMargin)
     }
 
     override fun addSpecificAttributes(view: AppCompatTextView): AppCompatTextView {

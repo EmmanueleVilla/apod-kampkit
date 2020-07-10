@@ -38,21 +38,23 @@ class VerticalLayoutBuilder : ALayoutContainerBuilder<LinearLayout>() {
         width: Int = MATCH_PARENT,
         height: Int = MATCH_PARENT,
         margin: Int = Dimens.margin,
+        bottomMargin: Int?,
         block: ImageBuilder.() -> Unit = { }
-    ): AppCompatImageView = imageInternal(width, height, margin, block)
+    ): AppCompatImageView = imageInternal(width, height, margin, bottomMargin, block)
 
     fun text(
         width: Int = MATCH_PARENT,
         height: Int = WRAP_CONTENT,
         margin: Int = Dimens.margin,
+        bottomMargin: Int? = null,
         block: TextBuilder.() -> Unit = { }
-    ): AppCompatTextView = textInternal(width, height, margin, block)
+    ): AppCompatTextView = textInternal(width, height, margin, bottomMargin, block)
 
     fun <T : RecyclerView.ViewHolder> horizontalRecycler(
         adapter: RecyclerView.Adapter<T>,
         height: Int = MATCH_PARENT,
         block: RecyclerViewBuilder.() -> Unit = { }
-    ): RecyclerView = horizontalRecyclerInternal(adapter, height, block)
+    ): RecyclerView = horizontalRecyclerInternal(adapter, MATCH_PARENT, height, 0, block)
 
     override fun afterBuild() {
     }

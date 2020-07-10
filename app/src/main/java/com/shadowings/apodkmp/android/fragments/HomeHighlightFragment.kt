@@ -68,7 +68,7 @@ class HomeHighlightFragment : Fragment() {
                         res = R.drawable.youtube_logo
                     }
                 }
-                text() {
+                text(bottomMargin = 0) {
                     label = "Latest:"
                 }
                 horizontalRecycler(apodAdapter, height = Dimens.latestCardSize)
