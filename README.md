@@ -38,20 +38,35 @@ The first draft of the app contains a landing page with the highlight of the apo
 When clicking on an APOD, you will be redirected to another detail page where you can see additional informations.
 
 ### CURRENT MVP COMPLETED FEATURES:
+
+
 #### Common:
-- [ ] Tales unit tests (wip)
+- [X] Tales unit tests
+
+
 #### Android:
 - [X] Landing page Highlight
-- [ ] Latest strip (wip)
-- [ ] Detail page
+- [X] Latest strip (wip)
+- [X] Detail page
+- [X] Image fullscreen
+- [X] Player fullscreen
+
+
 #### iOS:
 - [X] Landing page Highlight
 - [ ] Latest strip (wip)
 - [ ] Detail page
+- [ ] Image fullscreen
+- [ ] Player fullscreen
+
+
 #### React:
 - [ ] Landing page Highlight (wip)
 - [ ] Latest strip
 - [ ] Detail page
+- [ ] Image fullscreen
+- [ ] Player fullscreen
+
 
 ### NEXT MVP STEPS:
 - DeepLink to an APOD detail page
@@ -59,4 +74,4 @@ When clicking on an APOD, you will be redirected to another detail page where yo
 - Maybe login to share the favourite apods between the clients
 
 ### NEXT ARCHITECTURE STEPS:
-- Use [Jetpack compose](https://developer.android.com/jetpack/compose) for the android UI when it's released (at the moment there is a bloatcode to create the ui at runtime, since I don't want to use xml and I don't want to use deprecated [Anko](https://github.com/Kotlin/anko) either
+- Use [Jetpack compose](https://developer.android.com/jetpack/compose) for the android UI when it's released (at the moment there is custom ad-hoc DSL to create the ui at runtime, since I don't want to use xml and I don't want to use deprecated [Anko](https://github.com/Kotlin/anko) either
