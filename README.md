@@ -13,7 +13,7 @@ The base project started with the usage of the [KaMPKit template](https://github
 It has been modified by adding the js (react) and jvm (server) targets and by changing the architectural pattern to flux with [Redux Kotlin](https://reduxkotlin.org/)
 
 The solution is composed by
-- **Shared** module, which contains the common code and the ios, android, jvm and js targets. It builds the ios, android and jvm common libraries and the js react application
+- **shared** module, which contains the common code and the ios, android, jvm and js targets. It builds the ios, android and jvm common libraries and the js react application
 - **app** module, which contains the android app that consumes the shared library
 - **ios** folder, which contains the xcode project that consumes the shared library
 - **server** module, another kotlin multiplatform module that consumes the shared library and creates a jvm application. The actual *application* gradle script is in another project because it clashes with the *android* plugin and they cannot be put in the same gradle script at the moment
