@@ -65,11 +65,11 @@ class HomeHighlightFragment : Fragment() {
                         height = Dimens.logo,
                         position = ConstraintPositions.BottomStart
                     ) {
-                        resource = R.drawable.youtube_logo
+                        res = R.drawable.youtube_logo
                     }
                 }
-                text {
-                    text = "Latest:"
+                text() {
+                    label = "Latest:"
                 }
                 horizontalRecycler(apodAdapter, height = Dimens.latestCardSize)
             }

@@ -113,7 +113,7 @@ class ConstraintLayoutBuilder : ALayoutContainerBuilder<ConstraintLayout>() {
         height: Int = MATCH_CONSTRAINT,
         block: ImageBuilder.() -> Unit = { }
     ): AppCompatImageView {
-        val image = imageInternal(width, height, block)
+        val image = imageInternal(width, height, 0, block)
         addConstraints(image, position, width, height, margin)
         return image
     }
@@ -125,7 +125,7 @@ class ConstraintLayoutBuilder : ALayoutContainerBuilder<ConstraintLayout>() {
         height: Int = MATCH_CONSTRAINT,
         block: TextBuilder.() -> Unit = { }
     ): AppCompatTextView {
-        val text = textInternal(block)
+        val text = textInternal(width, height, 0, block)
         text.layoutParams = ViewGroup.LayoutParams(width, height)
         addConstraints(text, position, width, height, margin)
         return text

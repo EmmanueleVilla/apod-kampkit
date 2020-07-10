@@ -29,10 +29,11 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
     protected fun imageInternal(
         width: Int,
         height: Int,
+        margin: Int,
         block: ImageBuilder.() -> Unit
     ): AppCompatImageView {
         val view = ImageBuilder()
-            .apply(block).build(width, height)
+            .apply(block).build(width, height, margin)
         children.add(view)
         return view
     }
@@ -49,10 +50,13 @@ abstract class ALayoutContainerBuilder<T : ViewGroup> {
     }
 
     protected fun textInternal(
+        width: Int,
+        height: Int,
+        margin: Int,
         block: TextBuilder.() -> Unit
     ): AppCompatTextView {
         val view = TextBuilder()
-            .apply(block).build()
+            .apply(block).build(width, height, margin)
         children.add(view)
         return view
     }
