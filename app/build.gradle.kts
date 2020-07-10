@@ -62,4 +62,5 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
     implementation("com.github.davidmigloz:youtube-android-player-api-gradle:1.2.2")
+    implementation("com.jsibbold:zoomage:1.3.1")
 }

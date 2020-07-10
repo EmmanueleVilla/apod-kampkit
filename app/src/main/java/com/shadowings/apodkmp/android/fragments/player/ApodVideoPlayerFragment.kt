@@ -1,4 +1,4 @@
-package com.shadowings.apodkmp.android.fragments
+package com.shadowings.apodkmp.android.fragments.player
 
 import android.os.Bundle
 import co.touchlab.kampstarter.android.BuildConfig
@@ -7,7 +7,7 @@ import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerSupportFragment
 import com.shadowings.apodkmp.model.Apod
 
-class ApodPlayerFragment(private val apod: Apod) : YouTubePlayerSupportFragment() {
+class ApodVideoPlayerFragment(private val apod: Apod) : YouTubePlayerSupportFragment() {
 
     override fun onCreate(p0: Bundle?) {
         super.onCreate(p0)
