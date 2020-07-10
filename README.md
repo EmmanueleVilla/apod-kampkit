@@ -77,4 +77,3 @@ When clicking on an APOD, you will be redirected to a detail page where you can 
 - Favourites APODs
 - Maybe login to share the favourite apods between the clients
 - Use [Jetpack compose](https://developer.android.com/jetpack/compose) for the android UI when it's released (at the moment there is custom ad-hoc DSL to create the ui at runtime, since I don't want to use xml and I don't want to use deprecated [Anko](https://github.com/Kotlin/anko) either
-- Integrate CircleCI
