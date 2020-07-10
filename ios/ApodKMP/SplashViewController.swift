@@ -12,7 +12,7 @@ import PINRemoteImage
 
 class SplashViewController: UIViewController {
     
-    let interactor: SplashInteractor = SplashInteractor()
+    let interactor: HomeInteractor = HomeInteractor()
     let image = UIImageView()
     let desc = UILabel()
     
@@ -40,11 +40,11 @@ class SplashViewController: UIViewController {
         NSLayoutConstraint.activate([topDesc, leftDesc, rightDesc])
        
         interactor.subscribe(callback: { state in
-            if(state.splashState.apod.explanation != "") {
-                self.desc.text = state.splashState.apod.explanation
+            if(state.homeState.latest[0].explanation != "") {
+                self.desc.text = state.homeState.latest[0].explanation
             }
-            if(state.splashState.apod.url != "") {
-                self.image.pin_setImage(from: URL(string: state.splashState.apod.url)!)
+            if(state.homeState.latest[0].url != "") {
+                self.image.pin_setImage(from: URL(string: state.homeState.latest[0].url)!)
             }
         })
         interactor.doInit()

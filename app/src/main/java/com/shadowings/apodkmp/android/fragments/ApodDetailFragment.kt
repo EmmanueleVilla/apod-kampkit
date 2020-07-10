@@ -33,7 +33,7 @@ class ApodDetailFragment(private val apod: Apod, private val imageHeight: Int) :
                 imageContainer = constraintLayout(height = imageHeight) {
                     highlightImage = image(position = ConstraintPositions.Center, margin = 0)
                     fullscreen = image(width = Dimens.logo, height = Dimens.logo, position = ConstraintPositions.BottomEnd) {
-                        res = R.drawable.baseline_fullscreen_white_48
+                        res = R.drawable.fullscreen
                         clickListener = {
                             (activity as MainActivity).openPlayer(apod, fragment, highlightImage)
                         }

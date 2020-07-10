@@ -32,7 +32,7 @@ class SplashFragment : Fragment() {
         val view = verticalLayout(Gravity.CENTER) {
             verticalLayout(height = height, gravity = Gravity.CENTER) {
                 image(height = height / 100 * 45) {
-                    res = R.drawable.nasa_logo
+                    res = R.drawable.ic_nasa
                     scale = ImageView.ScaleType.CENTER_INSIDE
                 }
                 image(height = height / 100 * 10, width = height / 100 * 10) {
@@ -40,7 +40,7 @@ class SplashFragment : Fragment() {
                     scale = ImageView.ScaleType.CENTER_INSIDE
                 }
                 image(height = height / 100 * 45) {
-                    res = R.drawable.kotlin_logo
+                    res = R.drawable.ic_kotlin
                     scale = ImageView.ScaleType.CENTER_INSIDE
                 }
             }

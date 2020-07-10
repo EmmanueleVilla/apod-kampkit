@@ -14,3 +14,4 @@
 ios/Pods
 web/node_modules
 server/build
+app/release

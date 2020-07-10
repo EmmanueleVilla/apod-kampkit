@@ -13,7 +13,7 @@ android {
         applicationId = "com.shadowings.apodkmp"
         minSdkVersion(Versions.min_sdk)
         targetSdkVersion(Versions.target_sdk)
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
