@@ -18,6 +18,8 @@ The solution is composed by
 - **ios** folder, which contains the xcode project that consumes the shared library
 - **server** module, another kotlin multiplatform module that consumes the shared library and creates a jvm application. The actual *application* gradle script is in another project because it clashes with the *android* plugin and they cannot be put in the same gradle script at the moment
 
+![Architecture](/doc/schema.png)
+
 ### Infrastructure
 - First layer: mobile and web application asks the jvm server for the data if they don't have it cached locally
 - Second layer: the jvm server searches for the data in the local mongoDB database and ask the apod api for it if it doesn't find it
