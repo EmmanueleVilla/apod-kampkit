@@ -35,7 +35,7 @@ This should change nothing because all the dependencies inside the container are
 ### App MVP
 The first draft of the app contains a landing page with the highlight of the apod of the day and a list od the last 10 apods.
 
-When clicking on an APOD, you will be redirected to another detail page where you can see additional informations.
+When clicking on an APOD, you will be redirected to a detail page where you can see the image explanation and open up a big pinchable image or the youtube video player, depending on the selected APOD.
 
 ### CURRENT MVP COMPLETED FEATURES:
 
