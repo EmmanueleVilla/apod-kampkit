@@ -45,6 +45,7 @@ When clicking on an APOD, you will be redirected to a detail page where you can 
 
 
 #### Android:
+- [X] Splash page
 - [X] Landing page Highlight
 - [X] Latest strip (wip)
 - [X] Detail page
@@ -53,8 +54,9 @@ When clicking on an APOD, you will be redirected to a detail page where you can 
 
 
 #### iOS:
-- [X] Landing page Highlight
-- [ ] Latest strip (wip)
+- [ ] Splash page
+- [ ] Landing page Highlight (wip)
+- [ ] Latest strip
 - [ ] Detail page
 - [ ] Image fullscreen
 - [ ] Player fullscreen
