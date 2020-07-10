@@ -1,6 +1,7 @@
 package com.shadowings.apodkmp.android.dsl.builder.views
 
 import android.content.Context
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
@@ -9,7 +10,12 @@ import org.koin.core.KoinComponent
 import org.koin.core.get
 
 class TextBuilder {
-    fun build(text: String, size: Float, color: Int): AppCompatTextView {
+
+    var size: Float = Dimens.textSizeMedium
+    var color: Int = Color.DKGRAY
+    var text: String = ""
+
+    fun build(): AppCompatTextView {
         val container = object : KoinComponent {
             val ctx: Context = get()
         }

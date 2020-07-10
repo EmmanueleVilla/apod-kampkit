@@ -29,18 +29,18 @@ class ApodAdapter(var clickListener: (image: AppCompatImageView, apod: Apod) -> 
             height = Dimens.latestCardSize,
             width = Dimens.latestCardSize
         ) {
-            image = image(
-                position = ConstraintPositions.Center,
-                scaleType = ImageView.ScaleType.CENTER_CROP,
+            image = image(position = ConstraintPositions.Center) {
+                scaleType = ImageView.ScaleType.CENTER_CROP
                 backgroundColor = Color.GRAY
-            )
+            }
             logo = image(
-                drawable = R.drawable.youtube_logo,
                 width = Dimens.logo,
                 height = Dimens.logo,
                 position = ConstraintPositions.BottomStart,
                 margin = Dimens.margin * 2
-            )
+            ) {
+                resource = R.drawable.youtube_logo
+            }
         }
         logo!!.elevation = 12.0F
         return ApodViewHolder(view, image!!, logo!!, clickListener)

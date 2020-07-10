@@ -56,15 +56,21 @@ class HomeHighlightFragment : Fragment() {
             verticalLayout {
                 imageContainer = constraintLayout(height = 500) {
                     highlightImage = image(position = ConstraintPositions.Center, margin = 0)
-                    title = text(size = Dimens.textSizeBig, color = Color.WHITE, position = ConstraintPositions.Center)
+                    title = text(position = ConstraintPositions.Center) {
+                        size = Dimens.textSizeBig
+                        color = Color.WHITE
+                    }
                     logo = image(
-                        drawable = R.drawable.youtube_logo,
                         width = Dimens.logo,
                         height = Dimens.logo,
                         position = ConstraintPositions.BottomStart
-                    )
+                    ) {
+                        resource = R.drawable.youtube_logo
+                    }
                 }
-                text(value = "Latest:")
+                text {
+                    text = "Latest:"
+                }
                 horizontalRecycler(apodAdapter, height = Dimens.latestCardSize)
             }
         }

@@ -1,10 +1,8 @@
 package com.shadowings.apodkmp.android.dsl.builder.viewgroups
 
 import android.content.Context
-import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +19,8 @@ import org.koin.core.get
 enum class ConstraintPositions {
     Center,
     TopStart,
-    BottomStart
+    BottomStart,
+    BottomEnd
 }
 
 private enum class Constraints {
@@ -94,6 +93,10 @@ class ConstraintLayoutBuilder : ALayoutContainerBuilder<ConstraintLayout>() {
                 constraints.add(Triple(Constraints.Bottom, view, margin))
                 constraints.add(Triple(Constraints.Start, view, margin))
             }
+            ConstraintPositions.BottomEnd -> {
+                constraints.add(Triple(Constraints.Bottom, view, margin))
+                constraints.add(Triple(Constraints.End, view, margin))
+            }
         }
         if (width > 0) {
             constraints.add(Triple(Constraints.Width, view, width))
@@ -104,31 +107,25 @@ class ConstraintLayoutBuilder : ALayoutContainerBuilder<ConstraintLayout>() {
     }
 
     fun image(
-        drawable: Int? = null,
         position: ConstraintPositions,
         margin: Int = Dimens.margin,
-        scaleType: ImageView.ScaleType = ImageView.ScaleType.FIT_XY,
         width: Int = MATCH_CONSTRAINT,
         height: Int = MATCH_CONSTRAINT,
-        backgroundColor: Int = Color.TRANSPARENT,
         block: ImageBuilder.() -> Unit = { }
     ): AppCompatImageView {
-        val image = imageInternal(drawable, width, height, scaleType, backgroundColor, block)
+        val image = imageInternal(width, height, block)
         addConstraints(image, position, width, height, margin)
         return image
     }
 
     fun text(
-        value: String = "",
-        size: Float = Dimens.textSizeMedium,
-        color: Int = Color.DKGRAY,
         margin: Int = Dimens.margin,
         position: ConstraintPositions,
         width: Int = MATCH_CONSTRAINT,
         height: Int = MATCH_CONSTRAINT,
         block: TextBuilder.() -> Unit = { }
     ): AppCompatTextView {
-        val text = textInternal(value, size, color, block)
+        val text = textInternal(block)
         text.layoutParams = ViewGroup.LayoutParams(width, height)
         addConstraints(text, position, width, height, margin)
         return text

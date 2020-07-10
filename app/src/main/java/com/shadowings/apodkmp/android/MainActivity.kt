@@ -14,6 +14,7 @@ import androidx.transition.ChangeTransform
 import androidx.transition.Fade
 import androidx.transition.TransitionSet
 import com.shadowings.apodkmp.android.fragments.ApodDetailFragment
+import com.shadowings.apodkmp.android.fragments.ApodPlayerFragment
 import com.shadowings.apodkmp.android.fragments.HomeHighlightFragment
 import com.shadowings.apodkmp.android.fragments.SplashFragment
 import com.shadowings.apodkmp.model.Apod
@@ -83,6 +84,28 @@ class MainActivity : AppCompatActivity(), KoinComponent {
             .add(frameLayout.id, detail)
             .addSharedElement(view, apod.date)
             .addToBackStack(apod.date)
+            .commit()
+    }
+
+    fun openPlayer(apod: Apod, from: Fragment, view: ImageView) {
+        when (apod.media_type) {
+            "video" -> openVideoPlayer(apod)
+            else -> openImagePlayer(apod, from, view)
+        }
+    }
+
+    private fun openImagePlayer(apod: Apod, from: Fragment, view: ImageView) {
+    }
+
+    private fun openVideoPlayer(apod: Apod) {
+        val detail = ApodPlayerFragment(apod)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            detail.enterTransition = Fade()
+        }
+        supportFragmentManager
+            .beginTransaction()
+            .add(frameLayout.id, detail)
+            .addToBackStack("player" + apod.date)
             .commit()
     }
 

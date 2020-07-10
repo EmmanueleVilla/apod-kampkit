@@ -9,24 +9,31 @@ import org.koin.core.KoinComponent
 import org.koin.core.get
 
 class ImageBuilder {
-    fun build(
-        drawable: Int?,
-        scaleType: ImageView.ScaleType,
-        width: Int,
-        height: Int,
-        backgroundColor: Int
-    ): AppCompatImageView {
+    private lateinit var image: AppCompatImageView
+
+    var clickListener: (() -> Unit)? = null
+    var resource: Int? = null
+    var backgroundColor: Int = android.R.color.transparent
+    var scaleType: ImageView.ScaleType = ImageView.ScaleType.FIT_XY
+
+    fun build(width: Int, height: Int): AppCompatImageView {
         val container = object : KoinComponent {
             val ctx: Context = get()
         }
-        val image = AppCompatImageView(container.ctx)
+        image = AppCompatImageView(container.ctx)
         image.id = View.generateViewId()
-        if (drawable != null) {
-            image.setImageResource(drawable)
-        }
+
         image.setBackgroundColor(backgroundColor)
         image.scaleType = scaleType
         image.layoutParams = ViewGroup.LayoutParams(width, height)
+
+        if (this.resource != null) {
+            image.setImageResource(resource!!)
+        }
+
+        if (clickListener != null) {
+            image.setOnClickListener { clickListener?.invoke() }
+        }
         return image
     }
 }
