@@ -22,7 +22,7 @@ class ImageBuilder {
         val image = AppCompatImageView(container.ctx)
         image.id = View.generateViewId()
         if (drawable != null) {
-            image.setBackgroundResource(drawable)
+            image.setImageResource(drawable)
         }
         image.setBackgroundColor(backgroundColor)
         image.scaleType = scaleType

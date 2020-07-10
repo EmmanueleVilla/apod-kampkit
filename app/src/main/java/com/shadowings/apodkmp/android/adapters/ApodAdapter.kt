@@ -36,11 +36,13 @@ class ApodAdapter(var clickListener: (image: AppCompatImageView, apod: Apod) -> 
             )
             logo = image(
                 drawable = R.drawable.youtube_logo,
-                width = Dimens.logo / 2,
-                height = Dimens.logo / 2,
-                position = ConstraintPositions.BottomStart
+                width = Dimens.logo,
+                height = Dimens.logo,
+                position = ConstraintPositions.BottomStart,
+                margin = Dimens.margin * 2
             )
         }
+        logo!!.elevation = 12.0F
         return ApodViewHolder(view, image!!, logo!!, clickListener)
     }
 
