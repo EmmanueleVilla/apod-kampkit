@@ -20,9 +20,14 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
 
+- task: CocoaPods@0
+  inputs:
+    workingDirectory: 'ios/'
+    forceRepoUpdate: false
+
 - task: Xcode@5
   inputs:
     actions: 'build'
-    packageApp: true
+    xcWorkspacePath: 'ios/ApodKMP.xcworkspace'
+    packageApp: false
     destinationPlatformOption: 'iOS'
-    publishJUnitResults: true
