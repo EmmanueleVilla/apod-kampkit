@@ -24,10 +24,10 @@ steps:
   inputs:
     workingDirectory: 'ios/'
     forceRepoUpdate: false
-
 - task: Xcode@5
   inputs:
     actions: 'build'
-    xcWorkspacePath: 'ios/ApodKMP.xcworkspace/ApodKMP.xcodeproj'
+    xcWorkspacePath: 'ios/ApodKMP.xcworkspace'
+    scheme: 'KaMPStarteriOS'
     packageApp: false
     destinationPlatformOption: 'iOS'
