@@ -11,6 +11,11 @@ pool:
 
 steps:
 
+- task: CocoaPods@0
+  inputs:
+    workingDirectory: 'ios/'
+    forceRepoUpdate: false
+
 - task: Xcode@5
   inputs:
     actions: 'build'
@@ -29,5 +34,4 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
-
         
