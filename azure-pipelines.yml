@@ -11,6 +11,11 @@ pool:
 
 steps:
 
+- task: Cache@2
+  inputs:
+    key: 'shared'
+    path: 'shared/build'
+
 - task: Gradle@2
   inputs:
     gradleWrapperFile: 'gradlew'
