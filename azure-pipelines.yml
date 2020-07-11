@@ -28,6 +28,6 @@ steps:
 - task: Xcode@5
   inputs:
     actions: 'build'
-    xcWorkspacePath: 'ios/ApodKMP.xcworkspace'
+    xcWorkspacePath: 'ios/ApodKMP.xcworkspace/ApodKMP.xcodeproj'
     packageApp: false
     destinationPlatformOption: 'iOS'
