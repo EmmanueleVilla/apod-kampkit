@@ -11,25 +11,6 @@ pool:
 
 steps:
 
-- task: Gradle@2
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)/shared/build'
-    artifact: 'SharedBuild'
-    publishLocation: 'pipeline'
-
-- task: CocoaPods@0
-  inputs:
-    workingDirectory: 'ios/'
-    forceRepoUpdate: false
 - task: Xcode@5
   inputs:
     actions: 'build'
@@ -39,4 +20,14 @@ steps:
     packageApp: false
     destinationPlatformOption: 'iOS'
     destinationSimulators: 'iPhone 8'
+
+- task: Gradle@2
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+
         
