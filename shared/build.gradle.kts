@@ -150,8 +150,13 @@ kotlin {
 
     task("fullBuild") {
         dependsOn("build")
-        exec {
-            commandLine = "ls".split(" ")
+        doLast {
+            exec {
+                commandLine = "rm -rf ios/shared.framework".split(" ")
+            }
+            exec {
+                commandLine = "mv -f build/bin/ios/releaseFramework/shared.framework ../ios/shared.framework".split(" ")
+            }
         }
     }
 }
