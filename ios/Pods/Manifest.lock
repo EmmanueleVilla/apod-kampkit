@@ -14,11 +14,9 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0):
     - PINCache (= 3.0.1-beta.8)
     - PINRemoteImage/Core
-  - shared (1.1)
 
 DEPENDENCIES:
   - PINRemoteImage
-  - shared (from `../shared/`)
 
 SPEC REPOS:
   trunk:
@@ -26,16 +24,11 @@ SPEC REPOS:
     - PINOperation
     - PINRemoteImage
 
-EXTERNAL SOURCES:
-  shared:
-    :path: "../shared/"
-
 SPEC CHECKSUMS:
   PINCache: 534fd41d358d828dfdf227a0d327f3673a65e20b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: e2b89e19fb6e77ffc099f9d9f3b3fe1745e3f9f9
-  shared: 2e5c4aa30e3668fe416c857a709e9465f4d24127
 
-PODFILE CHECKSUM: 51e8f21b4b355d13566ff46d5a16797d7e2f4bf1
+PODFILE CHECKSUM: f02e5822f1a9364cc1fec071f9fc9c82c83c93b8
 
 COCOAPODS: 1.9.3
