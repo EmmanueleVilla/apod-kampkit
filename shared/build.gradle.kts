@@ -27,12 +27,12 @@ kotlin {
         }
     }
     // Revert to just ios() when gradle plugin can properly resolve it
-    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
-    if (onPhone) {
+    // val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
+    // if (onPhone) {
         iosArm64("ios")
-    } else {
-        iosX64("ios")
-    }
+    // } else {
+    //    iosX64("ios")
+    // }
 
     targets.getByName<KotlinNativeTarget>("ios").compilations["main"].kotlinOptions.freeCompilerArgs +=
         listOf("-Xobjc-generics", "-Xg0")
@@ -148,13 +148,10 @@ kotlin {
         // implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.107-kotlin-1.3.72")
     }
 
-    cocoapodsext {
-        summary = "Common library for the KaMP starter kit"
-        homepage = "https://github.com/touchlab/KaMPStarter"
-        framework {
-            isStatic = false
-            export(Deps.kermit)
-            transitiveExport = true
+    task("fullBuild") {
+        dependsOn("build")
+        exec {
+            commandLine = "ls".split(" ")
         }
     }
 }

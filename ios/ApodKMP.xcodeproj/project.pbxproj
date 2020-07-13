@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05D5AB5124BC668000FF516D /* shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5AB5024BC668000FF516D /* shared.framework */; };
+		05D5AB5224BC668000FF516D /* shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5AB5024BC668000FF516D /* shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A36254DE0E2430CD9EC0A997 /* Pods_ApodKMP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */; };
 		F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */; };
 		F1465F0523AA94BF0055F7C3 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F0423AA94BF0055F7C3 /* SplashViewController.swift */; };
@@ -32,7 +34,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		05D5AB5324BC668000FF516D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05D5AB5224BC668000FF516D /* shared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		05D5AB5024BC668000FF516D /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = shared.framework; sourceTree = "<group>"; };
 		1DFCC00C8DAA719770A18D1A /* Pods-KaMPStarteriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaMPStarteriOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-KaMPStarteriOS/Pods-KaMPStarteriOS.release.xcconfig"; sourceTree = "<group>"; };
 		7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApodKMP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2140ADD578C92C07288B846 /* Pods-ApodKMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApodKMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApodKMP/Pods-ApodKMP.debug.xcconfig"; sourceTree = "<group>"; };
@@ -57,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A36254DE0E2430CD9EC0A997 /* Pods_ApodKMP.framework in Frameworks */,
+				05D5AB5124BC668000FF516D /* shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +98,7 @@
 		6278498AD96A4D949D39BF44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05D5AB5024BC668000FF516D /* shared.framework */,
 				7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */,
 			);
 			name = Frameworks;
@@ -159,6 +178,7 @@
 				F1465EFA23AA94BF0055F7C3 /* Frameworks */,
 				F1465EFB23AA94BF0055F7C3 /* Resources */,
 				25B87AC33E9B4AD340F227E4 /* [CP] Embed Pods Frameworks */,
+				05D5AB5324BC668000FF516D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,6 +498,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LS7N8KKB4L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/ApodKMP/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -505,6 +529,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LS7N8KKB4L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/ApodKMP/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
