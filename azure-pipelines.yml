@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'macos-latest'
+
+steps:
+
+- task: Gradle@2
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'fullBuild'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+
+- task: CocoaPods@0
+  inputs:
+    workingDirectory: 'ios/'
+    forceRepoUpdate: false
+
+- task: Xcode@5
+  inputs:
+    actions: 'build'
+    sdk: 'iphoneos13.5'
+    xcWorkspacePath: 'ios/ApodKMP.xcworkspace'
+    scheme: 'KaMPStarteriOS'
+    packageApp: false
+    destinationPlatformOption: 'iOS'
+    destinationSimulators: 'iPhone 8'
+
+        
