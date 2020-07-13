@@ -168,13 +168,13 @@ kotlin {
         dependsOn("build")
         doLast {
             exec {
-                commandLine = "cp -R build/bin/ios/ build/bin/iosfat".split(" ")
+                commandLine = "cp -Rf build/bin/ios/ build/bin/iosfat".split(" ")
             }
             exec {
                 commandLine = "lipo -create -output build/bin/iosfat/sharedReleaseFramework/shared.framework/shared build/bin/ios/sharedReleaseFramework/shared.framework/shared build/bin/iosArm64/sharedReleaseFramework/shared.framework/shared".split(" ")
             }
             exec {
-                commandLine = "mv -f build/bin/iosfat/sharedReleaseFramework/shared.framework ../ios/shared.framework".split(" ")
+                commandLine = "cp -Rf build/bin/iosfat/sharedReleaseFramework/shared.framework ../ios/shared.framework".split(" ")
             }
         }
     }
