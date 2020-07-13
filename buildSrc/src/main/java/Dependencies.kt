@@ -20,7 +20,7 @@ object Versions {
     val lifecycle = "2.1.0"
     val karmok = "0.1.7"
     val roboelectric = "4.3"
-    val redux = "0.5.1"
+    val redux = "0.5.3"
 }
 
 object Deps {

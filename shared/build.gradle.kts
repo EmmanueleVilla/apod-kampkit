@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
-    id("co.touchlab.native.cocoapods")
     id("kotlinx-serialization")
     id("com.android.library")
 }
@@ -26,13 +25,26 @@ kotlin {
             useCommonJs()
         }
     }
-    // Revert to just ios() when gradle plugin can properly resolve it
-    // val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
-    // if (onPhone) {
-        // iosArm64("ios")
-    // } else {
-        iosX64("ios")
-    // }
+    iosX64("ios") {
+        binaries {
+            framework("shared")
+        }
+    }
+    iosArm64("iosArm64") {
+        binaries {
+            framework("shared")
+        }
+    }
+
+    /*
+    iosArm32("iosArm32") {
+        binaries {
+            framework("shared")
+        }
+    }
+
+
+     */
 
     targets.getByName<KotlinNativeTarget>("ios").compilations["main"].kotlinOptions.freeCompilerArgs +=
         listOf("-Xobjc-generics", "-Xg0")
@@ -105,6 +117,9 @@ kotlin {
         implementation(Deps.RoboEletric.droid)
     }
 
+    // sourceSets["iosArm32Main"].dependsOn(sourceSets["iosMain"])
+    sourceSets["iosArm64Main"].dependsOn(sourceSets["iosMain"])
+
     sourceSets["iosMain"].dependencies {
         implementation(Deps.Ktor.ios)
         implementation(Deps.Ktor.iosCore)
@@ -148,14 +163,18 @@ kotlin {
         // implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.107-kotlin-1.3.72")
     }
 
-    task("fullBuild") {
+    // custom fat script because the fat gradle plugin hates me
+    task("buildAndMerge") {
         dependsOn("build")
         doLast {
             exec {
-                commandLine = "rm -rf ios/shared.framework".split(" ")
+                commandLine = "cp -R build/bin/ios/ build/bin/iosfat".split(" ")
             }
             exec {
-                commandLine = "mv -f build/bin/ios/releaseFramework/shared.framework ../ios/shared.framework".split(" ")
+                commandLine = "lipo -create -output build/bin/iosfat/sharedReleaseFramework/shared.framework/shared build/bin/ios/sharedReleaseFramework/shared.framework/shared build/bin/iosArm64/sharedReleaseFramework/shared.framework/shared".split(" ")
+            }
+            exec {
+                commandLine = "mv -f build/bin/iosfat/sharedReleaseFramework/shared.framework ../ios/shared.framework".split(" ")
             }
         }
     }

@@ -40,6 +40,9 @@ class SplashViewController: UIViewController {
         NSLayoutConstraint.activate([topDesc, leftDesc, rightDesc])
        
         interactor.subscribe(callback: { state in
+            if(state.homeState.latest.count == 0) {
+                return
+            }
             if(state.homeState.latest[0].explanation != "") {
                 self.desc.text = state.homeState.latest[0].explanation
             }
