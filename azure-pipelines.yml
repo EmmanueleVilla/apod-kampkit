@@ -14,27 +14,12 @@ steps:
 - task: Gradle@2
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'build'
+    tasks: 'fullBuild'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Test print build folder
-      
-      ls
-      cd shared
-      ls
-      cd build
-      ls
-      cd cocoapods
-      ls
-      cd framework
-      ls
 - task: CocoaPods@0
   inputs:
     workingDirectory: 'ios/'
