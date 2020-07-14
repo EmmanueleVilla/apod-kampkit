@@ -18,14 +18,6 @@ struct SplashView: View {
             if(state.homeState.latest.count == 0) {
                 return
             }
-            /*
-            if(state.homeState.latest[0].explanation != "") {
-                self.desc.text = state.homeState.latest[0].explanation
-            }
-            if(state.homeState.latest[0].url != "") {
-                self.image.pin_setImage(from: URL(string: state.homeState.latest[0].url)!)
-            }
- */
         })
         interactor.doInit()
     }

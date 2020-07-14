@@ -10,6 +10,7 @@
 		0524FB9824BCF3F800E57C63 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FB9724BCF3F800E57C63 /* SplashView.swift */; };
 		0524FBBA24BDB77100E57C63 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FBB924BDB77100E57C63 /* HomeView.swift */; };
 		0524FBBD24BDB78D00E57C63 /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FBBC24BDB78D00E57C63 /* UIScreenExtensions.swift */; };
+		0524FBBF24BDBE4800E57C63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FBBE24BDBE4800E57C63 /* SceneDelegate.swift */; };
 		05D5AB5124BC668000FF516D /* shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5AB5024BC668000FF516D /* shared.framework */; };
 		05D5AB5224BC668000FF516D /* shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5AB5024BC668000FF516D /* shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A36254DE0E2430CD9EC0A997 /* Pods_ApodKMP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */; };
@@ -54,6 +55,7 @@
 		0524FB9724BCF3F800E57C63 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		0524FBB924BDB77100E57C63 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0524FBBC24BDB78D00E57C63 /* UIScreenExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtensions.swift; sourceTree = "<group>"; };
+		0524FBBE24BDBE4800E57C63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		05D5AB5024BC668000FF516D /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = shared.framework; sourceTree = "<group>"; };
 		1DFCC00C8DAA719770A18D1A /* Pods-KaMPStarteriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaMPStarteriOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-KaMPStarteriOS/Pods-KaMPStarteriOS.release.xcconfig"; sourceTree = "<group>"; };
 		7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApodKMP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 				F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */,
 				F1465F0923AA94BF0055F7C3 /* Assets.xcassets */,
 				F1465F0E23AA94BF0055F7C3 /* Info.plist */,
+				0524FBBE24BDBE4800E57C63 /* SceneDelegate.swift */,
 			);
 			path = ApodKMP;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0524FBBF24BDBE4800E57C63 /* SceneDelegate.swift in Sources */,
 				0524FBBA24BDB77100E57C63 /* HomeView.swift in Sources */,
 				0524FBBD24BDB78D00E57C63 /* UIScreenExtensions.swift in Sources */,
 				F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */,
