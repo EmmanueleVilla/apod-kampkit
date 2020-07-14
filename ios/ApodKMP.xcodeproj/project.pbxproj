@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0524FB9824BCF3F800E57C63 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FB9724BCF3F800E57C63 /* SplashView.swift */; };
+		0524FBBA24BDB77100E57C63 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FBB924BDB77100E57C63 /* HomeView.swift */; };
+		0524FBBD24BDB78D00E57C63 /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FBBC24BDB78D00E57C63 /* UIScreenExtensions.swift */; };
 		05D5AB5124BC668000FF516D /* shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5AB5024BC668000FF516D /* shared.framework */; };
 		05D5AB5224BC668000FF516D /* shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5AB5024BC668000FF516D /* shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A36254DE0E2430CD9EC0A997 /* Pods_ApodKMP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */; };
 		F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */; };
-		F1465F0523AA94BF0055F7C3 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F0423AA94BF0055F7C3 /* SplashViewController.swift */; };
 		F1465F0A23AA94BF0055F7C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1465F0923AA94BF0055F7C3 /* Assets.xcassets */; };
 		F1465F1823AA94C00055F7C3 /* KaMPStarteriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F1723AA94C00055F7C3 /* KaMPStarteriOSTests.swift */; };
 		F1465F2323AA94C00055F7C3 /* KaMPStarteriOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F2223AA94C00055F7C3 /* KaMPStarteriOSUITests.swift */; };
@@ -51,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		0524FB9724BCF3F800E57C63 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		0524FBB924BDB77100E57C63 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0524FBBC24BDB78D00E57C63 /* UIScreenExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtensions.swift; sourceTree = "<group>"; };
 		05D5AB5024BC668000FF516D /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = shared.framework; sourceTree = "<group>"; };
 		1DFCC00C8DAA719770A18D1A /* Pods-KaMPStarteriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaMPStarteriOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-KaMPStarteriOS/Pods-KaMPStarteriOS.release.xcconfig"; sourceTree = "<group>"; };
 		7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApodKMP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +61,6 @@
 		DB56DF705F25B0D8044BC7D5 /* Pods-ApodKMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApodKMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApodKMP/Pods-ApodKMP.release.xcconfig"; sourceTree = "<group>"; };
 		F1465EFD23AA94BF0055F7C3 /* ApodKMP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApodKMP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F1465F0423AA94BF0055F7C3 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		F1465F0923AA94BF0055F7C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1465F0E23AA94BF0055F7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1465F1323AA94C00055F7C3 /* ApodKMPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApodKMPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,12 +99,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0524FB9624BCF3E800E57C63 /* Splash */ = {
+		0524FB9624BCF3E800E57C63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				0524FB9724BCF3F800E57C63 /* SplashView.swift */,
+				0524FBB924BDB77100E57C63 /* HomeView.swift */,
 			);
-			path = Splash;
+			path = "\U0010Views";
+			sourceTree = "<group>";
+		};
+		0524FBBB24BDB78300E57C63 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0524FBBC24BDB78D00E57C63 /* UIScreenExtensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		6278498AD96A4D949D39BF44 /* Frameworks */ = {
@@ -150,9 +161,9 @@
 		F1465EFF23AA94BF0055F7C3 /* ApodKMP */ = {
 			isa = PBXGroup;
 			children = (
-				0524FB9624BCF3E800E57C63 /* Splash */,
+				0524FBBB24BDB78300E57C63 /* Utils */,
+				0524FB9624BCF3E800E57C63 /* Views */,
 				F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */,
-				F1465F0423AA94BF0055F7C3 /* SplashViewController.swift */,
 				F1465F0923AA94BF0055F7C3 /* Assets.xcassets */,
 				F1465F0E23AA94BF0055F7C3 /* Info.plist */,
 			);
@@ -351,7 +362,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1465F0523AA94BF0055F7C3 /* SplashViewController.swift in Sources */,
+				0524FBBA24BDB77100E57C63 /* HomeView.swift in Sources */,
+				0524FBBD24BDB78D00E57C63 /* UIScreenExtensions.swift in Sources */,
 				F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */,
 				0524FB9824BCF3F800E57C63 /* SplashView.swift in Sources */,
 			);
