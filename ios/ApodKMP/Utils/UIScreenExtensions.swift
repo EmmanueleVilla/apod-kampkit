@@ -13,6 +13,7 @@ extension UIScreen {
    static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     static let screenSize = UIScreen.main.bounds.size
-    static let logoSize = screenHeight / 100 * 18
-    static let plusSize = screenHeight / 100 * 4
+    static let logoSize: CGFloat = screenHeight / 100 * 18
+    static let plusSize: CGFloat = screenHeight / 100 * 4
+    static let margin: CGFloat = 12
 }
