@@ -168,6 +168,9 @@ kotlin {
         dependsOn("build")
         doLast {
             exec {
+                commandLine = "rm -Rf ../ios/shared.framework".split(" ")
+            }
+            exec {
                 commandLine = "cp -Rf build/bin/ios/ build/bin/iosfat".split(" ")
             }
             exec {

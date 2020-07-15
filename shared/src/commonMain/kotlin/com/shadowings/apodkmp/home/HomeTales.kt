@@ -35,7 +35,10 @@ suspend fun homeTales(action: Action, dep: Dependencies): List<Action> {
 fun handleLatestRequest(action: Action, dep: Dependencies): List<Action> {
     return try {
         val lastDownloadTimeMS = dep.storage.settings.getLong("LATEST_TIMESTAMP", 0)
+        dep.utils.log.v { "lastDownloadTimeMS: $lastDownloadTimeMS" }
         val oneHourMS = 60 * 60 * 1000
+        dep.utils.log.v { "currentTimeMS: ${dep.utils.currentTimeMillis()}" }
+        dep.utils.log.v { "lastDownload + 1h: ${lastDownloadTimeMS + oneHourMS}" }
         val expired = (lastDownloadTimeMS + oneHourMS < dep.utils.currentTimeMillis())
         if (expired || dep.utils.platform == Platforms.Js) {
             listOf(HomeActions.LatestFetch.FetchFromWeb)
