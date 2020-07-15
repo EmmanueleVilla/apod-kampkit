@@ -15,13 +15,15 @@ class HomeViewController: UIViewController {
     let interactor: HomeInteractor = HomeInteractor()
     let highlightImage = UIImageView()
     let highlightTitle = UILabel()
-    
+    let latest = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let dataSource = ApodDataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
         view.addSubview(highlightImage)
         view.addSubview(highlightTitle)
+        view.addSubview(latest)
         
         highlightImage.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -30,10 +32,22 @@ class HomeViewController: UIViewController {
             make.height.equalTo(500)
         }
         
+        highlightTitle.textColor = UIColor.white
         highlightTitle.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(UIScreen.margin)
+            make.trailing.equalToSuperview()
+            make.top.equalTo(highlightImage.snp.top).offset(UIScreen.margin)
+            make.height.equalTo(150)
+        }
+        
+        latest.backgroundColor = UIColor.yellow
+        latest.register(ApodView.self, forCellWithReuseIdentifier: "ApodView")
+        latest.dataSource = dataSource
+        latest.snp.makeConstraints{ make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(highlightImage.snp.bottom).offset(UIScreen.margin)
+            make.top.equalTo(highlightImage.snp.bottom).offset(UIScreen.margin)
+            make.height.equalTo(250)
         }
         
         interactor.subscribe(callback: { state in
@@ -43,6 +57,9 @@ class HomeViewController: UIViewController {
             
             self.highlightTitle.text = state.homeState.latest[0].title
             self.highlightImage.pin_setImage(from: URL(string: state.homeState.latest[0].imageUrl)!)
+            
+            self.dataSource.apods = state.homeState.latest
+            self.latest.reloadData()
             
             self.view.layoutIfNeeded()
         })

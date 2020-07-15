@@ -17,19 +17,16 @@ struct ContentView: View {
     init() {
         let me = self
         interactor.subscribe(callback: { state in
+            
             if(state.homeState.latest.count == 0) {
                 return
             }
-            DispatchQueue.main.async {
-                me.setText(text: state.homeState.latest[0].title)
-            }
+            
+            me.titleText = state.homeState.latest[0].title
         })
         interactor.doInit()
     }
     
-    func setText(text: String) {
-        self.titleText = text
-    }
     
     var body: some View {
         VStack {
@@ -41,7 +38,6 @@ struct ContentView: View {
             )
         }
     }
-    
 }
 
 
