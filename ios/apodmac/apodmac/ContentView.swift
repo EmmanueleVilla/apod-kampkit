@@ -11,19 +11,37 @@ import shared
 
 struct ContentView: View {
     
+    @State var titleText = "Loading..."
+    
     let interactor = HomeInteractor()
     init() {
+        let me = self
         interactor.subscribe(callback: { state in
             if(state.homeState.latest.count == 0) {
                 return
             }
+            DispatchQueue.main.async {
+                me.setText(text: state.homeState.latest[0].title)
+            }
         })
         interactor.doInit()
     }
-    var body: some View {
-        Text("Hello, World!")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    
+    func setText(text: String) {
+        self.titleText = text
     }
+    
+    var body: some View {
+        VStack {
+            Text(titleText)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            Button(
+                action: { self.titleText = "CLICK" },
+              label: { Text("Click") }
+            )
+        }
+    }
+    
 }
 
 
