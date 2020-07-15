@@ -5,11 +5,9 @@
 //  Created by Emmanuele Villa on 14/07/2020.
 //  Copyright © 2020 Touchlab. All rights reserved.
 //
-
-import Foundation
-
-import UIKit
 import shared
+import Foundation
+import UIKit
 import PINRemoteImage
 import SnapKit
 

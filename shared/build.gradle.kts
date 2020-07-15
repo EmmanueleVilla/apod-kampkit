@@ -36,15 +36,11 @@ kotlin {
         }
     }
 
-    /*
-    iosArm32("iosArm32") {
+    macosX64("mac") {
         binaries {
             framework("shared")
         }
     }
-
-
-     */
 
     targets.getByName<KotlinNativeTarget>("ios").compilations["main"].kotlinOptions.freeCompilerArgs +=
         listOf("-Xobjc-generics", "-Xg0")
@@ -122,15 +118,29 @@ kotlin {
 
     sourceSets["iosMain"].dependencies {
         implementation(Deps.Ktor.ios)
-        implementation(Deps.Ktor.iosCore)
-        implementation(Deps.Ktor.iosJson)
-        implementation(Deps.Ktor.iosLogging)
+        implementation(Deps.Ktor.nativeCore)
+        implementation(Deps.Ktor.nativeJson)
+        implementation(Deps.Ktor.nativeLogging)
         implementation(Deps.Coroutines.native) {
             version {
                 strictly("1.3.5-native-mt")
             }
         }
-        implementation(Deps.Ktor.iosSerialization)
+        implementation(Deps.Ktor.nativeSerialization)
+        implementation(Deps.koinCore)
+    }
+
+    sourceSets["macMain"].dependencies {
+        implementation(Deps.Ktor.macos)
+        implementation(Deps.Ktor.nativeCore)
+        implementation(Deps.Ktor.nativeJson)
+        implementation(Deps.Ktor.nativeLogging)
+        implementation(Deps.Coroutines.native) {
+            version {
+                strictly("1.3.5-native-mt")
+            }
+        }
+        implementation(Deps.Ktor.nativeSerialization)
         implementation(Deps.koinCore)
     }
 
@@ -168,16 +178,10 @@ kotlin {
         dependsOn("build")
         doLast {
             exec {
-                commandLine = "rm -Rf ../ios/shared.framework".split(" ")
+                commandLine = "rm -Rf ../ios/shared.xcframework".split(" ")
             }
             exec {
-                commandLine = "cp -Rf build/bin/ios/ build/bin/iosfat".split(" ")
-            }
-            exec {
-                commandLine = "lipo -create -output build/bin/iosfat/sharedReleaseFramework/shared.framework/shared build/bin/ios/sharedReleaseFramework/shared.framework/shared build/bin/iosArm64/sharedReleaseFramework/shared.framework/shared".split(" ")
-            }
-            exec {
-                commandLine = "cp -Rf build/bin/iosfat/sharedReleaseFramework/shared.framework ../ios/shared.framework".split(" ")
+                commandLine = "xcodebuild -create-xcframework -framework build/bin/ios/sharedReleaseFramework/shared.framework -framework build/bin/iosArm64/sharedReleaseFramework/shared.framework -framework build/bin/mac/sharedReleaseFramework/shared.framework -output ../ios/shared.xcframework".split(" ")
             }
         }
     }

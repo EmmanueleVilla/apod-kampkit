@@ -77,5 +77,6 @@ enum class Platforms {
     IOS,
     Android,
     Jvm,
-    Js
+    Js,
+    MacOS
 }

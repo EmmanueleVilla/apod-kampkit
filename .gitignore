@@ -16,3 +16,4 @@ web/node_modules
 server/build
 app/release
 ios/shared.framework
+ios/shared.xcframework

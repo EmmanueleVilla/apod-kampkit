@@ -6,8 +6,8 @@
 //  Copyright © 2020 Touchlab. All rights reserved.
 //
 
-import UIKit
 import shared
+import UIKit
 import PINRemoteImage
 import SnapKit
 
