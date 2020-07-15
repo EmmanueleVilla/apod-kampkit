@@ -1,11 +1,14 @@
 use_frameworks!
 
-platform :ios, '11.0'
-
 install! 'cocoapods', :deterministic_uuids => false
 
+workspace 'ApodKMP'
+
 target 'ApodKMP' do
+    platform :ios, '11.0'
+    project 'ApodKMP.xcodeproj'
     pod 'PINRemoteImage'
     pod 'SnapKit', '~> 5.0.0'
 end
+
 
