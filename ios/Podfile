@@ -11,4 +11,11 @@ target 'ApodKMP' do
     pod 'SnapKit', '~> 5.0.0'
 end
 
+target 'apodmac' do
+    platform :osx, '10.6'
+    project 'apodmac/apodmac.xcodeproj'
+    #pod 'PINRemoteImage'
+    #pod 'SnapKit', '~> 5.0.0'
+end
+
 

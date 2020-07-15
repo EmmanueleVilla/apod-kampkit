@@ -131,7 +131,7 @@ kotlin {
     }
 
     sourceSets["macMain"].dependencies {
-        implementation(Deps.Ktor.macos)
+        implementation(Deps.Ktor.ios)
         implementation(Deps.Ktor.nativeCore)
         implementation(Deps.Ktor.nativeJson)
         implementation(Deps.Ktor.nativeLogging)

@@ -149,55 +149,58 @@
 		46EB2E000016D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E000009B0 /* Foundation.framework */; };
 		46EB2E00001740 /* Pods-ApodKMP-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 46EB2E00001730 /* Pods-ApodKMP-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		46EB2E00001790 /* Pods-ApodKMP-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EB2E00001780 /* Pods-ApodKMP-dummy.m */; };
-		46EB2E00001850 /* PINOperation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E00001840 /* PINOperation.framework */; };
-		46EB2E00001880 /* PINOperation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E00001840 /* PINOperation.framework */; };
-		46EB2E000018C0 /* PINCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E000018B0 /* PINCache.framework */; };
+		46EB2E00001850 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E00001840 /* Cocoa.framework */; };
+		46EB2E000018C0 /* Pods-apodmac-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 46EB2E000018B0 /* Pods-apodmac-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		46EB2E00001900 /* Pods-apodmac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EB2E000018F0 /* Pods-apodmac-dummy.m */; };
+		46EB2E000019C0 /* PINOperation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E000019B0 /* PINOperation.framework */; };
+		46EB2E000019F0 /* PINOperation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E000019B0 /* PINOperation.framework */; };
+		46EB2E00001A30 /* PINCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E00001A20 /* PINCache.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		46EB2E000017A0 /* PBXContainerItemProxy */ = {
+		46EB2E00001910 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46EB2E00000000 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A927C3CD51C30012080D6CA07959B246;
 			remoteInfo = PINCache;
 		};
-		46EB2E000017C0 /* PBXContainerItemProxy */ = {
+		46EB2E00001930 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46EB2E00000000 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 57310B016450E63387C9D64F4933E995;
 			remoteInfo = PINOperation;
 		};
-		46EB2E000017E0 /* PBXContainerItemProxy */ = {
+		46EB2E00001950 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46EB2E00000000 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E2A8B2A28D2EAB2E4CCF3B69E6792851;
 			remoteInfo = PINRemoteImage;
 		};
-		46EB2E00001800 /* PBXContainerItemProxy */ = {
+		46EB2E00001970 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46EB2E00000000 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
 			remoteInfo = SnapKit;
 		};
-		46EB2E00001820 /* PBXContainerItemProxy */ = {
+		46EB2E00001990 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46EB2E00000000 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 57310B016450E63387C9D64F4933E995;
 			remoteInfo = PINOperation;
 		};
-		46EB2E00001860 /* PBXContainerItemProxy */ = {
+		46EB2E000019D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46EB2E00000000 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 57310B016450E63387C9D64F4933E995;
 			remoteInfo = PINOperation;
 		};
-		46EB2E00001890 /* PBXContainerItemProxy */ = {
+		46EB2E00001A00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46EB2E00000000 /* Project object */;
 			proxyType = 1;
@@ -376,10 +379,20 @@
 		46EB2E00001760 /* Pods-ApodKMP-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ApodKMP-acknowledgements.plist"; sourceTree = "<group>"; };
 		46EB2E00001770 /* Pods-ApodKMP-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ApodKMP-acknowledgements.markdown"; sourceTree = "<group>"; };
 		46EB2E00001780 /* Pods-ApodKMP-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ApodKMP-dummy.m"; sourceTree = "<group>"; };
-		46EB2E00001840 /* PINOperation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINOperation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		46EB2E000018B0 /* PINCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46EB2E00001840 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		46EB2E00001870 /* Pods-apodmac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-apodmac.release.xcconfig"; sourceTree = "<group>"; };
+		46EB2E00001880 /* Pods-apodmac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-apodmac.debug.xcconfig"; sourceTree = "<group>"; };
+		46EB2E00001890 /* Pods-apodmac-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-apodmac-Info.plist"; sourceTree = "<group>"; };
+		46EB2E000018A0 /* Pods-apodmac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-apodmac.modulemap"; sourceTree = "<group>"; };
+		46EB2E000018B0 /* Pods-apodmac-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-apodmac-umbrella.h"; sourceTree = "<group>"; };
+		46EB2E000018D0 /* Pods-apodmac-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-apodmac-acknowledgements.plist"; sourceTree = "<group>"; };
+		46EB2E000018E0 /* Pods-apodmac-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-apodmac-acknowledgements.markdown"; sourceTree = "<group>"; };
+		46EB2E000018F0 /* Pods-apodmac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-apodmac-dummy.m"; sourceTree = "<group>"; };
+		46EB2E000019B0 /* PINOperation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINOperation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46EB2E00001A20 /* PINCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PINCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6320170E5A5A268B11CAE15D4EF6A9E3 /* PINCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PINCache.framework; path = PINCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		979486118B3E90C08386079D57962701 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD89E94279A63C9013EAB5ED061886D1 /* Pods_apodmac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_apodmac.framework; path = "Pods-apodmac.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,7 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46EB2E000009C0 /* Foundation.framework in Frameworks */,
-				46EB2E00001850 /* PINOperation.framework in Frameworks */,
+				46EB2E000019C0 /* PINOperation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,8 +420,8 @@
 				46EB2E00001630 /* Accelerate.framework in Frameworks */,
 				46EB2E00000D40 /* Foundation.framework in Frameworks */,
 				46EB2E00001610 /* ImageIO.framework in Frameworks */,
-				46EB2E000018C0 /* PINCache.framework in Frameworks */,
-				46EB2E00001880 /* PINOperation.framework in Frameworks */,
+				46EB2E00001A30 /* PINCache.framework in Frameworks */,
+				46EB2E000019F0 /* PINOperation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +438,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				46EB2E000016D0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46EB2E00001810 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46EB2E00001850 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +470,7 @@
 				22C347595B1851A1E5B0A3762BB18EC9 /* PINOperation.framework */,
 				115A4FCB2A03922EC10B633F15359653 /* PINRemoteImage.framework */,
 				25CF11B01E5CDD311793DD8DB85EF610 /* Pods_ApodKMP.framework */,
+				DD89E94279A63C9013EAB5ED061886D1 /* Pods_apodmac.framework */,
 				979486118B3E90C08386079D57962701 /* SnapKit.framework */,
 			);
 			name = Products;
@@ -457,9 +479,10 @@
 		46EB2E00000060 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				46EB2E000018B0 /* PINCache.framework */,
-				46EB2E00001840 /* PINOperation.framework */,
+				46EB2E00001A20 /* PINCache.framework */,
+				46EB2E000019B0 /* PINOperation.framework */,
 				46EB2E000009A0 /* iOS */,
+				46EB2E00001830 /* OS X */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -468,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				46EB2E000016E0 /* Pods-ApodKMP */,
+				46EB2E00001860 /* Pods-apodmac */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
@@ -763,6 +787,30 @@
 			path = "Target Support Files/Pods-ApodKMP";
 			sourceTree = "<group>";
 		};
+		46EB2E00001830 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				46EB2E00001840 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		46EB2E00001860 /* Pods-apodmac */ = {
+			isa = PBXGroup;
+			children = (
+				46EB2E000018A0 /* Pods-apodmac.modulemap */,
+				46EB2E000018E0 /* Pods-apodmac-acknowledgements.markdown */,
+				46EB2E000018D0 /* Pods-apodmac-acknowledgements.plist */,
+				46EB2E000018F0 /* Pods-apodmac-dummy.m */,
+				46EB2E00001890 /* Pods-apodmac-Info.plist */,
+				46EB2E000018B0 /* Pods-apodmac-umbrella.h */,
+				46EB2E00001880 /* Pods-apodmac.debug.xcconfig */,
+				46EB2E00001870 /* Pods-apodmac.release.xcconfig */,
+			);
+			name = "Pods-apodmac";
+			path = "Target Support Files/Pods-apodmac";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -856,6 +904,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		46EB2E000017F0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46EB2E000018C0 /* Pods-apodmac-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -907,10 +963,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				46EB2E000017B0 /* PBXTargetDependency */,
-				46EB2E000017D0 /* PBXTargetDependency */,
-				46EB2E000017F0 /* PBXTargetDependency */,
-				46EB2E00001810 /* PBXTargetDependency */,
+				46EB2E00001920 /* PBXTargetDependency */,
+				46EB2E00001940 /* PBXTargetDependency */,
+				46EB2E00001960 /* PBXTargetDependency */,
+				46EB2E00001980 /* PBXTargetDependency */,
 			);
 			name = "Pods-ApodKMP";
 			productName = "Pods-ApodKMP";
@@ -929,7 +985,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				46EB2E00001830 /* PBXTargetDependency */,
+				46EB2E000019A0 /* PBXTargetDependency */,
 			);
 			name = PINCache;
 			productName = PINCache;
@@ -948,12 +1004,30 @@
 			buildRules = (
 			);
 			dependencies = (
-				46EB2E000018A0 /* PBXTargetDependency */,
-				46EB2E00001870 /* PBXTargetDependency */,
+				46EB2E00001A10 /* PBXTargetDependency */,
+				46EB2E000019E0 /* PBXTargetDependency */,
 			);
 			name = PINRemoteImage;
 			productName = PINRemoteImage;
 			productReference = 115A4FCB2A03922EC10B633F15359653 /* PINRemoteImage.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F3210D77A3959981F75F202999787279 /* Pods-apodmac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46EB2E000017B0 /* Build configuration list for PBXNativeTarget "Pods-apodmac" */;
+			buildPhases = (
+				46EB2E000017F0 /* Headers */,
+				46EB2E00001800 /* Sources */,
+				46EB2E00001810 /* Frameworks */,
+				46EB2E00001820 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-apodmac";
+			productName = "Pods-apodmac";
+			productReference = DD89E94279A63C9013EAB5ED061886D1 /* Pods_apodmac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -982,6 +1056,7 @@
 				57310B016450E63387C9D64F4933E995 /* PINOperation */,
 				E2A8B2A28D2EAB2E4CCF3B69E6792851 /* PINRemoteImage */,
 				88560A9E3716AE0379C277F12DD07656 /* Pods-ApodKMP */,
+				F3210D77A3959981F75F202999787279 /* Pods-apodmac */,
 				19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */,
 			);
 		};
@@ -1017,6 +1092,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		46EB2E000016C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46EB2E00001820 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1141,50 +1223,58 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		46EB2E00001800 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46EB2E00001900 /* Pods-apodmac-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		46EB2E000017B0 /* PBXTargetDependency */ = {
+		46EB2E00001920 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PINCache;
 			target = A927C3CD51C30012080D6CA07959B246 /* PINCache */;
-			targetProxy = 46EB2E000017A0 /* PBXContainerItemProxy */;
+			targetProxy = 46EB2E00001910 /* PBXContainerItemProxy */;
 		};
-		46EB2E000017D0 /* PBXTargetDependency */ = {
+		46EB2E00001940 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PINOperation;
 			target = 57310B016450E63387C9D64F4933E995 /* PINOperation */;
-			targetProxy = 46EB2E000017C0 /* PBXContainerItemProxy */;
+			targetProxy = 46EB2E00001930 /* PBXContainerItemProxy */;
 		};
-		46EB2E000017F0 /* PBXTargetDependency */ = {
+		46EB2E00001960 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PINRemoteImage;
 			target = E2A8B2A28D2EAB2E4CCF3B69E6792851 /* PINRemoteImage */;
-			targetProxy = 46EB2E000017E0 /* PBXContainerItemProxy */;
+			targetProxy = 46EB2E00001950 /* PBXContainerItemProxy */;
 		};
-		46EB2E00001810 /* PBXTargetDependency */ = {
+		46EB2E00001980 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SnapKit;
 			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
-			targetProxy = 46EB2E00001800 /* PBXContainerItemProxy */;
+			targetProxy = 46EB2E00001970 /* PBXContainerItemProxy */;
 		};
-		46EB2E00001830 /* PBXTargetDependency */ = {
+		46EB2E000019A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PINOperation;
 			target = 57310B016450E63387C9D64F4933E995 /* PINOperation */;
-			targetProxy = 46EB2E00001820 /* PBXContainerItemProxy */;
+			targetProxy = 46EB2E00001990 /* PBXContainerItemProxy */;
 		};
-		46EB2E00001870 /* PBXTargetDependency */ = {
+		46EB2E000019E0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PINOperation;
 			target = 57310B016450E63387C9D64F4933E995 /* PINOperation */;
-			targetProxy = 46EB2E00001860 /* PBXContainerItemProxy */;
+			targetProxy = 46EB2E000019D0 /* PBXContainerItemProxy */;
 		};
-		46EB2E000018A0 /* PBXTargetDependency */ = {
+		46EB2E00001A10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PINCache;
 			target = A927C3CD51C30012080D6CA07959B246 /* PINCache */;
-			targetProxy = 46EB2E00001890 /* PBXContainerItemProxy */;
+			targetProxy = 46EB2E00001A00 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1241,6 +1331,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1302,6 +1393,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1676,6 +1768,86 @@
 			};
 			name = Debug;
 		};
+		46EB2E000017C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46EB2E00001870 /* Pods-apodmac.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-apodmac/Pods-apodmac-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MODULEMAP_FILE = "Target Support Files/Pods-apodmac/Pods-apodmac.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		46EB2E000017D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46EB2E00001880 /* Pods-apodmac.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-apodmac/Pods-apodmac-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MODULEMAP_FILE = "Target Support Files/Pods-apodmac/Pods-apodmac.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1729,6 +1901,15 @@
 			buildConfigurations = (
 				46EB2E00001670 /* Debug */,
 				46EB2E00001660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46EB2E000017B0 /* Build configuration list for PBXNativeTarget "Pods-apodmac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46EB2E000017D0 /* Debug */,
+				46EB2E000017C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
