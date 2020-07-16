@@ -56,10 +56,10 @@ When clicking on an APOD, you will be redirected to a detail page where you can 
 
 
 #### iOS:
-- [ ] Splash page
-- [ ] Landing page Highlight (wip)
-- [ ] Latest strip
-- [ ] Detail page
+- [X] Splash page
+- [X] Landing page Highlight
+- [X] Latest strip
+- [ ] Detail page (wip)
 - [ ] Image fullscreen
 - [ ] Player fullscreen
 
