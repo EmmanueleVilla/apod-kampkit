@@ -58,7 +58,7 @@ class SplashViewController: UIViewController {
             if(state.homeState.latest.count == 0) {
                 return
             }
-            self.navigationController?.setViewControllers([HomeViewController()], animated: true)
+            self.navigationController?.setViewControllers([HomeViewController()], animated: false)
         })
         interactor.doInit()
     }

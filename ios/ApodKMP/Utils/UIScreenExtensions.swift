@@ -16,4 +16,6 @@ extension UIScreen {
     static let logoSize: CGFloat = screenHeight / 100 * 18
     static let plusSize: CGFloat = screenHeight / 100 * 4
     static let margin: CGFloat = 12
+    static let apodImageSize: CGFloat = 175
+    static let apodMargin: CGFloat = 10
 }

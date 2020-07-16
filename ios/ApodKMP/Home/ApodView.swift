@@ -15,11 +15,12 @@ class ApodView: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame:frame)
+        
         self.addSubview(self.image)
-        self.image.contentMode = .scaleAspectFit
+        self.image.contentMode = .scaleAspectFill
         self.image.clipsToBounds = true
         self.image.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().offset(UIScreen.apodMargin)
         }
     }
     
