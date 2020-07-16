@@ -85,12 +85,12 @@ object Deps {
         val jvmJson = "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
         val jvmLogging = "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
         val ios = "io.ktor:ktor-client-ios:${Versions.ktor}"
-        val iosCore = "io.ktor:ktor-client-core-native:${Versions.ktor}"
-        val iosJson = "io.ktor:ktor-client-json-native:${Versions.ktor}"
-        val iosLogging = "io.ktor:ktor-client-logging-native:${Versions.ktor}"
+        val nativeCore = "io.ktor:ktor-client-core-native:${Versions.ktor}"
+        val nativeJson = "io.ktor:ktor-client-json-native:${Versions.ktor}"
+        val nativeLogging = "io.ktor:ktor-client-logging-native:${Versions.ktor}"
         val commonSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         val androidSerialization = "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
-        val iosSerialization = "io.ktor:ktor-client-serialization-native:${Versions.ktor}"
+        val nativeSerialization = "io.ktor:ktor-client-serialization-native:${Versions.ktor}"
         val js = "io.ktor:ktor-client-js:${Versions.ktor}"
         val jsCore = "io.ktor:ktor-client-core-js:${Versions.ktor}"
         val jsJson = "io.ktor:ktor-client-json-js:${Versions.ktor}"
@@ -98,5 +98,6 @@ object Deps {
         val jsSerialization = "io.ktor:ktor-client-serialization-js:${Versions.ktor}"
         val mock = "io.ktor:ktor-client-mock:${Versions.ktor}"
         val jvmMock = "io.ktor:ktor-client-mock-jvm:${Versions.ktor}"
+        val macos = "io.ktor:ktor-client-curl:${Versions.ktor}"
     }
 }

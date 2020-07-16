@@ -14,28 +14,25 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0):
     - PINCache (= 3.0.1-beta.8)
     - PINRemoteImage/Core
-  - shared (1.1)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - PINRemoteImage
-  - shared (from `../shared/`)
+  - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
     - PINCache
     - PINOperation
     - PINRemoteImage
-
-EXTERNAL SOURCES:
-  shared:
-    :path: "../shared/"
+    - SnapKit
 
 SPEC CHECKSUMS:
   PINCache: 534fd41d358d828dfdf227a0d327f3673a65e20b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: e2b89e19fb6e77ffc099f9d9f3b3fe1745e3f9f9
-  shared: 2e5c4aa30e3668fe416c857a709e9465f4d24127
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 51e8f21b4b355d13566ff46d5a16797d7e2f4bf1
+PODFILE CHECKSUM: 738c79e6881c1613bc30a7afdc5c8db3673ffb2b
 
 COCOAPODS: 1.9.3

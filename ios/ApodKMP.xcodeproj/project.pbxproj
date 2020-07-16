@@ -3,15 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05D5AB5124BC668000FF516D /* shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5AB5024BC668000FF516D /* shared.framework */; };
-		05D5AB5224BC668000FF516D /* shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5AB5024BC668000FF516D /* shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		050F336E24C096770026009F /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F336D24C096770026009F /* UIDeviceExtensions.swift */; };
+		050F337124C098A50026009F /* ApodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F337024C098A50026009F /* ApodDetailViewController.swift */; };
+		0524FB9824BCF3F800E57C63 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FB9724BCF3F800E57C63 /* SplashViewController.swift */; };
+		0524FBBD24BDB78D00E57C63 /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FBBC24BDB78D00E57C63 /* UIScreenExtensions.swift */; };
+		0524FBC124BE06F300E57C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524FBC024BE06F300E57C63 /* HomeViewController.swift */; };
+		057522A524BFAED900BE0D05 /* ApodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057522A424BFAED900BE0D05 /* ApodView.swift */; };
+		057522A824BFB02E00BE0D05 /* ApodDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057522A724BFB02E00BE0D05 /* ApodDataSource.swift */; };
+		05D18A3D24C08A0F00EED901 /* ApodCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D18A3C24C08A0F00EED901 /* ApodCollectionFlowLayout.swift */; };
+		05D3481824BF28BA008193C1 /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D3481724BF28BA008193C1 /* shared.xcframework */; };
+		05D3481924BF28BA008193C1 /* shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05D3481724BF28BA008193C1 /* shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A36254DE0E2430CD9EC0A997 /* Pods_ApodKMP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */; };
 		F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */; };
-		F1465F0523AA94BF0055F7C3 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F0423AA94BF0055F7C3 /* SplashViewController.swift */; };
 		F1465F0A23AA94BF0055F7C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1465F0923AA94BF0055F7C3 /* Assets.xcassets */; };
 		F1465F1823AA94C00055F7C3 /* KaMPStarteriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F1723AA94C00055F7C3 /* KaMPStarteriOSTests.swift */; };
 		F1465F2323AA94C00055F7C3 /* KaMPStarteriOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1465F2223AA94C00055F7C3 /* KaMPStarteriOSUITests.swift */; };
@@ -35,13 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		05D5AB5324BC668000FF516D /* Embed Frameworks */ = {
+		05D3481A24BF28BB008193C1 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				05D5AB5224BC668000FF516D /* shared.framework in Embed Frameworks */,
+				05D3481924BF28BA008193C1 /* shared.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,14 +56,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		05D5AB5024BC668000FF516D /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = shared.framework; sourceTree = "<group>"; };
+		050F336D24C096770026009F /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
+		050F337024C098A50026009F /* ApodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodDetailViewController.swift; sourceTree = "<group>"; };
+		0524FB9724BCF3F800E57C63 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		0524FBBC24BDB78D00E57C63 /* UIScreenExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtensions.swift; sourceTree = "<group>"; };
+		0524FBC024BE06F300E57C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		057522A424BFAED900BE0D05 /* ApodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodView.swift; sourceTree = "<group>"; };
+		057522A724BFB02E00BE0D05 /* ApodDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodDataSource.swift; sourceTree = "<group>"; };
+		05D18A3C24C08A0F00EED901 /* ApodCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodCollectionFlowLayout.swift; sourceTree = "<group>"; };
+		05D347EB24BF0489008193C1 /* ApodKMP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ApodKMP.entitlements; sourceTree = "<group>"; };
+		05D3481724BF28BA008193C1 /* shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = shared.xcframework; sourceTree = "<group>"; };
 		1DFCC00C8DAA719770A18D1A /* Pods-KaMPStarteriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaMPStarteriOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-KaMPStarteriOS/Pods-KaMPStarteriOS.release.xcconfig"; sourceTree = "<group>"; };
 		7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApodKMP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2140ADD578C92C07288B846 /* Pods-ApodKMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApodKMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApodKMP/Pods-ApodKMP.debug.xcconfig"; sourceTree = "<group>"; };
 		DB56DF705F25B0D8044BC7D5 /* Pods-ApodKMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApodKMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApodKMP/Pods-ApodKMP.release.xcconfig"; sourceTree = "<group>"; };
 		F1465EFD23AA94BF0055F7C3 /* ApodKMP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApodKMP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F1465F0423AA94BF0055F7C3 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		F1465F0923AA94BF0055F7C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1465F0E23AA94BF0055F7C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1465F1323AA94C00055F7C3 /* ApodKMPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApodKMPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,8 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D3481824BF28BA008193C1 /* shared.xcframework in Frameworks */,
 				A36254DE0E2430CD9EC0A997 /* Pods_ApodKMP.framework in Frameworks */,
-				05D5AB5124BC668000FF516D /* shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,10 +110,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050F336F24C098900026009F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				050F337024C098A50026009F /* ApodDetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		0524FB9624BCF3E800E57C63 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				0524FB9724BCF3F800E57C63 /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		0524FBBB24BDB78300E57C63 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0524FBBC24BDB78D00E57C63 /* UIScreenExtensions.swift */,
+				050F336D24C096770026009F /* UIDeviceExtensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		05D18A3B24C089F400EED901 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				057522A724BFB02E00BE0D05 /* ApodDataSource.swift */,
+				057522A424BFAED900BE0D05 /* ApodView.swift */,
+				0524FBC024BE06F300E57C63 /* HomeViewController.swift */,
+				05D18A3C24C08A0F00EED901 /* ApodCollectionFlowLayout.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		6278498AD96A4D949D39BF44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				05D5AB5024BC668000FF516D /* shared.framework */,
+				05D3481724BF28BA008193C1 /* shared.xcframework */,
 				7F7160C3C578F7C230FAD672 /* Pods_ApodKMP.framework */,
 			);
 			name = Frameworks;
@@ -140,8 +191,12 @@
 		F1465EFF23AA94BF0055F7C3 /* ApodKMP */ = {
 			isa = PBXGroup;
 			children = (
+				050F336F24C098900026009F /* Detail */,
+				05D18A3B24C089F400EED901 /* Home */,
+				05D347EB24BF0489008193C1 /* ApodKMP.entitlements */,
+				0524FBBB24BDB78300E57C63 /* Utils */,
+				0524FB9624BCF3E800E57C63 /* Splash */,
 				F1465F0023AA94BF0055F7C3 /* AppDelegate.swift */,
-				F1465F0423AA94BF0055F7C3 /* SplashViewController.swift */,
 				F1465F0923AA94BF0055F7C3 /* Assets.xcassets */,
 				F1465F0E23AA94BF0055F7C3 /* Info.plist */,
 			);
@@ -178,7 +233,7 @@
 				F1465EFA23AA94BF0055F7C3 /* Frameworks */,
 				F1465EFB23AA94BF0055F7C3 /* Resources */,
 				25B87AC33E9B4AD340F227E4 /* [CP] Embed Pods Frameworks */,
-				05D5AB5324BC668000FF516D /* Embed Frameworks */,
+				05D3481A24BF28BB008193C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -340,8 +395,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1465F0523AA94BF0055F7C3 /* SplashViewController.swift in Sources */,
+				05D18A3D24C08A0F00EED901 /* ApodCollectionFlowLayout.swift in Sources */,
+				050F336E24C096770026009F /* UIDeviceExtensions.swift in Sources */,
+				057522A824BFB02E00BE0D05 /* ApodDataSource.swift in Sources */,
+				0524FBBD24BDB78D00E57C63 /* UIScreenExtensions.swift in Sources */,
 				F1465F0123AA94BF0055F7C3 /* AppDelegate.swift in Sources */,
+				050F337124C098A50026009F /* ApodDetailViewController.swift in Sources */,
+				057522A524BFAED900BE0D05 /* ApodView.swift in Sources */,
+				0524FB9824BCF3F800E57C63 /* SplashViewController.swift in Sources */,
+				0524FBC124BE06F300E57C63 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +558,7 @@
 			baseConfigurationReference = B2140ADD578C92C07288B846 /* Pods-ApodKMP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ApodKMP/ApodKMP.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LS7N8KKB4L;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -517,6 +580,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.finconsgroup.apodkmp;
 				PRODUCT_NAME = ApodKMP;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -527,6 +591,7 @@
 			baseConfigurationReference = DB56DF705F25B0D8044BC7D5 /* Pods-ApodKMP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ApodKMP/ApodKMP.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LS7N8KKB4L;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -548,6 +613,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.finconsgroup.apodkmp;
 				PRODUCT_NAME = ApodKMP;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

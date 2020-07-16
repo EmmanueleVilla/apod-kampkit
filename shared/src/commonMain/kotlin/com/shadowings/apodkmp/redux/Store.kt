@@ -3,6 +3,7 @@ package com.shadowings.apodkmp.redux
 import co.touchlab.kermit.Kermit
 import com.russhwolf.settings.Settings
 import io.ktor.client.HttpClient
+import io.ktor.client.features.HttpTimeout
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.logging.LogLevel
@@ -57,6 +58,9 @@ data class Http(
         install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
+        install(HttpTimeout) {
+            requestTimeoutMillis = 5000
+        }
         install(Logging) {
             logger = object : Logger {
                 override fun log(message: String) {
@@ -77,5 +81,6 @@ enum class Platforms {
     IOS,
     Android,
     Jvm,
-    Js
+    Js,
+    MacOS
 }

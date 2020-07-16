@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:apodmac/apodmac.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ApodKMP.xcodeproj">
    </FileRef>
    <FileRef
