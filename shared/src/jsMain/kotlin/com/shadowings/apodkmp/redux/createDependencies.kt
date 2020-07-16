@@ -30,6 +30,7 @@ actual fun createDependencies(): Dependencies {
         http = Http(),
         storage = Storage(
             settings = JsSettings()
-        )
+        ),
+        constants = Constants()
     )
 }

@@ -35,6 +35,7 @@ actual fun createDependencies(): Dependencies {
         http = Http(),
         storage = Storage(
             settings = AndroidSettings(container.appContext.getSharedPreferences("APOD_SETTINGS", Context.MODE_PRIVATE))
-        )
+        ),
+        constants = Constants()
     )
 }

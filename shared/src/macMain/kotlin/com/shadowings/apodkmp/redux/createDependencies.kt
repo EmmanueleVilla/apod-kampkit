@@ -31,6 +31,7 @@ actual fun createDependencies(): Dependencies {
         http = Http(),
         storage = Storage(
             settings = AppleSettings(NSUserDefaults(suiteName = "APOD_SETTINGS"))
-        )
+        ),
+        constants = Constants()
     )
 }

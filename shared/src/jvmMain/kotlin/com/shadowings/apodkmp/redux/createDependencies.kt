@@ -32,6 +32,7 @@ actual fun createDependencies(): Dependencies {
         http = Http(),
         storage = Storage(
             settings = JvmPropertiesSettings(Properties())
-        )
+        ),
+        constants = Constants()
     )
 }

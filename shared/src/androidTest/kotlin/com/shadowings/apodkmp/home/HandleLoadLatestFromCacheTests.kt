@@ -16,7 +16,7 @@ class HandleLoadLatestFromCacheTests {
         val response = listOf(Apod(date = "MOCK"), Apod(date = "MOCK"), Apod(date = "MOCK"))
         val dep = getMockDeps()
         val json = Json(JsonConfiguration.Stable).stringify(Apod.serializer().list, response)
-        dep.storage.settings.putString("LATEST", json)
+        dep.storage.settings.putString(dep.constants.latestKey, json)
         val actions = runBlocking {
             return@runBlocking handleLoadLatestFromCache(HomeActions.LatestFetch.LoadFromCache, dep)
         }

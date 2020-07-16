@@ -2,6 +2,7 @@ package com.shadowings.apodkmp.mock
 
 import co.touchlab.kermit.CommonLogger
 import co.touchlab.kermit.Kermit
+import com.shadowings.apodkmp.redux.Constants
 import com.shadowings.apodkmp.redux.Dependencies
 import com.shadowings.apodkmp.redux.Http
 import com.shadowings.apodkmp.redux.Platforms
@@ -42,5 +43,6 @@ fun getMockDeps() = Dependencies(
     ),
     storage = Storage(
         settings = VolatileSettings()
-    )
+    ),
+    constants = Constants()
 )
