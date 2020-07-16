@@ -9,9 +9,13 @@
 import SwiftUI
 import shared
 
+class ApodObservable: ObservableObject {
+    @Published var titleText = "Loading..."
+}
+
 struct ContentView: View {
     
-    @State var titleText = "Loading..."
+    @ObservedObject var apod = ApodObservable()
     
     let interactor = HomeInteractor()
     init() {
@@ -22,7 +26,7 @@ struct ContentView: View {
                 return
             }
             
-            me.titleText = state.homeState.latest[0].title
+            me.apod.titleText = state.homeState.latest[0].title
         })
         interactor.doInit()
     }
@@ -30,10 +34,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(titleText)
+            Text(apod.titleText)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             Button(
-                action: { self.titleText = "CLICK" },
+                action: { self.apod.titleText = "CLICK" },
               label: { Text("Click") }
             )
         }
