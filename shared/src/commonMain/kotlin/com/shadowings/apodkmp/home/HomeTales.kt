@@ -34,11 +34,8 @@ suspend fun homeTales(action: Action, dep: Dependencies): List<Action> {
 
 fun handleLatestRequest(action: Action, dep: Dependencies): List<Action> {
     return try {
-        val lastDownloadTimeMS = dep.storage.settings.getLong("LATEST_TIMESTAMP", 0)
-        dep.utils.log.v { "lastDownloadTimeMS: $lastDownloadTimeMS" }
+        val lastDownloadTimeMS = dep.storage.settings.getLong(dep.constants.latestTimestampKey, 0)
         val oneHourMS = 60 * 60 * 1000
-        dep.utils.log.v { "currentTimeMS: ${dep.utils.currentTimeMillis()}" }
-        dep.utils.log.v { "lastDownload + 1h: ${lastDownloadTimeMS + oneHourMS}" }
         val expired = (lastDownloadTimeMS + oneHourMS < dep.utils.currentTimeMillis())
         if (expired || dep.utils.platform == Platforms.Js) {
             listOf(HomeActions.LatestFetch.FetchFromWeb)
@@ -80,8 +77,8 @@ suspend fun handleLatestFetchFromWeb(action: Action, dep: Dependencies): List<Ac
 fun handleDownloadCompleted(action: HomeActions.LatestFetch.DownloadCompleted, dep: Dependencies): List<Action> {
     return try {
         val json = Json(JsonConfiguration.Stable).stringify(Apod.serializer().list, action.payload)
-        dep.storage.settings.putString("LATEST", json)
-        dep.storage.settings.putLong("DOWNLOAD_TIMESTAMP_KEY", dep.utils.currentTimeMillis())
+        dep.storage.settings.putString(dep.constants.latestKey, json)
+        dep.storage.settings.putLong(dep.constants.latestTimestampKey, dep.utils.currentTimeMillis())
         listOf(HomeActions.LatestFetch.LoadFromCache)
     } catch (e: Exception) {
         dep.utils.log.v { e.toString() }
@@ -91,7 +88,7 @@ fun handleDownloadCompleted(action: HomeActions.LatestFetch.DownloadCompleted, d
 
 fun handleLoadLatestFromCache(action: Action, dep: Dependencies): List<Action> {
     try {
-        val apodJson = dep.storage.settings["LATEST", ""]
+        val apodJson = dep.storage.settings[dep.constants.latestKey, ""]
         return if (apodJson == "") {
             listOf(HomeActions.LatestFetch.Error("Nothing cached"))
         } else {

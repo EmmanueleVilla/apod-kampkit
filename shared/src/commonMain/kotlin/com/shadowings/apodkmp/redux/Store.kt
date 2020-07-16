@@ -38,7 +38,13 @@ fun getDep(): Dependencies {
 data class Dependencies(
     val utils: Utils,
     val storage: Storage,
-    val http: Http
+    val http: Http,
+    val constants: Constants
+)
+
+data class Constants(
+    val latestTimestampKey: String = "LATEST_DOWNLOAD_TIMESTAMP",
+    val latestKey: String = "LATEST_DOWNLOAD_KEY"
 )
 
 data class Utils(
