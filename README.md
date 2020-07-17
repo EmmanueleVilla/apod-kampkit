@@ -41,13 +41,13 @@ When clicking on an APOD, you will be redirected to a detail page where you can 
 
 ### CURRENT MVP COMPLETED FEATURES:
 
-| Component | Splash page | Landing Page | Latest Strip | Detail Page | Player | Unit Tests | UI Tests |
-| --------- | ----------- | ------------ | ------------ | ----------- | ------ | ---------- | -------- |
-| Shared | - | X | X | - | - | X | - |
-| Android | X | X | X | X | X | X |  |
-| iOS | X | X | X |  |  |  |  |
-| macOS |  |  |  |  |  |  |  |
-| react |  |  |  |  |  |  |  |
+| Component | Splash page | Landing Page | Latest Strip | Detail Page | Player | Tests |
+| --------- | ----------- | ------------ | ------------ | ----------- | ------ | ----- |
+| Shared | - | X | X | - | - | Unit |
+| Android | X | X | X | X | X |  |
+| iOS | X | X | X |  |  |  |
+| macOS |  |  |  |  |  |  |
+| react |  |  |  |  |  |  |
 
 
 ### NEXT MVP STEPS:
