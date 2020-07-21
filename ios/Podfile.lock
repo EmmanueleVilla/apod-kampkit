@@ -1,4 +1,5 @@
 PODS:
+  - Hero (1.5.0)
   - PINCache (3.0.1-beta.8):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.8)
     - PINCache/Core (= 3.0.1-beta.8)
@@ -17,22 +18,25 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - Hero
   - PINRemoteImage
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
+    - Hero
     - PINCache
     - PINOperation
     - PINRemoteImage
     - SnapKit
 
 SPEC CHECKSUMS:
+  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
   PINCache: 534fd41d358d828dfdf227a0d327f3673a65e20b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: e2b89e19fb6e77ffc099f9d9f3b3fe1745e3f9f9
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 738c79e6881c1613bc30a7afdc5c8db3673ffb2b
+PODFILE CHECKSUM: 06cb20335e6497564aeeb05bddff424c3bdbde22
 
 COCOAPODS: 1.9.3

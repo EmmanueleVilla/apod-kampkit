@@ -9,6 +9,7 @@ target 'ApodKMP' do
     project 'ApodKMP.xcodeproj'
     pod 'PINRemoteImage'
     pod 'SnapKit', '~> 5.0.0'
+    pod 'Hero'
 end
 
 target 'apodmac' do

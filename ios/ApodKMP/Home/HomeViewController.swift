@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import PINRemoteImage
 import SnapKit
+import Hero
 
 class HomeViewController: UIViewController {
     
@@ -22,8 +23,20 @@ class HomeViewController: UIViewController {
     let latestDataSource = ApodDataSource()
     let latestDelegate = ApodCollectionFlowLayout()
     
+    var highlightApod: Apod? = nil
+    
+    @objc func handleHighlightTap(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            let detail = ApodDetailViewController()
+            detail.apod = self.highlightApod
+            navigationController?.pushViewController(detail, animated: true)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hero.isEnabled = true
         
         latestCollection = UICollectionView(frame: CGRect.zero, collectionViewLayout: latestFlow)
         view.backgroundColor = UIColor.white
@@ -33,6 +46,9 @@ class HomeViewController: UIViewController {
         view.addSubview(latestTitle)
         view.addSubview(latestCollection!)
         
+        highlightImage.hero.id = "apod-image"
+        highlightImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleHighlightTap)))
+        highlightImage.isUserInteractionEnabled = true
         highlightImage.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
@@ -75,6 +91,7 @@ class HomeViewController: UIViewController {
                 return
             }
             
+            self.highlightApod = state.homeState.latest[0]
             self.highlightTitle.text = state.homeState.latest[0].title
             self.highlightImage.pin_setImage(from: URL(string: state.homeState.latest[0].imageUrl)!, completion: { (result)  in
                 guard let image = result.image else { return }
